@@ -1,0 +1,6 @@
+TextWindow.Show()
+TextWindow.Title = "nullapp"
+TextWindow.WriteLine("This is a NULL app.")
+TextWindow.Pause()
+TextWindow.Hide()
+Program.End()
