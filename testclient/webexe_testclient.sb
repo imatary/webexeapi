@@ -2,8 +2,8 @@ TextWindow.Show()
 TextWindow.Title = "WebEXE Test Client"
 TextWindow.Clear()
 
-serverurl = "http://sykeben.github.io/webexetest/"
-tempdir = Text.Append(LDFile.TempFolder,"/webexe")
+serverurl = "sykeben.github.io/webexetest"
+tempdir = Text.Append(LDFile.TempFolder,"\webexe")
 
 File.DeleteDirectory(tempdir)
 File.CreateDirectory(tempdir)
@@ -13,8 +13,10 @@ TextWindow.WriteLine(Text.Append("The server this is using is: ",serverurl))
 TextWindow.WriteLine("")
 
 TextWindow.Write("Downloading list . . . ")
-rawlist = ESLNetworking.GETRequest(Text.Append(serverurl,"list.txt"),"HTTP/1.1")
+ESLNetworking.DownloadFile(Text.Append(serverurl,"/list.html"),Text.Append(tempdir,"\list.txt"))
+rawlist = File.ReadLine(Text.Append(tempdir,"\list.txt"),1)
 TextWindow.WriteLine("Done.")
+TextWindow.WriteLine(rawlist)
 
 TextWindow.Write("Parsing list . . . ")
 kindarawlist = LDText.Split(rawlist,"|")
