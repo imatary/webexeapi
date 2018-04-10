@@ -1,0 +1,21 @@
+TextWindow.Show()
+TextWindow.Title = "HelloTXT"
+TextWindow.Clear()
+
+TextWindow.WriteLine("#   # ##### #     #      ###")
+TextWindow.WriteLine("#   # #     #     #     #   #")
+TextWindow.WriteLine("##### ###   #     #     #   #")
+TextWindow.WriteLine("#   # #     #     #     #   #  #")
+TextWindow.WriteLine("#   # ##### ##### #####  ###  #")
+TextWindow.WriteLine("")
+TextWindow.WriteLine("#   #  ###  ####  #     ####  #")
+TextWindow.WriteLine("#   # #   # #   # #     #   # #")
+TextWindow.WriteLine("# # # #   # ####  #     #   # #")
+TextWindow.WriteLine("# # # #   # #   # #     #   #")
+TextWindow.WriteLine(" # #   ###  #   # ##### ####  #")
+
+TextWindow.WriteLine("")
+TextWindow.Pause()
+
+TextWindow.Hide()
+Program.End()
