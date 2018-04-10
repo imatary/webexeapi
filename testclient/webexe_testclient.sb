@@ -57,8 +57,10 @@ If (urlok = 0) Then
   Goto URLGETTER
 EndIf
 
+infocolors()
 TextWindow.Write("Checking if the server is correct . . . ")
 dltest = ESLNetworking.DownloadFile(Text.Append(serverurl,"/this.is.a.web.exe.server"),File.GetTemporaryFilePath())
+initcolors()
 
 If (dltest = "True") Then
   okcolors()
@@ -201,6 +203,6 @@ Sub promptcolors
 EndSub
 
 Sub infocolors
-  TextWindow.ForegroundColor = "White"
+  TextWindow.ForegroundColor = "Cyan"
   Program.Delay(20)
 EndSub
