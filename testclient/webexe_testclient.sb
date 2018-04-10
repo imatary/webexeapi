@@ -4,6 +4,7 @@ TextWindow.Clear()
 
 serverurl = "http://localhost"
 tempdir = Text.Append(LDFile.TempFolder,"\webexe")
+packagedir = Text.Append(tempdir,"\package")
 
 File.DeleteDirectory(tempdir)
 File.CreateDirectory(tempdir)
@@ -52,3 +53,30 @@ Else
 EndIf
 
 LOADER:
+
+TextWindow.WriteLine("")
+TextWindow.Write("Prepping temp dir . . . ")
+File.DeleteDirectory(tempdir)
+File.CreateDirectory(tempdir)
+File.CreateDirectory(packagedir)
+TextWindow.WriteLine("Done.")
+
+TextWindow.Write("Downloading app package . . . ")
+ESLNetworking.DownloadFile(Text.Append(serverurl,Text.Append("/app/",Text.Append(app2launch,".zip"))),Text.Append(tempdir,"\package.zip"))
+TextWindow.WriteLine("Done.")
+
+EXECUTOR:
+
+TextWindow.Write("Extracting app package . . . ")
+LDZip.UnZip(Text.Append(tempdir,"\package.zip"),packagedir)
+TextWindow.WriteLine("Done.")
+
+TextWindow.Write("Executing . . . ")
+SPProcess.Start(Text.Append(packagedir,"\webexe.boot.exe"))
+TextWindow.WriteLine("Process started.")
+
+TextWindow.Write("PRESS ANY KEY WHEN THE APPLICATION CLOSES . . . ")
+TextWindow.PauseWithoutMessage()
+TextWindow.WriteLine("")
+
+Goto LAUNCHER
