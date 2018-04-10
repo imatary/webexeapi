@@ -1,5 +1,6 @@
 TextWindow.Show()
 TextWindow.Title = "WebEXE Test Client"
+initcolors()
 TextWindow.Clear()
 
 tempdir = Text.Append(LDFile.TempFolder,"\webexe")
@@ -8,23 +9,31 @@ packagedir = Text.Append(tempdir,"\package")
 File.DeleteDirectory(tempdir)
 File.CreateDirectory(tempdir)
 
+infocolors()
 TextWindow.WriteLine("WELCOME!")
+initcolors()
+
+
 
 URLGETTER:
 
 TextWindow.WriteLine("")
+promptcolors()
 TextWindow.WriteLine("Enter a server URL (E.G. http://example.com):")
 TextWindow.Write(">>> ")
 serverurl = TextWindow.Read()
+initcolors()
 
 TextWindow.WriteLine("")
 
 urlok = 0
+errorcolors()
 If (Text.GetSubText(serverurl,1,4) = "http") Then
   If (Text.GetSubText(serverurl,5,3) = "://") Then
     If (Text.GetSubText(serverurl,Text.GetLength(serverurl),Text.GetLength(serverurl)) = "/") Then
       TextWindow.WriteLine("Invalid URL: Ends with a /")
     Else
+      okcolors()
       TextWindow.WriteLine("URL OK, using HTTP.")
       urlok = 1
     EndIf
@@ -32,6 +41,7 @@ If (Text.GetSubText(serverurl,1,4) = "http") Then
     If (Text.GetSubText(serverurl,Text.GetLength(serverurl),Text.GetLength(serverurl)) = "/") Then
       TextWindow.WriteLine("Invalid URL: Ends with a /")
     Else
+      okcolors()
       TextWindow.WriteLine("URL OK, using HTTPS.")
       urlok = 1
     EndIf
@@ -41,40 +51,54 @@ If (Text.GetSubText(serverurl,1,4) = "http") Then
 Else
   TextWindow.WriteLine("Invalid URL: No HTTP/HTTPS specified")  
 EndIf
+initcolors()
 
 If (urlok = 0) Then
   Goto URLGETTER
 EndIf
 
+
+
 INITIALIZER:
 
 TextWindow.WriteLine("")
+infocolors()
 TextWindow.Write("Downloading list . . . ")
 rawlist = ESLNetworking.DownloadString(Text.Append(serverurl,"/list"))
+okcolors()
 TextWindow.WriteLine("Done.")
 
+infocolors()
 TextWindow.Write("Parsing list . . . ")
 kindarawlist = LDText.Split(rawlist,"|")
 For i = 1 to Array.GetItemCount(kindarawlist)
   list[i] = LDText.Split(kindarawlist[i],":")
 EndFor
+okcolors()
 TextWindow.WriteLine("Done.")
+
+initcolors()
+
+
 
 LAUNCHER:
 
 TextWindow.WriteLine("")
+promptcolors()
 TextWindow.WriteLine("Available apps:")
 TextWindow.WriteLine("[AppID] --> [ReadableName]")
 TextWindow.WriteLine("")
-
 For i = 1 to Array.GetItemCount(list)
   TextWindow.WriteLine(Text.Append(Text.Append(list[i][1]," ---> "),list[i][2]))
 EndFor
+initcolors()
 
 TextWindow.WriteLine("")
+promptcolors()
 TextWindow.WriteLine("Enter an AppID:")
 TextWindow.Write(">>> ")
 app2launch = TextWindow.Read()
+initcolors()
 
 app2launchok = 0
 For i = 1 to Array.GetItemCount(kindarawlist)
@@ -84,37 +108,83 @@ For i = 1 to Array.GetItemCount(kindarawlist)
 EndFor
 
 If (app2launchok = 0) Then
+  errorcolors()
   TextWindow.WriteLine("Invalid.")
+  initcolors()
   Goto LAUNCHER
 Else
   Goto LOADER
 EndIf
 
+
+
 LOADER:
 
 TextWindow.WriteLine("")
+infocolors()
 TextWindow.Write("Prepping temp dir . . . ")
 File.DeleteDirectory(tempdir)
 File.CreateDirectory(tempdir)
 File.CreateDirectory(packagedir)
+okcolors()
 TextWindow.WriteLine("Done.")
 
+infocolors()
 TextWindow.Write("Downloading app package . . . ")
 ESLNetworking.DownloadFile(Text.Append(serverurl,Text.Append("/app/",Text.Append(app2launch,".zip"))),Text.Append(tempdir,"\package.zip"))
+okcolors()
 TextWindow.WriteLine("Done.")
+
+initcolors()
+
+
 
 EXECUTOR:
 
+infocolors()
 TextWindow.Write("Extracting app package . . . ")
 LDZip.UnZip(Text.Append(tempdir,"\package.zip"),packagedir)
+okcolors()
 TextWindow.WriteLine("Done.")
 
+infocolors()
 TextWindow.Write("Executing . . . ")
 SPProcess.Start(Text.Append(packagedir,"\webexe.boot.exe"))
+okcolors()
 TextWindow.WriteLine("Process started.")
 
+promptcolors()
 TextWindow.Write("PRESS ANY KEY WHEN THE APPLICATION CLOSES . . . ")
+initcolors()
 TextWindow.PauseWithoutMessage()
 TextWindow.WriteLine("")
 
 Goto INITIALIZER
+
+
+
+Sub initcolors
+  TextWindow.BackgroundColor = "Black"
+  TextWindow.ForegroundColor = "White"
+  Program.Delay(20)
+EndSub
+
+Sub errorcolors
+  TextWindow.ForegroundColor = "Red"
+  Program.Delay(20)
+EndSub
+
+Sub okcolors
+  TextWindow.ForegroundColor = "Green"
+  Program.Delay(20)
+EndSub
+
+Sub promptcolors
+  TextWindow.ForegroundColor = "Yellow"
+  Program.Delay(20)
+EndSub
+
+Sub infocolors
+  TextWindow.ForegroundColor = "White"
+  Program.Delay(20)
+EndSub
