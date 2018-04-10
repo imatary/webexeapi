@@ -1,4 +1,4 @@
-## WebEXE Test
+## WebEXE API
 
 So, I am working on my own API called WebEXE. This will, when it's done, allow for users running Windows to run apps from a server for cheap (because it's open source). If you use this shoddy (as of now) API, **please** credit me.
 
