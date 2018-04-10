@@ -57,6 +57,22 @@ If (urlok = 0) Then
   Goto URLGETTER
 EndIf
 
+TextWindow.Write("Checking if the server is correct . . . ")
+dltest = ESLNetworking.DownloadFile(Text.Append(serverurl,"/this.is.a.web.exe.server"),File.GetTemporaryFilePath())
+
+If (dltest = "True") Then
+  okcolors()
+  TextWindow.WriteLine("Done.")
+  initcolors()
+Else
+  errorcolors()
+  TextWindow.WriteLine("ERROR!")
+  TextWindow.WriteLine("Please check the URL and make sure it's a valid WebEXE server.")
+  initcolors()
+  Goto URLGETTER
+EndIf
+
+
 
 
 INITIALIZER:
