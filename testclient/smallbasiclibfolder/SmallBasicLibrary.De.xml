@@ -1,0 +1,1579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc>
+	<assembly>
+		<name>SmallBasic 1.2 API DE</name>
+	</assembly>
+	<members>
+		<member name="T:Microsoft.SmallBasic.Library.Array">
+			<summary>Ein Array ermöglicht das Speichern mehrerer Werte unter einem angegebenen Name. Auf die Werte kann dann mit zusätzlichem Index zugegriffen werden.
+            Werte können (SMP)Strings, Zahlen, Arrays, Images (von ImageList.LoadImage) oder Controls/Shapes sein.
+            Indizes können -/0/+ (rationale) Zahlen, "Strings" oder Variablen sein, auch gemischt.
+            Indizes unterscheiden nicht zwischen Groß-/Kleinschreibung, Werte schon.
+            Direktdefinition als String, zB.
+            arr = "id1=wert1;id2=wert2;..;" nur mit Konstanten oder Strings (keine Variablennamen, \ für Escape zB. arr="1=\;;2=\=;3=\\;").
+            Merkliche Geschwindigkeitsverluste bei großen Arrays (ab 100 Elemente).
+            Arrays können mit File.WriteContents/-Line gespeichert und mit File.ReadContents/-Line eingelesen werden.
+            Für Arraysortierung s. 'LDSort'.</summary>
+			<example>'Stringdefinition "1=3;2=4;3=5;"
+            arr = "1=3;2="+ Math.Abs(-4) +";3="+ Text.GetLength("hallo") ' +";"
+
+            'Array arr kopieren
+            arr2 = arr
+
+            'Index i abschneiden/löschen
+            arr[i] = ""
+            TextWindow.WriteLine(arr[i]) ' "", kein Fehler
+
+            'Dimension dim von arr
+            While Array.IsArray(arr)
+              dim = dim+1
+              ids = Array.GetAllIndices(arr)
+              arr = arr[ids[1]]
+            EndWhile
+            TextWindow.WriteLine(dim)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Array.ContainsIndex(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt ob ein Array den angegebenen Index enthält. Dies ist nützlich, um herausfinden, ob dieser Index bereits mit einem Wert belegt wurde.
+            SB Arrays können keine leeren Indizes (Index mit Leerwert "") enthalten.
+            (Nicht für Arrays die mittels Array.SetValue erstellt wurden.)</summary>
+			<param name="array">Der Name des Arrays.</param>
+			<param name="index">Der zu suchende Index (Groß-/Kleinschreibung egal, exakte Länge).</param>
+			<returns>"True" oder "False", je nachdem ob der Index im angegebenen Array gefunden wurde.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Array.ContainsValue(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt ob ein Array den angegebenen Wert buchstabengetreu enthält. Dies ist nützlich, um herauszufinden, ob der Wert im Array bereits unter einem Index gespeichert wurde.
+            (Nicht für Arrays die mittels Array.SetValue erstellt wurden.)</summary>
+			<param name="array">Der Name des Arrays.</param>
+			<param name="value">Der zu suchende Wert (buchstabengetreu und exakte Länge) oder direkte Unterarray für 2D Array.</param>
+			<returns>"True" oder "False", je nachdem ob der Wert buchstabengetreu im angegebenen Array gefunden wurde.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Array.GetAllIndices(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt alle Indizes für den angegebenen Array als neuen Array. (Nicht für Arrays die mittels Array.SetValue erstellt wurden.)</summary>
+			<param name="array">Der Name des Arrays.</param>
+			<returns>Ein Array (ab 1) mit allen Indizes des angegebenen Arrays (selbe Elementreihenfolge).</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Array.GetItemCount(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Anzahl der im Array enthaltenen Indizes/Elemente bzw. Unterarrays für 2D Array. (Nicht für Arrays die mittels Array.SetValue erstellt wurden.)</summary>
+			<param name="array">Der Name des Arrays (bzw. Variable).</param>
+			<returns>Die Anzahl der Werte im angegebenen Array, 0 bei ungültigem Array (Zahl, "Text", "").</returns>
+			<example>arr = ""
+            Array.GetItemCount(arr) ' 0
+            Array.IsArray(arr) ' "False"
+
+            arr = "1=1;2=2;"
+            Array.GetItemCount(arr) ' &gt;0 (2)
+            Array.IsArray(arr) ' "True"</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Array.IsArray(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt ob eine Variable ein Array (mit mind. 1 Element) ist. (Nicht für Arrays die mittels Array.SetValue erstellt wurden.)</summary>
+			<param name="array">Der Name des Arrays (bzw. Variable).</param>
+			<returns>"True", wenn die angegebene Variable ein Array ist, sonst "False" (zB. "", "1=;", Zahl, String).</returns>
+			<example>arr = ""
+            Array.IsArray(arr) ' "False"
+            Array.GetItemCount(arr) ' 0
+
+            arr = "1=1;2=2;"
+            Array.IsArray(arr) ' "True"
+            Array.GetItemCount(arr) ' &gt;0 (2)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Array.SetValue(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Setzt den Arraywert im angegebenen Index. Hiermit gesetzte Werte müssen mittels Array.GetValue ermittelt bzw. mit Array.RemoveValue entfernt werden (Ausgeblendet in IntelliSense).
+            Diese Methode ist bedeutend schneller als die herkömmliche Methode arr[i] = val.</summary>
+			<param name="arrayName">Der Name des Arrays (in "" oder zuvor definieren). Exakte Schreibweise einhalten.</param>
+			<param name="index">Der Index des zu setzenden Wertes (zB. ab 0).</param>
+			<param name="value">Der zu setzende Arraywert (auch Leerwerte "" möglich).</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Array.GetValue(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt den Arraywert am angegebenen Index. Nur für Arrays/Werten die mittels Array.SetValue erstellt wurden (Ausgeblendet in IntelliSense).
+            Diese Methode ist bedeutend schneller als die herkömmliche Methode val = arr[i].</summary>
+			<param name="arrayName">Der Name des Arrays (in "" oder zuvor definieren). Exakte Schreibweise einhalten.</param>
+			<param name="index">Der Index des abzurufenden Wertes (zB. ab 0).</param>
+			<returns>Der Arraywert im angegebenen Index.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Array.RemoveValue(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Entfernt den Arraywert am angegebenen Index. Nur für Arrays/Werten die mittels Array.SetValue erstellt wurden (Ausgeblendet in IntelliSense).</summary>
+			<param name="arrayName">Der Name des Arrays (in "" oder zuvor definieren). Exakte Schreibweise einhalten.</param>
+			<param name="index">Der Index des zu entfernenden Arraywertes (zB. ab 0).</param>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.Clock">
+			<summary>Bietet Zugriff auf die Systemuhr und Ermittlung von Datums- und Zeitangaben.</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Clock.Time">
+			<summary>Ermittelt die lange aktuelle Systemzeit als HH:mm:ss (24h Format, zB. 01:04:07). Führende '0' vor Werten von 0-9.</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Clock.Date">
+			<summary>Ermittelt das kurze aktuelle Systemdatum als TT.MM.JJ (zB. 27.08.14). Führende '0' vor Werten von 0-9.</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Clock.Year">
+			<summary>Ermittelt die aktuelle Jahreszahl (zB. 2014).</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Clock.Month">
+			<summary>Ermittelt die aktuelle Monatsnummer (zB. 8, einstellig für 1-9).</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Clock.Day">
+			<summary>Ermittelt die Nummer des aktuellen Tages im Monat (zB. 27, einstellig für 1-9).</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Clock.WeekDay">
+			<summary>Ermittelt den Name des aktuellen Wochentags (deutsch, zB. Montag).</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Clock.Hour">
+			<summary>Ermittelt die aktuelle Stunde des Tages (24h Format, zB. 15, einstellig für 0-9).</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Clock.Minute">
+			<summary>Ermittelt die aktuelle Minute der Stunde (einstellig für 0-9).</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Clock.Second">
+			<summary>Ermittelt die aktuelle Sekunde der Minute (einstellig für 0-9).</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Clock.Millisecond">
+			<summary>Ermittelt die aktuelle Millisekunde (3-stellig).</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Clock.ElapsedMilliseconds">
+			<summary>Ermittelt die Anzahl vergangener Millisekunden seit 1900 (mit 2 Dezimalen).</summary>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.Controls">
+			<summary>Ermöglicht das Hinzufügen, Bewegen und Interaktion mit Steuerelementen. Funktioniert zT. auch für Shapes (Interne Namensverarbeitung).</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Controls.AddButton(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Fügt eine Schaltfläche an der angegebenen Position im GraphicsWindow hinzu (Mindestbreite: 12, Standardhöhe: 26/25/24/23 (bei FontSize 12/11/10/9); Intern: Button#).
+            Texteigenschaften bestimmbar durch vorangehendes BrushColor, FontName,-Size,-Bold,-Italic.
+            Erlaubt Tasten Space und Return/Enter.</summary>
+			<param name="caption">Der auf der Schaltfläche anzuzeigende Text. Für senkrechten Text, zwischen den Buchstaben lf bzw. Text.GetCharacter(10) einfügen.</param>
+			<param name="left">Die x-Koordinate des Button.</param>
+			<param name="top">Die y-Koordinate des Button.</param>
+			<returns>Der Name des Button.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Controls.GetButtonCaption(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt den Text auf einem angegebenen Button.</summary>
+			<param name="buttonName">Der Name des Button.</param>
+			<returns>Der angezeigte Buttontext.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Controls.SetButtonCaption(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Setzt den Text auf einem angegebenen Button.</summary>
+			<param name="buttonName">Der Name des Button.</param>
+			<param name="caption">Der neue Buttontext.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Controls.AddTextBox(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Fügt ein Texteingabefeld an der angegebenen Position im GraphicsWindow hinzu (Standardbreite: 160, -höhe: 22/21/20/19 (bei FontSize 12/11/10/9); Intern: TextBox#).
+            Texteigenschaften bestimmbar durch vorangehendes BrushColor, FontName,-Size,-Bold,-Italic.</summary>
+			<param name="left">Die x-Koordinate der TextBox (Standard: 0).</param>
+			<param name="top">Die y-Koordinate der TextBox (Standard: 0).</param>
+			<returns>Der Name der TextBox.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Controls.AddMultiLineTextBox(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Fügt ein mehrzeiliges Texteingabefeld an der angegebenen Position im GraphicsWindow hinzu (Standardbreite: 200, -höhe: 80; Intern: TextBox#).
+            Texteigenschaften bestimmbar durch vorangehendes BrushColor, FontName,-Size,-Bold,-Italic.
+            Bei Bedarf rechte/untere Scrollleiste (Breite: 30).</summary>
+			<param name="left">Die x-Koordinate der MultiLineTextBox (Standard: 0).</param>
+			<param name="top">Die y-Koordinate der MultiLineTextBox (Standard: 0).</param>
+			<returns>Der Name der MultiLineTextBox.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Controls.GetTextBoxText(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt den Text in einer angegebenen (MultiLine)TextBox (Standard ANSI, sonst UTF8).</summary>
+			<param name="textBoxName">Der Name der (MultiLine)TextBox.</param>
+			<returns>Der Text in der (MultiLine)TextBox oder "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Controls.SetTextBoxText(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Setzt den Text in einer angegebenen (MultiLine)TextBox (Standard UTF8, ev. Anzeigeproblem von ANSI). Bei Inhaltsänderung wird auch 'TextTyped' Event ausgelöst.</summary>
+			<param name="textBoxName">Der Name der (MultiLine)TextBox.</param>
+			<param name="text">Der neue Text für die (MultiLine)TextBox oder "".</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Controls.Remove(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Entfernt ein Steuerelement aus dem GraphicsWindow (Interne # bleibt unverändert).</summary>
+			<param name="controlName">Der Name des zu entfernenden Steuerelements.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Controls.Move(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Verschiebt ein angegebenes Steuerelement (bzw. Shape) an eine neue Position.</summary>
+			<param name="control">Der Name des Steuerelements/Shapes.</param>
+			<param name="x">Die x-Koordinate der neuen Position.</param>
+			<param name="y">Die y-Koordinate der neuen Position.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Controls.SetSize(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Setzt die Größe eines Steuerelements bzw. Shapes (zB. Bildshape von Shapes.AddImage). S.a. LDShapes.SetSize bzw. ReSize, Schriftgröße in Textshapes nicht, Ankerpunkt bleibt unverändert.</summary>
+			<param name="control">Der Name des Steuerelements/Shapes, dessen Größe zu ändern ist.</param>
+			<param name="width">Die neue Breite des Steuerelements/Shapes (&gt;=0).</param>
+			<param name="height">Die neue Höhe des Steuerelements/Shapes (&gt;=0).</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Controls.HideControl(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Blendet ein bereits hinzugefügtes Steuerelement aus (s. Shapes.HideShape, Elementposition bleibt unverändert, andere Methoden funktionieren weiterhin).</summary>
+			<param name="controlName">Der Name des Steuerelements.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Controls.ShowControl(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Zeigt ein zuvor ausgeblendetes Steuerelement an der zuletzt definierten Position wieder an (s. Shapes.ShowShape).</summary>
+			<param name="controlName">Der Name des Steuerelements.</param>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Controls.LastClickedButton">
+			<summary>Ermittelt den Name des Button, der zuletzt gedrückt wurde.</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Controls.LastTypedTextBox">
+			<summary>Ermittelt den Name der (MultiLine)TextBox, in die zuletzt Text geschrieben/eingefügt wurde.</summary>
+		</member>
+		<member name="E:Microsoft.SmallBasic.Library.Controls.ButtonClicked">
+			<summary>Ereignisaufruf wenn ein Button geklickt oder "Space"/"Return"-Taste (Buttonwahl mit Tab,Up,Down,Left,Right) gedrückt wurde (erst beim Loslassen, MouseDown/-Up Ereignis wird dabei nicht ausgelöst).</summary>
+		</member>
+		<member name="E:Microsoft.SmallBasic.Library.Controls.TextTyped">
+			<summary>Ereignisaufruf wenn Text in eine (MultiLine)TextBox eingegeben wurde.
+            Nicht bei Mausklick, Cursortasten, Pos1/Ende usw. Jedoch bei 'Back'(Space), Ausschneiden/Einfügen.</summary>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.Desktop">
+			<summary>Funktionen zur Interaktion mit der Desktop Anzeige.
+            PxlPos x/y: 0 bis Desktop.Width-1 bzw. Desktop.Height-1.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Desktop.SetWallPaper(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Setzt das angegebene Bild als Hintergrundbild für den Desktop. Dies kann eine lokale, Netzwerkdatei oder Web-URL sein.</summary>
+			<param name="fileOrUrl">Der Dateiname oder die URL des Bildes.</param>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Desktop.Width">
+			<summary>Ermittelt die Bildschirmbreite des primären Desktops.
+            (zB. Standard: 1366)</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Desktop.Height">
+			<summary>Ermittelt die Bildschirmhöhe des primären Desktops.
+            (zB. Standard: 768)</summary>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.Dictionary">
+			<summary>Ermöglicht den Zugriff auf einen Online Lexikon-Dienst zur Wortdefinition und Übersetzung.
+            (Bei Fehler s. LDDictionary)</summary>
+			<example>http://rr.office.microsoft.com/Research/query.asmx (Research WebService)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinition(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Definition(en) zu einem Wort in Englisch (wie GetDefinitionEnglishToEnglish).
+            Bei Fehler s. LDDictionary.GetDefinition)</summary>
+			<param name="word">Das zu definierende Wort in Englisch.</param>
+			<returns>Die Definition(en) zum angegebenen Begriff in Englisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionEnglishToEnglish(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Definition(en) zu einem Wort in Englisch (wie GetDefinition).</summary>
+			<param name="word">Das zu definierende Wort in Englisch.</param>
+			<returns>Die Definition(en) zum angegebenen Begriff in Englisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionEnglishToFrench(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Definition(en) zu einem Wort in Französisch.</summary>
+			<param name="word">Das zu definierende Wort in Englisch.</param>
+			<returns>Die Definition(en) zum angegebenen Begriff in Französisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionEnglishToGerman(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Definition(en) zu einem Wort in Deutsch.</summary>
+			<param name="word">Das zu definierende Wort in Englisch.</param>
+			<returns>Die Definition(en) zum angegebenen Begriff in Deutsch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionEnglishToItalian(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Definition(en) zu einem Wort in Italienisch.</summary>
+			<param name="word">Das zu definierende Wort in Englisch.</param>
+			<returns>Die Definition(en) zum angegebenen Begriff in Italienisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionEnglishToJapanese(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Definition(en) zu einem Wort in Japanisch.</summary>
+			<param name="word">Das zu definierende Wort in Englisch.</param>
+			<returns>Die Definition(en) zum angegebenen Begriff in Japanisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionEnglishToKorean(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Definition(en) zu einem Wort in Koreanisch.</summary>
+			<param name="word">Das zu definierende Wort in Englisch.</param>
+			<returns>Die Definition(en) zum angegebenen Begriff in Koreanisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionEnglishToSimplifiedChinese(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Definition(en) zu einem Wort in vereinfachtem Chinesisch.</summary>
+			<param name="word">Das zu definierende Wort in Englisch.</param>
+			<returns>Die Definition(en) zum angegebenen Begriff in vereinfachtem Chinesisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionEnglishToSpanish(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Definition(en) zu einem Wort in Spanisch.</summary>
+			<param name="word">Das zu definierende Wort in Englisch.</param>
+			<returns>Die Definition(en) zum angegebenen Begriff in Spanisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionEnglishToTraditionalChinese(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Definition(en) zu einem Wort in traditionellem Chinesisch.</summary>
+			<param name="word">Das zu definierende Wort in Englisch.</param>
+			<returns>Die Definition(en) zum angegebenen Begriff in traditionellem Chinesisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionFrenchToEnglish(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Übersetzt ein Wort von Französisch zu Englisch.</summary>
+			<param name="word">Das zu definierende Wort in Französisch.</param>
+			<returns>Die Übersetzung für den angegebenen Begriff in Englisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionGermanToEnglish(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Übersetzt ein Wort von Deutsch zu Englisch.</summary>
+			<param name="word">Das zu definierende Wort in Deutsch.</param>
+			<returns>Die Übersetzung für den angegebenen Begriff in Englisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionItalianToEnglish(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Übersetzt ein Wort von Italienisch zu Englisch.</summary>
+			<param name="word">Das zu definierende Wort in Italienisch.</param>
+			<returns>Die Übersetzung für den angegebenen Begriff in Englisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionJapaneseToEnglish(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Übersetzt ein Wort von Japanisch zu Englisch.</summary>
+			<param name="word">Das zu definierende Wort in Japanisch.</param>
+			<returns>Die Übersetzung für den angegebenen Begriff in Englisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionKoreanToEnglish(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Übersetzt ein Wort von Koreanisch zu Englisch.</summary>
+			<param name="word">Das zu definierende Wort in Koreanisch.</param>
+			<returns>Die Übersetzung für den angegebenen Begriff in Englisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionSimplifiedChineseToEnglish(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Übersetzt ein Wort von vereinfachtem Chinesisch zu Englisch.</summary>
+			<param name="word">Das zu definierende Wort in einfachem Chinesisch.</param>
+			<returns>Die Übersetzung für den angegebenen Begriff in Englisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionSpanishToEnglish(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Übersetzt ein Wort von Spanisch zu Englisch.</summary>
+			<param name="word">Das zu definierende Wort in Spanisch.</param>
+			<returns>Die Übersetzung für den angegebenen Begriff in Englisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Dictionary.GetDefinitionTraditionalChineseToEnglish(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Übersetzt ein Wort von traditionellem Chinesisch zu Englisch.</summary>
+			<param name="word">Das zu definierende Wort in traditionellem Chinesisch.</param>
+			<returns>Die Übersetzung für den angegebenen Begriff in Englisch bei Erfolg, sonst "".</returns>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.File">
+			<summary>Methoden zum Lese- und Schreibzugriff für eine Datei auf einem Datenträger. Dieses Objekt ermöglicht, Einstellungen über mehrere Programmsitzungen hinweg zu speichern.
+            SB unterstützt auch "." (CurrDir), ".." (ParentDir), relative Pfade und %PFADE%.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.File.ReadContents(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Öffnet eine lokale Datei und liest den gesamten Textinhalt/Einzelarray (Standard UTF8, ev. Anzeigeproblem bei ANSI, s. dazu LDFile.ReadANSI).
+            Diese Methode ist schnell bei Dateien unter 1MB, wird aber deutlich langsamer bei größeren Dateien, besonders über 10MB.</summary>
+			<param name="filePath">Der volle Dateipfad (zB. "C:\Temp\settings.data").</param>
+			<returns>Der gesamte Textinhalt der Datei bzw. "" wenn Datei fehlt oder leer ist.</returns>
+			<example>'Einzelnen Array laden
+            arr = File.ReadContents(File.GetSettingsFilePath())</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.File.WriteContents(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Öffnet eine Datei und schreibt angegebenen Textinhalt/Einzelarray hinein (Standard ANSI, sonst UTF8). Bestehende Inhalte werden durch den neuen Inhalt ersetzt.</summary>
+			<param name="filePath">Der volle Dateipfad (zB. "C:\Temp\settings.data"). Eine nicht existierende Datei wird erstellt.</param>
+			<param name="contents">Der in die angegebene Datei zu schreibende Text oder Array. "" löscht einen bereits bestehenden Inhalt oder erstellt eine Leerdatei.</param>
+			<returns>"SUCCESS" bei Erfolg, sonst "FAILED".</returns>
+			<example>'Einzelnen Array speichern
+            File.WriteContents(File.GetSettingsFilePath(), arr)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.File.ReadLine(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Öffnet die angegebene Datei und liest Textinhalt/Array der angegebenen Zeilennummer (Standard UTF8, ev. Anzeigeproblem bei ANSI, s. dazu LDFile.ReadANSI).</summary>
+			<param name="filePath">Der volle Dateipfad (zB. "C:\Temp\settings.data").</param>
+			<param name="lineNumber">Die Zeilennummer für den einzulesenden Text ab 1 (0 liest die erste Zeile).</param>
+			<returns>Der Textinhalt der angegebenen Zeile. "" für Leerzeile oder wenn Datei oder Zeilennummer (zB. Leerdatei) nicht existiert.</returns>
+			<example>'Array aus Zeile 1 einlesen
+            arr = File.ReadLine(File.GetSettingsFilePath(), 1)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.File.WriteLine(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Öffnet die angegebene Datei und schreibt Textinhalt/Array in die Zeile mit der angegebenen Zeilennummer (incl. Zeilenvorschub, Standard ANSI, sonst UTF8).
+            Diese Methode überschreibt den bestehenden Inhalt in der angegebenen Zeile. Höhere Zeilennmmern als im bestehenden Text vorhanden werden am Textende angefügt (ev. dazwischenliegende Leerzeilen werden ignoriert).</summary>
+			<param name="filePath">Der volle Dateipfad (zB. "C:\Temp\settings.data"). Eine nicht existierende Datei wird erstellt.</param>
+			<param name="lineNumber">Die Zeilennummer für den zu schreibenden Text ab 1 (0 schreibt in die erste Zeile).</param>
+			<param name="contents">Der in angegebene Zeile zu schreibende Text, Array oder "" für Leerzeile.</param>
+			<returns>"SUCCESS" bei Erfolg, sonst "FAILED".</returns>
+			<example>'Array in Zeile 1 speichern
+            File.WriteLine(File.GetSettingsFilePath(), 1,arr)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.File.InsertLine(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Öffnet die angegebene Datei und fügt Textinhalt in/ab der Zeile mit der angegebenen Zeilennummer ein (Standard ANSI, sonst UTF8).
+            Diese Methode überschreibt keinen bestehenden Inhalt in der angegebenen Datei. Höhere Zeilennummern als im bestehenden Text vorhanden, werden am Textende angefügt (ev. dazwischenliegende Leerzeilen werden ignoriert).</summary>
+			<param name="filePath">Der volle Dateipfad (zB. "C:\Temp\settings.data"). Eine nicht existierende Datei wird erstellt.</param>
+			<param name="lineNumber">Die Zeilennummer für den einzufügenden Text ab 1 (0 ergibt keine Änderung).</param>
+			<param name="contents">Der in angegebene Zeile einzufügende Text, Array oder "" für eine Leerzeile.</param>
+			<returns>"SUCCESS" bei Erfolg, sonst "FAILED".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.File.AppendContents(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Öffnet die angegebene Datei und hängt Textinhalt am Ende der Datei an (Standard ANSI, sonst UTF8).</summary>
+			<param name="filePath">Der volle Dateipfad (zB. "C:\Temp\settings.data"). Eine nicht existierende Datei wird erstellt.</param>
+			<param name="contents">Der an das Dateiende anzuhängende Text, Array oder "" für eine Leerzeile.</param>
+			<returns>"SUCCESS" bei Erfolg, sonst "FAILED".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.File.CopyFile(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Kopiert die angegebene Quelldatei in den Zieldateipfad. Falls der Zielpfad nicht existiert, wird versucht diesen automatisch zu erstellen.
+            Eine bereits existierende Zieldatei wird ohne Nachfrage überschrieben. Es empfiehlt sich, die Existenz einer Zieldatei zu überprüfen, um ein Überschreiben zu vermeiden.</summary>
+			<param name="sourceFilePath">Der volle Pfad der zu kopierenden Datei (zB. "C:\Temp\settings.data").</param>
+			<param name="destinationFilePath">Der Zielordner oder Zieldateipfad (ev. gleichzeitige Umbenennung des Dateiname).</param>
+			<returns>"SUCCESS" bei Erfolg, sonst "FAILED".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.File.DeleteFile(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Löscht eine angegebene Datei ohne Rückfrage von der Festplatte.</summary>
+			<param name="filePath">Der volle Pfad der zu löschenden Datei (zB. "C:\Temp\settings.data").</param>
+			<returns>"SUCCESS" bei Erfolg, sonst "FAILED".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.File.CreateDirectory(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Erstellt ein angegebenes Verzeichnis bzw. Ordnerstruktur (incl. fehlender übergeordneter Elternordner).</summary>
+			<param name="directoryPath">Der volle Pfad des zu erstellenden Verzeichnisses (mit oder ohne abschließendem '\').</param>
+			<returns>"SUCCESS" bei Erfolg (auch wenn der Ordner bereits besteht), sonst "FAILED".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.File.DeleteDirectory(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Löscht das angegebene Verzeichnis (incl. gesamtem Inhalt) ohne Rückfrage von der Festplatte.</summary>
+			<param name="directoryPath">Der volle Pfad des zu löschenden Verzeichnisses (mit oder ohne abschließendem '\', nicht für Junction 'L' Attr.).</param>
+			<returns>"SUCCESS" bei Erfolg, sonst "FAILED".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.File.GetFiles(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Pfade aller direkten Dateien im angegebenen Ordnerpfad.</summary>
+			<param name="directoryPath">Das Verzeichnis in dem Dateien zu ermitteln sind (mit oder ohne abschließendem '\', nicht für Junction 'L' Attr.).</param>
+			<returns>Die vollen Dateipfade als Array (alphabetisch sortiert) oder "" bei Erfolg, sonst "FAILED".
+            Bei relativem Eingabepfad werden auch relative Pfade zurückgegeben.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.File.GetDirectories(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die vollen Pfade aller direkten Unterordner im angegebenen Ordnerpfad.</summary>
+			<param name="directoryPath">Das Verzeichnis in dem Unterordner zu ermitteln sind (mit oder ohne abschließendem '\', nicht für Junction 'L' Attr.).</param>
+			<returns>Die vollen Ordnerpfade als Array (alphabetisch sortiert) oder "" bei Erfolg, sonst "FAILED".
+            Bei relativem Eingabepfad werden auch relative Pfade zurückgegeben.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.File.GetTemporaryFilePath">
+			<summary>Erstellt eine neue temporäre Datei im Benutzer TEMP-Ordner (%TEMP%\tmp????.tmp) und gibt deren vollen Dateipfad zurück.</summary>
+			<returns>Der volle Pfad der temporären Datei (zB. C:\Users\NAME\AppData\Local\Temp\tmp3B80.tmp).</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.File.GetSettingsFilePath">
+			<summary>Ermittelt den vollen Pfad der Einstellungsdatei für das aktuelle Programm. Der Name der Einstellungsdatei basiert auf dem aktuellen Programmname mit Erweiterung .settings und befindet sich im selben Verzeichnis wie das Programm (ANSI Textdatei).
+            Die Einstellungsdatei selbst wird dabei nicht erstellt.</summary>
+			<returns>Der volle Pfad der Einstellungsdatei für dieses Programm.</returns>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.File.LastError">
+			<summary>Ermittelt oder setzt die letzte, auf einem Dateivorgang basierende Fehlermeldung. Diese Eigenschaft hilft herauszufinden, wenn eine File Methode nicht ausgeführt werden konnte.
+            (Standard: ""). Für AppendContents, CopyFile, CreateDirectory, DeleteDirectory, DeleteFile, GetDirectories, GetFiles, InsertLine, WriteContents.</summary>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.Flickr">
+			<summary>Bietet Zugang zum Flickr Fotodienst.
+            (Bei Fehler als Fix zuvor einmalig s. LDUtilities.FixFlickr() aufrufen)</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Flickr.GetPictureOfMoment">
+			<summary>Ermittelt die URL für ein aktuelles Flickr Bild. (Bei Fehler zuvor einmalig s. LDUtilities.FixFlickr() aufrufen)</summary>
+			<returns>Die Datei-URL für ein Flickr Bild.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Flickr.GetRandomPicture(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die URL für ein zufällig gewähltes Bild zum angegebenen Thema. (Bei Fehler zuvor einmalig s. LDUtilities.FixFlickr() aufrufen)</summary>
+			<param name="tag">Das Thema für das gewünschte Zufallsbild.</param>
+			<returns>Die Datei-URL für ein Flickr Bild (Zufallsauswahl).</returns>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.GraphicsWindow">
+			<summary>Stellt eine graphische Benutzeroberfläche (GUI) mit Ein- und Ausgabefunktionen zur Verfügung. zB. können Kreise und Rechtecke gezeichnet und ausgefüllt werden.
+            PxlPos x/y: 0 bis GW.Width-1 bzw. GW.Height-1.
+            Die meisten der folgenden Methoden initialisieren das GW auch ohne vorheriges GraphicsWindow.Show (GetColorFromRGB, GetRandomColor, Font.. nicht).</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.Show">
+			<summary>Zeigt das interaktionsbereite GraphicsWindow (wieder) an.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.Hide">
+			<summary>Blendet das GraphicsWindow aus (auch wenn zuvor noch nicht initialisiert, dann bleibt jedoch 'Maximieren' Feld deaktivert).</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.DrawRectangle(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Zeichnet ein Rechteck mit dem gewählten Stift (PenColor/-Width). Koordinaten beziehen sich auf die Mitte der PenWidth Linienbreite.</summary>
+			<param name="x">Die x-Koordinate des Rechtecks.</param>
+			<param name="y">Die y-Koordinate des Rechtecks.</param>
+			<param name="width">Die Breite des Rechtecks (0/+ Werte).</param>
+			<param name="height">Die Höhe des Rechtecks (0/+ Werte).</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.FillRectangle(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Zeichnet ein gefülltes Rechteck (mit BrushColor).</summary>
+			<param name="x">Die x-Koordinate des Rechtecks.</param>
+			<param name="y">Die y-Koordinate des Rechtecks.</param>
+			<param name="width">Die Breite des Rechtecks (0/+ Werte, 0 gibt keine Anzeige).</param>
+			<param name="height">Die Höhe des Rechtecks (0/+ Werte, 0 gibt keine Anzeige).</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.DrawEllipse(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Zeichnet eine Ellipse mit dem gewählten Stift (PenColor/-Width). Koordinaten beziehen sich auf die Mitte der PenWidth Linienbreite.</summary>
+			<param name="x">Die x-Koordinate der Ellipse.</param>
+			<param name="y">Die y-Koordinate der Ellipse.</param>
+			<param name="width">Die Breite der Ellipse (-/0/+ Werte, &lt;0 kippt um y-Achse nach links).</param>
+			<param name="height">Die Höhe der Ellipse (-/0/+ Werte, &lt;0 kippt um x-Achse nach oben).</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.FillEllipse(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Zeichnet eine gefüllte Ellipse (mit BrushColor).</summary>
+			<param name="x">Die x-Koordinate der Ellipse.</param>
+			<param name="y">Die y-Koordinate der Ellipse.</param>
+			<param name="width">Die Breite der Ellipse (-/0/+ Werte, 0 gibt keine Anzeige, &lt;0 kippt um y-Achse nach links).</param>
+			<param name="height">Die Höhe der Ellipse (-/0/+ Werte, 0 gibt keine Anzeige, &lt;0 kippt um x-Achse nach oben).</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.DrawTriangle(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Zeichnet ein Dreieck mit dem gewählten Stift (PenColor/-Width). Koordinaten beziehen sich auf die Mitte der PenWidth Linienbreite.</summary>
+			<param name="x1">Die x-Koordinate von Punkt 1.</param>
+			<param name="y1">Die y-Koordinate von Punkt 1.</param>
+			<param name="x2">Die x-Koordinate von Punkt 2.</param>
+			<param name="y2">Die y-Koordinate von Punkt 2.</param>
+			<param name="x3">Die x-Koordinate von Punkt 3.</param>
+			<param name="y3">Die y-Koordinate von Punkt 3.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.FillTriangle(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Zeichnet ein gefülltes Dreieck (mit BrushColor).</summary>
+			<param name="x1">Die x-Koordinate von Punkt 1.</param>
+			<param name="y1">Die y-Koordinate von Punkt 1.</param>
+			<param name="x2">Die x-Koordinate von Punkt 2.</param>
+			<param name="y2">Die y-Koordinate von Punkt 2.</param>
+			<param name="x3">Die x-Koordinate von Punkt 3.</param>
+			<param name="y3">Die y-Koordinate von Punkt 3.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.DrawLine(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Zeichnet eine Linie zwischen 2 Punkten mit dem gewählten Stift (PenColor/-Width). Koordinaten beziehen sich auf die Mitte der PenWidth Linienbreite.</summary>
+			<param name="x1">Die x-Koordinate von Punkt 1.</param>
+			<param name="y1">Die y-Koordinate von Punkt 1.</param>
+			<param name="x2">Die x-Koordinate von Punkt 2.</param>
+			<param name="y2">Die y-Koordinate von Punkt 2.</param>
+			<example>'Gerade von x1,y1 nach y2 im Winkel deg
+            rad = Math.GetRadians(180-deg)
+            x2 = x1 + (y2-y1)/Math.Tan(rad)
+            GraphicsWindow.DrawLine(x1,y1, x2,y2)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.DrawText(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Schreibt eine Textzeile an der angegebenen Stelle (mit BrushColor, Font..).</summary>
+			<param name="x">Die x-Koordinate für den Ankerpunkt (l.o.) des Textes.</param>
+			<param name="y">Die y-Koordinate für den Ankerpunkt (l.o.) des Textes (je nach FontSize sind Standardbuchstaben runter versetzt).</param>
+			<param name="text">Der anzuzeigende Text.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.DrawBoundText(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Schreibt eine Textzeile an der angegebenen Stelle (mit BrushColor, Font..).</summary>
+			<param name="x">Die x-Koordinate für den Ankerpunkt (l.o.) des Textes.</param>
+			<param name="y">Die y-Koordinate für den Ankerpunkt (l.o.) des Textes (je nach FontSize sind Standardbuchstaben runter versetzt).</param>
+			<param name="width">Die maximal verfügbare Textbreite [Pxl] (0 volle Textlänge ohne Umbruch, s. DrawText). Bestimmt wo der Textumbruch (an Leerzeichen) stattfindet.</param>
+			<param name="text">Der anzuzeigende Text. Bei kleineren Werten für Textbreite nur oder endende '...' in Ausgabezeile.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.DrawResizedImage(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Zeigt ein (ImageList) Bild in den angegebenen Abmessungen im GraphicsWindow (Ansicht wird ev. gestaucht, in gleicher Ebene wie gefüllte Formen). Keine Anzeige wenn "ImageList#" leer "" ist. Keine Gif-Animation.</summary>
+			<param name="imageName">Der ImageList-Name oder voller (Web)Dateipfad des anzuzeigenden Bildes (BMP, gif, ico, jp(e)g, PNG, tiff).</param>
+			<param name="x">Die x-Koordinate des Bildes im GraphicsWindow.</param>
+			<param name="y">Die y-Koordinate des Bildes im GraphicsWindow.</param>
+			<param name="width">Die Anzeigebreite des Bildes (0/+ Werte, 0 gibt keine Anzeige).</param>
+			<param name="height">Die Anzeigehöhe des Bildes (0/+ Werte, 0 gibt keine Anzeige).</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.DrawImage(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Zeigt ein (ImageList) Bild in Originalgröße im GraphicsWindow (in gleicher Ebene wie gefüllte Formen). Keine Anzeige wenn "ImageList#" leer "" ist. Keine Gif-Animation.</summary>
+			<param name="imageName">Der ImageList-Name oder voller (Web)Dateipfad des anzuzeigenden Bildes (BMP, gif, ico, jp(e)g, PNG, tiff).</param>
+			<param name="x">Die x-Koordinate des Bildes im GraphicsWindow.</param>
+			<param name="y">Die y-Koordinate des Bildes im GraphicsWindow.</param>
+			<example>GraphicsWindow.DrawImage("http://microsoft.com/favicon.ico", 0,0)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.SetPixel(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Zeichnet ein Pixel an den angegebenen Koordinaten des GW in der gewählten Farbe (unabhängig von Pen-/BrushColor).</summary>
+			<param name="x">Die x-Koordinate des Pixels (&gt;=0).</param>
+			<param name="y">Die y-Koordinate des Pixels (&gt;=0).</param>
+			<param name="color">Die Farbe des Pixels (zB. "Red" oder "#(AA)RRGGBB" bzw. #(A)RGB, "" für "#000000" bzw. "Black").</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.GetPixel(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Farbe eines Pixels an den gegebenen Koordinaten im GW (als #RRGGBB, für Draw.. Zeichnungen, Text, Images. NICHT für BackgroundColor oder Shapes).
+            (Standard: #000000)</summary>
+			<param name="x">Die x-Koordinate des Pixels (&gt;=0, &lt;GraphicsWindow.Width).</param>
+			<param name="y">Die y-Koordinate des Pixels (&gt;=0, &lt;GraphicsWindow.Height).</param>
+			<returns>Die Farbe des Pixels als #RRGGBB.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.GetRandomColor">
+			<summary>Ermittelt einen gültigen Zufalls-Farbwert (GW wird nicht initialisiert).</summary>
+			<returns>Ein gültiger zufälliger Farbwert als #RRGGBB.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.GetColorFromRGB(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt den Hex-Farbwert (#RRGGBB) aus den angegebenen Rot-, Grün- und Blauwerten einer Farbe.</summary>
+			<param name="red">Der Rotanteil der Farbe (0-255).</param>
+			<param name="green">Der Grünanteil der Farbe (0-255).</param>
+			<param name="blue">Der Blauanteil der Farbe (0-255).</param>
+			<returns>Der Hex-Farbwert als #RRGGBB. Dieser kann zum Setzen der Pinsel- oder Stiftfarbe verwendet werden (zB. #808080).</returns>
+			<example>'Pinselfarbe als R,G,B setzen
+            GraphicsWindows.BrushColor = GraphicsWindow.GetColorFromRGB(R,G,B)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.Clear">
+			<summary>Löscht alle Inhalte im GraphicsWindow wie: Bilder, Zeichnungen, Text, Controls und Shapes (außer Turtle).
+            Bestehende Shape# werden geleert (""). ImageList#, Schrift- und Farbeinstellungen (BackgroundColor) bleiben erhalten.
+            Alternativ GW (-Bereich) mit FillRectangle (in BrushColor) überzeichnen (nur für GW.Draw../Fill.., außer für Turtle/-Linie, Shapes, Controls).</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.GraphicsWindow.ShowMessage(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Zeigt ein (dem GW untergeordnetes) Meldungsfenster (zentriert am Desktop) und hält die Programmausführung an, bis 'OK' Button, "Space", "Escape" oder Eingabetaste gedrückt wurde. Max. Breite 480 Pxl bzw. ca. 39-61 Zeichen.
+            Schrifteigenschaften unveränderlich.</summary>
+			<param name="text">Der im Meldungsfenster anzuzeigende Text.</param>
+			<param name="title">Der Titel des Meldungsfensters.</param>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.BackgroundColor">
+			<summary>Ermittelt oder setzt die Hintergrundfarbe des GraphicsWindow (bzw. Anpassen der Transparenz für s. LDUtilities.TransparentGW).
+            Standard: #FFFFFF dh. 'White'. Fehler oder "" ergibt #000000 dh. 'Black'. "#00FFFFFF" ist 'Transparent'.</summary>
+			<example>http://msdn.microsoft.com/library/System.Windows.Media.Colors.aspx
+            http://i.msdn.microsoft.com/dynimg/IC24340.png</example>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.BrushColor">
+			<summary>Ermittelt oder setzt die Pinselfarbe, mit welcher Formen ausgefüllt bzw. Text in GraphicsWindow, Controls und Textshapes angezeigt wird.
+            (Standard: #6A5ACD dh. 'SlateBlue'; Fehler oder "" ergibt #000000 dh. 'Black').
+            #AARRGGBB mit AA&lt;&gt;00 setzt Transparenz für Shapes und Zeichnungen (FF deckend, 00 transparent).</summary>
+			<example>http://msdn.microsoft.com/library/System.Windows.Media.Colors.aspx
+            http://i.msdn.microsoft.com/dynimg/IC24340.png</example>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.CanResize">
+			<summary>Ermittelt oder setzt ob die Größe des GraphicsWindow mittels Mauszeiger angepasst werden kann. Setzen VOR GW.Width/-Height.
+            Änderung der Fenstergröße ist weiterhin möglich mittels GW.Width und GW.Height.
+            (Standard: "True", sonstiges wie "False", "", 0, 1, -1 usw. fixiert Fenstergröße und erhöht Standardwerte für GW.Width/-Height um 10 auf 634/452)
+            Min. GW.Width/Height: 126/10
+            "True"	Min+Max Felder (LDGraphicsWindow.Resize 1)
+            "False"	nur 'X' Feld (LDGraphicsWindow.Resize 2)</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.PenWidth">
+			<summary>Ermittelt oder setzt die Stiftbreite (Linienzeichnungen im GW, Shapes-Umrandungen und Turtle-Linie). Für Shapes ohne Umrandung (in PenColor) auf 0 setzen. (Standard: 2)
+            &lt;2  hellere Doppellinie
+            &lt;=0.18  Einzellinie  &gt;=0.07
+            &lt;0.07  keine Linie</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.PenColor">
+			<summary>Ermittelt oder setzt die Stiftfarbe, die verwendet wird für Linienzeichnungen im GW, Shapes-Umrandungen und Turtle-Spur (Intern: "_turtleLine#").
+            (Standard: #000000 dh. 'Black' od. "")</summary>
+			<example>http://msdn.microsoft.com/library/System.Windows.Media.Colors.aspx
+            http://i.msdn.microsoft.com/dynimg/IC24340.png</example>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.FontName">
+			<summary>Ermittelt oder setzt den Name der Schriftart für Text im GraphicsWindow, Controls und Textshapes. Leerzeichen in der Eingabe werden ignoriert.
+            (Standard: Tahoma, Systemstandard: SegoeUI, 9)</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.FontSize">
+			<summary>Ermittelt oder setzt die Schriftgröße von Text im GraphicsWindow, Controls und Textshapes (bei FixedWidthFont: Breite = 0.6*Höhe).
+            (Standard: 12)</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.FontBold">
+			<summary>Ermittelt oder setzt Text als Fettdruck im GraphicsWindow, Controls und Textshapes.
+            (Standard: "True")</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.FontItalic">
+			<summary>Ermittelt oder setzt Text als Kursivdruck im GraphicsWindow, Controls und Textshapes.
+            (Standard: "False")</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.Title">
+			<summary>Ermittelt oder setzt den Titel des GraphicsWindow (Tab funktioniert nicht, Systemstandard für Schrifteigenschaften, keine Symbole).
+            (Standard: Small Basic Graphics Window)</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.Height">
+			<summary>Ermittelt oder setzt die Höhe des GraphicsWindow.
+            (Standard: 442 (452 bei CanResize=False), Fensterhöhe = gh +2*7 (Rand) +22 (Titelleiste); 2zeilige Taskbarhöhe 60. Kein Rand bei CanResize=False)
+            Nicht ermittelbar nach GW.Hide am Beginn. Minimalwert: -38</summary>
+			<example>tbh = 60 'Taskbarhöhe
+            ghMax = Desktop.Height -tbh-38</example>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.Width">
+			<summary>Ermittelt oder setzt die Breite des GraphicsWindow. Min. Anzeigebreite: 116 (bei GW.Hide/CanResize: 132/126) für 0, "" oder ungültiger Angabe.
+            (Standard: 624 (634 bei CanResize=False), Fensterbreite = gw +2*7 Rand. Kein Rand bei CanResize=False)
+            Nicht ermittelbar nach GW.Hide am Beginn.</summary>
+			<example>gwMax = Desktop.Width -2*7</example>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.Left">
+			<summary>Ermittelt oder setzt die linke Position des GraphicsWindow (linker Fensterrand) am Desktop.
+            (Standard: 29 bis 145)</summary>
+			<example>'GW Klientbereich links oben
+            GraphicsWindow.Left = -7
+            GraphicsWindow.Top = -29
+
+            'GW Klientbereich zentriert
+            GraphicsWindow.Left = (DT.Width-GW.Width)/2 -7
+            GraphicsWindow.Top = (DT.Height-GW.Height)/2 -29</example>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.Top">
+			<summary>Ermittelt oder setzt die obere Position des GraphicsWindow (Fenster, Oberkante Titelleiste) am Desktop.
+            (Standard: 29 bis 145)</summary>
+			<example>'GW Klientbereich links oben
+            GraphicsWindow.Left = -7
+            GraphicsWindow.Top = -29
+
+            'GW Klientbereich zentriert
+            GraphicsWindow.Left = (DT.Width-GW.Width)/2 -7
+            GraphicsWindow.Top = (DT.Height-GW.Height)/2 -2</example>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.LastKey">
+			<summary>Ermittelt die letzte gedrückte oder losgelassene Taste im GW (Tastencode für Buchstaben in Großbuchstaben zB. "A").
+            (Standard: None)</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.LastText">
+			<summary>Ermittelt den Text, der zuletzt im GraphicsWindow eingegeben wurde. Unterscheidet zwischen Groß-/Kleinbuchstaben.</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.MouseX">
+			<summary>Ermittelt die x-Position des Mauszeigers im GraphicsWindow (0 bis GW.Width-1). Keine Aktualisierung außerhalb des GW (gibt 0 oder letzte bekannte Pos).</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.GraphicsWindow.MouseY">
+			<summary>Ermittelt die y-Position des Mauszeigers im GraphicsWindow (0 bis GW.Height-1). Keine Aktualisierung außerhalb des GW (gibt 0 oder letzte bekannte Pos).</summary>
+		</member>
+		<member name="E:Microsoft.SmallBasic.Library.GraphicsWindow.KeyDown">
+			<summary>Ereignisaufruf bei Drücken einer beliebigen Taste (wenn Mauszeiger im GraphicsWindow).
+            Für weitere Tastaturereignisse s. LDTextWindow.KeyDown und .KeyUp (mit .LastKey, LowLevel für GW u/o TW dh. auch OHNE Fensterfokus).
+            Für Zeichentasten wird auch 'GW.TextInput' ausgelöst.</summary>
+		</member>
+		<member name="E:Microsoft.SmallBasic.Library.GraphicsWindow.KeyUp">
+			<summary>Ereignisaufruf bei Loslassen einer Taste (Mauszeiger im GraphicsWindow).
+            Für weitere Tastaturereignisse s. LDTextWindow.KeyDown und .KeyUp (mit .LastKey, LowLevel für GW u/o TW dh. auch OHNE Fensterfokus).</summary>
+		</member>
+		<member name="E:Microsoft.SmallBasic.Library.GraphicsWindow.MouseDown">
+			<summary>Ereignisaufruf bei Drücken einer Maustaste (Links, Mitte/Rad oder Rechts) im GraphicsWindow (bzw. Shape). Linke Maustaste nicht für Controls und rechte auch nicht für (MultiLine)TextBox.
+            Ereignisaufruf für mittlere Maustaste/-rad ergibt sich aus 'Links NOr Rechts'.</summary>
+		</member>
+		<member name="E:Microsoft.SmallBasic.Library.GraphicsWindow.MouseUp">
+			<summary>Ereignisaufruf bei Loslassen einer Maustaste (Links, Mitte/Rad oder Rechts) im GraphicsWindow (bzw. Shape). Linke Maustaste nicht für Controls.</summary>
+		</member>
+		<member name="E:Microsoft.SmallBasic.Library.GraphicsWindow.MouseMove">
+			<summary>Ereignisaufruf bei Bewegung des Mauszeigers (manuell oder programmgesteuert) im GraphicsWindow.</summary>
+		</member>
+		<member name="E:Microsoft.SmallBasic.Library.GraphicsWindow.TextInput">
+			<summary>Ereignisaufruf bei Eingabe von Textzeichen im GraphicsWindow. Nicht für Steuerungs-/Funktionstasten. Gemeinsam mit 'GW.KeyDown' Event.</summary>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.ImageList">
+			<summary>Ermöglicht das Laden von Bilddateien in den Arbeitspeicher. Benötigt kein GW.
+            Transparenz in ImageList ist #D3D3D3 bzw. 'LightGray'.
+            pxlPos x/y: 0 bis GetWidthOfImage-1 bzw. 0 bis GetHeightOfImage-1.
+            Kopieren mittels img2 = img1 (behält gleiche ImageList#).</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.ImageList.LoadImage(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Lädt eine lokale oder Netzwerk Bilddatei in den Arbeitsspeicher (Intern: ImageList#+1).
+            ImageListName = "" entfernt das Bild aus ImageList, nicht jedoch die ImageList#.
+            Bei ICO Dateien mit mehreren Symbolen wird das größte Bild daraus geladen. Nicht für CUR Dateien. Keine Gif-Animation.</summary>
+			<param name="fileNameOrUrl">Der volle Dateipfad des Bildes als lokale oder Netzwerkdatei (BMP, (anim)gif, ico, jp(e)g, PNG, tiff).</param>
+			<returns>Der Name des neu geladenen ImageList Bildes, sonst "" (wenn fileNameOrUrl "").</returns>
+			<example>ImageList.LoadImage("") erstellt KEINE neue/leere ImageList#.
+            ImageList.LoadImage(" ") oder nichtexistenter Bildpfad erstellt neue/leere ImageList#+1, aber kein verwendbares Bild.</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.ImageList.ClipImage(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Erstellt einen Ausschnitt eines angegebenen Bildes und liefert ein neues Bild mit diesem Ausschnitt (Entfernt in Code und IntelliSense, s. LDImage.Crop).</summary>
+			<param name="imageName">Das Originalbild von dem der Ausschnitt erstellt wird.</param>
+			<param name="left">Die x-Koordinate des Ausschnittsrechtecks.</param>
+			<param name="top">Die y-Koordinate des Ausschnittsrechtecks.</param>
+			<param name="width">Die Breite des Ausschnittsrechtecks.</param>
+			<param name="height">Die Höhe des Ausschnittsrechtecks.</param>
+			<returns>Der rechteckige Bildausschnitt.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.ImageList.GetWidthOfImage(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Breite eines angegebenen Bildes (ImageList oder Datei).</summary>
+			<param name="imageName">Der Name des Bildes in ImageList, ImageList# oder voller Dateipfad.</param>
+			<returns>Die Breite des Bildes [Pxl] oder 0.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.ImageList.GetHeightOfImage(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Höhe eines angegebenen Bildes (ImageList oder Datei).</summary>
+			<param name="imageName">Der Name des Bildes in ImageList, ImageList# oder voller Dateipfad.</param>
+			<returns>Die Höhe des Bildes [Pxl] oder 0.</returns>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.Keywords">
+			<summary>Platzhalter zur Dokumentation der SB Schlüsselwörter.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Keywords.For">
+			<summary>Die 'For' Anweisung ermöglicht das Ausführen einer Reihe von Anweisungen beliebige Male.
+            Zähleraktualisierung am Schleifenende. Der Zähler ist danach um den Wert von 'Step' in-/dekrementiert.</summary>
+			<example>'Ausgabe der Zahlen von 1 bis 10 (Für neg. Schritte ist Step -1 oä. erforderlich)
+
+            For n = 1 To 10 'Step 1
+              TextWindow.WriteLine(n)
+            EndFor</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Keywords.EndFor">
+			<summary>Siehe unter 'For' Anweisung für Informationen zum 'EndFor' Schlüsselwort.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Keywords.To">
+			<summary>Siehe unter 'For' Anweisung für Informationen zum 'To' Schlüsselwort.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Keywords.Step">
+			<summary>Dient zur Angabe der Schrittweite in einer 'For' Schleife (Standard: 1).
+            Für negative Schritte ist Step -1 oä. anzugeben.</summary>
+			<example>'Ausgabe aller ungeraden Zahlen von 1 bis 10
+
+            For n = 1 To 10 Step 2
+              TextWindow.WriteLine(n)
+            EndFor</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Keywords.If">
+			<summary>Ermöglicht das Einbauen beliebiger Bedingungen/Abzweigungen.
+            Bedingung ev. in Variable definieren, zB. bool = "True", If bool Then ...</summary>
+			<example>'Ausgabe entweder "Gewonnen" oder "Verloren", je nachdem ob ein Münzwurf Kopf oder Zahl ergibt
+
+            If wurf = "Kopf" Then
+              TextWindow.WriteLine("Gewonnen")
+            'ElseIf ... Then
+            ' ...
+            Else
+              TextWindow.WriteLine("Verloren")
+            EndIf
+
+            If "True" Then
+              TextWindow.WriteLine("True")
+            Else ' "False", ""
+              TextWindow.WriteLine("False")
+            EndIf</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Keywords.Then">
+			<summary>Siehe unter 'If' Anweisung für Informationen zum 'Then' Schlüsselwort. (s. If, ElseIf)</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Keywords.Else">
+			<summary>Siehe unter 'If' Anweisung für Informationen zum 'Else' Schlüsselwort. (s. If, ElseIf)</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Keywords.ElseIf">
+			<summary>Bietet eine alternative Bedingung bei Verwendung der 'If' Anweisung.</summary>
+			<example>'Ausgabe korrekter Gruß je nach Tageszeit
+
+            If Clock.Hour &lt; 12 Then
+              TextWindow.WriteLine("Guten Morgen")
+            ElseIf Clock.Hour &lt; 16 Then
+              TextWindow.WriteLine("Guten Tag")
+            ElseIf Clock.Hour &lt; 20 Then
+              TextWindow.WriteLine("Guten Abend")
+            'Else
+            ' ...
+            EndIf</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Keywords.EndIf">
+			<summary>Siehe unter 'If' Anweisung für Informationen zum 'EndIf' Schlüsselwort.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Keywords.Goto">
+			<summary>Ermöglicht das Verzweigen zu einer anderen Stelle im Programm. Nicht aus einer Sub heraus.</summary>
+			<example>'Endlosausgabe aufeinanderfolgender Ganzzahlen ab 1
+
+            Marke:
+              TextWindow.WriteLine(n)
+              n = n + 1
+            Goto Marke</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Keywords.Sub">
+			<summary>Mit der Sub Anweisung (Sub für Subroutine, also Unterprogramm) können mehrere Befehle durch einen einzigen Programmaufruf ausgeführt werden.
+            Keine gleichnamige Variable wie Sub Name erlaubt.</summary>
+			<example>'Definition eines Unterprogrammes, welches einen Ton abspielt und "Gewonnen" ausgibt
+            Sieger()
+            ...
+            Sub Sieger
+              Sound.PlayBellRing()
+              TextWindow.WriteLine("Gewonnen")
+            EndSub</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Keywords.EndSub">
+			<summary>Siehe unter 'Sub' Anweisung für Informationen zum 'EndSub' Schlüsselwort.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Keywords.While">
+			<summary>Ermöglicht das Wiederholen von Schritten, bis das gewünschte Ergebnis erzielt wurde. Abfrage/Vergleich am Schleifenstart.
+            Bedingung ev. in Variable definieren, zB. bool = "True", While bool ...</summary>
+			<example>'Ausgabe von Zufallszahlen, bis eine Zahl über 100 ermittelt wurde
+
+            While n &lt;= 100
+              n = Math.GetRandomNumber(150)
+              TextWindow.WriteLine(n)
+            EndWhile</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Keywords.EndWhile">
+			<summary>Siehe unter 'While' Anweisung für Informationen zum 'EndWhile' Schlüsselwort.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Keywords.And">
+			<summary>Führt eine logische Operation aus und gibt "True" (wahr) zurück, wenn beide Bedingungen wahr sind, sonst "False".
+            True AND True	= True
+            True AND False	= False
+            False AND True	= False
+            False AND False	= False</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Keywords.Or">
+			<summary>Führt eine logische Operation aus und gibt "True" (wahr) zurück, wenn eine der beiden Bedingungen wahr ist, sonst "False".
+            True OR True	= True
+            True OR False	= True
+            False OR True	= True
+            False OR False	= False</summary>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.Math">
+			<summary>Hilfreiche mathematische Methoden.
+            Wissenschaftliche Notation in der Form "-num.dezE-exp", zB:
+            555 - "1E3"	'-445
+            "-.5E02" * 3	'-150
+            1 / "500E-2"	'0.2</summary>
+			<example>Dezimalausgabe zwar mit Komma ',' aber intern wird Dezimalpunkt '.' verwendet.
+            s. http://social.technet.microsoft.com/wiki/contents/articles/19330.small-basic-parameter-or-return-value-range-for-math-function.aspx</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.Abs(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt den absoluten Wert einer Zahl. zB. gibt -32.233 den Wert 32.233 zurück.
+            Entfernt auch endende Nullen von Dezimalzahlen (zB. Math.Abs(-0.12300) gibt 0.123 zurück, s. Math.Power).</summary>
+			<param name="number">Die Zahl deren Absolutwert zu ermitteln ist.</param>
+			<returns>Der absolute Wert der Zahl.</returns>
+			<example>'Vorzeichen Funktion sgn(n)
+            If n = 0 Then
+              sgn = 0
+            Else
+              sgn = n/Math.Abs(n)
+            EndIf
+
+            'FlipFlop 0&lt;-&gt;1
+            n = Math.Abs(n - 1)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.Ceiling(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt eine Ganzzahl, mit dem gleichen Wert wie die angegebene Dezimalzahl oder größer als diese. zB. gibt 32.233 den Wert 33 zurück (-32.233 gibt -32).
+            Aufrunden zur nächst höheren Ganzzahl (Gegenstück zu Math.Floor).</summary>
+			<param name="number">Die Zahl deren größter Wert zu ermitteln ist.</param>
+			<returns>Der größte Wert der angegebenen Zahl.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.Floor(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt eine Ganzzahl, mit dem gleichen Wert wie die angegebene Dezimalzahl oder kleiner als diese. zB. gibt 32.233 den Wert 32 zurück (-32.233 gibt -33).
+            Abrunden zur nächst niedrigeren Ganzzahl (Gegenstück zu Math.Ceiling).</summary>
+			<param name="number">Die Zahl deren kleinster Wert zu ermitteln ist.</param>
+			<returns>Der kleinste Wert der angegebenen Zahl.</returns>
+			<example>'n oder nächste gerade Zahl
+            2 * Math.Floor((n+1)/2)
+            'n oder vorige gerade Zahl
+            2 * Math.Ceiling((n-1)/2)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.NaturalLog(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt den natürlichen Logarithmus (zur Basis e) der angegebenen Zahl.</summary>
+			<param name="number">Die Zahl deren natürlicher Logarithmus zu ermitteln ist.</param>
+			<returns>Der natürliche Logarithmus der angegebenen Zahl.</returns>
+			<example>'lg(n) zur Basis B
+            lgB(n) = ln(n)/ln(B)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.Log(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt den Logarithmus zur Basis 10 der angegebenen Zahl.</summary>
+			<param name="number">Die Zahl deren Logarithmus zu ermitteln ist.</param>
+			<returns>Der dekadische Logarithmus der angegebenen Zahl.</returns>
+			<example>'lg(n) zur Basis B
+            lgB(n) = log(n)/log(B)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.Cos(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt den Cosinus (Ak/Hy) des angegebenen Winkels im Bogenmaß ([rad] = [Grad] * pi/180).</summary>
+			<param name="angle">Der Winkel [rad] dessen Cosinuswert zu ermitteln ist.</param>
+			<returns>Der Cosinus des angegebenen Winkels [-1,1] (x im Einheitskreis).</returns>
+			<example>Cos(w) = -Cos(w+pi)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.Sin(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt den Sinus (Gk/Hy) des angegebenen Winkels im Bogenmaß ([rad] = [Grad] * pi/180).</summary>
+			<param name="angle">Der Winkel [rad] dessen Sinuswert zu ermitteln ist.</param>
+			<returns>Der Sinus des angegebenen Winkels [-1,1] (y im Einheitskreis).</returns>
+			<example>Sin(w) = -Sin(w+pi)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.Tan(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt den Tangens (Gk/Ak, Sin/Cos) des angegebenen Winkels im Bogenmaß ([rad] = [Grad] * pi/180).</summary>
+			<param name="angle">Der Winkel [rad] dessen Tangenswert zu ermitteln ist.</param>
+			<returns>Der Tangens des angegebenen Winkels (Steigung y/x im Einheitskreis).</returns>
+			<example>Tan(w) = Tan(w+pi)
+            Cot(w) = 1/Tan(w)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.ArcSin(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt den Bogenmaßwinkel aus dem Sinuswert ([Grad] = [rad] * 180/pi).</summary>
+			<param name="sinValue">Der Sinuswert dessen Winkel zu ermitteln ist.</param>
+			<returns>Der Bogenmaßwinkel [rad] für den angegebenen Sinuswert (-pi/2 bis pi/2).</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.ArcCos(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt den Bogenmaßwinkel aus dem Cosinuswert ([Grad] = [rad] * 180/pi).</summary>
+			<param name="cosValue">Der Cosinuswert dessen Winkel zu ermitteln ist.</param>
+			<returns>Der Bogenmaßwinkel [rad] für den angegebenen Cosinuswert (0 bis pi).</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.ArcTan(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt den Bogenmaßwinkel aus dem Tangenswert ([Grad] = [rad] * 180/pi).</summary>
+			<param name="tanValue">Der Tangenswert dessen Winkel zu ermitteln ist.</param>
+			<returns>Der Bogenmaßwinkel [rad] für den angegebenen Tangenswert (-pi/2 bis pi/2).</returns>
+			<example>Atan2(y,x) = ArcTan(y/x) 'x&gt;0
+            ArcCot(x) = ArcTan(1/x)
+            ArcCot(x) = ArcTan(x) + 2*ArcTan(1)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.GetDegrees(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Umrechnung eines Winkels vom Bogenmaß zum Gradmaß ([Grad] = [rad] * 180/pi).</summary>
+			<param name="angle">Der Winkel im Bogenmaß [rad].</param>
+			<returns>Der umgewandelte Winkel [Grad].</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.GetRadians(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Umrechnung eines Winkels vom Gradmaß zum Bogenmaß ([rad] = [Grad] * pi/180).</summary>
+			<param name="angle">Der Winkel [Grad].</param>
+			<returns>Der umgewandelte Winkel im Bogenmaß [rad].</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.SquareRoot(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Quadratwurzel einer angegebenen positiven Zahl.</summary>
+			<param name="number">Die positive Zahl deren Quadratwurzel zu ermitteln ist.</param>
+			<returns>Die Quadratwurzel der gegebenen Zahl bei Erfolg, sonst 0 (zB. -4, "").</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.Power(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die angegebene Potenz der Zahl baseNumber.
+            Math.Power(dezZahl,1) entfernt auch endende Nullen von Dezimalzahlen (zB. Math.Power(-0.12300,1) gibt -0.123 zurück, s. Math.Abs).</summary>
+			<param name="baseNumber">Die Zahl deren Potenz zu ermitteln ist.</param>
+			<param name="exponent">Der Exponent zu dem die Basis potenziert wird.</param>
+			<returns>Die angebenene Potenz der Zahl baseNumber.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.Round(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Rundet eine gegebene Zahl auf die nächstliegende Ganzzahl. 32.23 wird zB. auf 32 abgerundet,
+            während 32.56 auf 33 aufgerundet wird (-32.23 wird auf -32 aufgerundet und -32.56 zu -33 abgerundet).
+            'Banker Rundung' in Richtung Geradzahl dh.: 32.5 zu 32 aber 33.5 zu 34 (-32.5 zu -32, -33.5 zu -34).</summary>
+			<param name="number">Die Zahl deren Näherungswert zu ermitteln ist.</param>
+			<returns>Der gerundete Wert der angegebenen Zahl.</returns>
+			<example>'rundet Dezimalwert n auf 2 Dezimalen
+            Round(100*n)/100
+            'rundet n IMMER auf 2 Dezimalen (zB. Ganzzahl)
+            Round(100*n)*0.01</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.Max(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Vergleicht zwei Zahlen und gibt die größere der beiden zurück.</summary>
+			<param name="number1">Die erste der beiden Vergleichszahlen.</param>
+			<param name="number2">Die zweite der beiden Vergleichszahlen.</param>
+			<returns>Die größere der beiden Zahlen.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.Min(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Vergleicht zwei Zahlen und gibt die kleinere der beiden zurück.</summary>
+			<param name="number1">Die erste der beiden Vergleichszahlen.</param>
+			<param name="number2">Die zweite der beiden Vergleichszahlen.</param>
+			<returns>Die kleinere der beiden Zahlen.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.Remainder(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Teilt die erste Zahl Z durch die zweite Zahl N und gibt den +/- Rest R zurück:
+            R = Sgn(Z) * (Abs(Z) - Abs(N) * Floor(Abs(Z)/Abs(N)))</summary>
+			<param name="dividend">Die zu teilende Zahl (Zähler Z).</param>
+			<param name="divisor">Die Zahl durch die geteilt wird (Nenner, N&lt;&gt;0).</param>
+			<returns>Der +/- Divisionsrest (Modulus Z % N) mit dem Vorzeichen des Zählers Z (- divisor-1 .. 0 .. + divisor-1).</returns>
+			<example>Math.Remainder(9,10) '9
+            Math.Remainder(10,10) '0
+            Math.Remainder(11,10) '1
+
+            'Zyklus durch Intervall
+            i = Math.Remainder(i, n)+1 '[1,n]
+            i = Math.Remainder(i+1, n) '[1..n,0]
+            i = Math.Remainder(1-i, n) '[1,0,1,0,..]
+
+            'Bidirekt. Zyklus durch Intervall [a,z]
+            n = a 'bis z
+            d = 1 '-/+ delta
+            n = Remainder(z+ Remainder(n+d -z-a, z-a+1), z-a+1)+a
+
+            '0,1,..,9 zu 10,1,..,9
+            n = Math.Max(Math.Remainder(n+10,11),n)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Math.GetRandomNumber(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt eine Zufallszahl zwischen 1 und der gegebenen Zahl (inkl.), 1&lt;=Rand&lt;=Max.
+            zB. Math.GetRandomNumber(999)/1000  liefert Zufallszahl zw. 0.001 und 0.999.</summary>
+			<param name="maxNumber">Die Obergrenze für die angeforderte Zufallszahl (&gt;1, 0 und 1 geben immer 1 zurück).</param>
+			<returns>Eine Zufallszahl &gt;=1, die kleiner oder gleich der angegebenen Zahl ist.</returns>
+			<example>'Ausgabe +1 oder -1
+            2*Math.GetRandomNumber(2) - 3</example>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Math.Pi">
+			<summary>Ermittelt den Wert der Zahl Pi mit 14 Dezimalstellen (3.14159265358979).</summary>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.Mouse">
+			<summary>Ermöglicht den Zugriff auf Mauseigenschaften wie Zeigerkoordinaten, Zeigersymbol usw. Je nach Funktion für gesamten Desktop oder nur GW.
+            GW.MouseDown Ereignis für mittlere Maustaste/-rad ergibt sich aus 'Links NOr Rechts'.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Mouse.HideCursor">
+			<summary>Blendet den Mauszeiger aus (nur GW).</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Mouse.ShowCursor">
+			<summary>Macht den Mauszeiger sichtbar (nur GW).</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Mouse.MouseX">
+			<summary>Ermittelt oder setzt die x-Position des Mauszeigers (gesamter Desktop, 0 bis Desktop.Width-1).
+            Bei Positionsänderung im GW wird auch 'GW.MouseMove' Event ausgelöst.</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Mouse.MouseY">
+			<summary>Ermittelt oder setzt die y-Position des Mauszeigers (gesamter Desktop, 0 bis Desktop.Height-1).
+            Bei Positionsänderung im GW wird auch 'GW.MouseMove' Event ausgelöst.</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Mouse.IsLeftButtonDown">
+			<summary>Ermittelt ob die linke Maustaste gedrückt wurde (gesamter Desktop, Standard: "False").
+            Ereignisaufruf für mittlere Maustaste/-rad ergibt sich aus 'Links NOr Rechts'.</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Mouse.IsRightButtonDown">
+			<summary>Ermittelt ob die rechte Maustaste gedrückt wurde (gesamter Desktop, Standard: "False").
+            Ereignisaufruf für mittlere Maustaste/-rad ergibt sich aus 'Links NOr Rechts'.</summary>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.Network">
+			<summary>Bietet Zugriff auf Netzwerkmethoden.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Network.DownloadFile(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Download einer Netzwerkdatei in eine lokale temporäre Datei (%TEMP%\tmp????.tmp).</summary>
+			<param name="url">Die URL der Netzwerkdatei (http://..). Ein bestehender lokaler Dateipfad wird nach temp. Pfad kopiert.</param>
+			<returns>Der lokale Dateipfad unter dem die Netzwerkdatei gespeichert wurde bei Erfolg, sonst "".
+            Das Datum der gespeicherten Downloaddatei wird auf aktuelles Datum gesetzt.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Network.GetWebPageContents(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt den Textinhalt einer angegebenen Webseite (auch für Binärdateien, jedoch nur sinnvoll für textbasierte Dateien) oder lokalen Textdatei.</summary>
+			<param name="url">Die URL der Webseite (http://)www... oder lokaler Dateipfad (zB. lokale Heimnetzwerk IPAdresse 192.168.1.99, http://familiePC).</param>
+			<returns>Der Textinhalt (Quelltext) der angegebenen Webseite oder lokalen Textdatei.</returns>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.Program">
+			<summary>Funktionen zur Kontrolle der Programmausführung.
+            SB unterstützt auch "." (CurrDir), ".." (ParentDir), relative Pfade und %PFADE%.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Program.Delay(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Verzögert die Programmausführung um die angegebene Anzahl Millisekunden. Möglichst nicht innerhalb von Event-Subs oder daraus aufgerufenen Subs, sondern in Hauptschleife.</summary>
+			<param name="milliSeconds">Die Dauer der Verzögerung [ms].</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Program.End">
+			<summary>Beendet das aktuelle Programm.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Program.GetArgument(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt das angegebene Argument, das an dieses Programm übergeben wurde (max. Gesamtlänge 8191 Zeichen).</summary>
+			<param name="index">Der Index des Arguments (1 bis 'ArgumentCount').</param>
+			<returns>Das Befehlszeilenargument am angegebenen Index oder "" wenn dieses nicht existiert.</returns>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Program.ArgumentCount">
+			<summary>Ermittelt die Anzahl der Befehlszeilenargumente, die an das Programm übergeben wurden. (Standard: 0)</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Program.Directory">
+			<summary>Ermittelt den Ordnerpfad für die aktuell ausgeführte Programmdatei.
+            SB unterstützt auch "." (CurrDir), ".." (ParentDir), relative Pfade und %PFADE%.</summary>
+			<example>Program.Directory +"\Datei.ext" ' ".\Datei.ext"</example>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.Shapes">
+			<summary>Ermöglicht das Hinzufügen, Bewegen und Rotieren von Formen (Geometrie-, Bild- oder TextShapes) im GraphicsWindow. Funktioniert zT. auch für Controls (Interne Namensverarbeitung).
+            Gegen Flackern, die Shape(s) bei verstecktem GW hinzufügen oder als transparente Geometrie-/Bildshape bzw. leere TextShape ("") oder leeres Rectangle/Ellipse (0) oder Triangle/Line außerhalb des GW (&lt;0, &gt;gw).</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.AddRectangle(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Fügt ein gefülltes Rechteck der angegebenen Breite und Höhe hinzu (Intern: Rectangle#).</summary>
+			<param name="width">Die Breite des Rechtecks (0/+ Werte, 0 gibt keine Anzeige, LeerRechteck).</param>
+			<param name="height">Die Höhe des Rechtecks (0/+ Werte, 0 gibt keine Anzeige, LeerRechteck).</param>
+			<returns>Der Shapename des Rechtecks.</returns>
+			<example>'Rotes Rechteck mit blauem Rahmen
+            GraphicsWindow.BrushColor = "Red"
+            GraphicsWindow.PenColor = "Blue"
+            GraphicsWindow.PenWidth = 20
+            Shapes.AddRectangle(200,100)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.AddEllipse(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Fügt eine gefüllte Ellipse der angegebenen Breite und Höhe hinzu (Intern: Ellipse#).</summary>
+			<param name="width">Die Breite der Ellipse (0/+ Werte, 0 gibt keine Anzeige, LeerEllipse).</param>
+			<param name="height">Die Höhe der Ellipse (0/+ Werte, 0 gibt keine Anzeige, LeerEllipse).</param>
+			<returns>Der Shapename der Ellipse.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.AddTriangle(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Fügt ein gefülltes Dreieck anhand der angegebenen Punkte hinzu (Intern: Triangle#).</summary>
+			<param name="x1">Die x-Koordinate von Punkt 1 (-/0/+).</param>
+			<param name="y1">Die y-Koordinate von Punkt 1 (-/0/+).</param>
+			<param name="x2">Die x-Koordinate von Punkt 2 (-/0/+).</param>
+			<param name="y2">Die y-Koordinate von Punkt 2 (-/0/+).</param>
+			<param name="x3">Die x-Koordinate von Punkt 3 (-/0/+).</param>
+			<param name="y3">Die y-Koordinate von Punkt 3 (-/0/+).</param>
+			<returns>Der Shapename des Dreiecks.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.AddLine(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Fügt eine Gerade zwischen den angegebenen Punkten in PenColor hinzu (Intern: Line#).</summary>
+			<param name="x1">Die x-Koordinate von Punkt 1 (-/0/+).</param>
+			<param name="y1">Die y-Koordinate von Punkt 1 (-/0/+).</param>
+			<param name="x2">Die x-Koordinate von Punkt 2 (-/0/+).</param>
+			<param name="y2">Die y-Koordinate von Punkt 2 (-/0/+).</param>
+			<returns>Der Shapename der Linie. Ankerpunkt der Shape ist (0;0).</returns>
+			<example>dx = Math.Abs(x2 - x1)
+            dy = Math.Abs(y2 - y1)
+            l = Math.SquareRoot(dx*dx + dy*dy)
+            w = Math.ArcTan((y2-y1)/(x2-x1))  '-pi/2 bis pi/2</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.AddImage(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Fügt ein Bild als Bildshape hinzu, das bewegt, rotiert oder als Animation ausgeführt werden kann (Intern: Image#).
+            Die Abmessungen der Bildshape entsprechen der Bildgröße (s. ImageList.Get..OfImage) und können mit Controls.SetSize geändert werden.
+            ImageList Bild kann danach aus ImageList entfernt werden (LDImage.Remove).
+            Bild kann nach LDControls.AllowDrop per Drag&amp;Drop geändert werden.</summary>
+			<param name="imageName">Der Bildname in ImageList oder (Web)Dateipfad des anzuzeigenden Bildes (BMP, gif, ico, jp(e)g, PNG, tiff).</param>
+			<returns>Der Name der Bildshape.</returns>
+			<example>Leershape erstellbar mit transparentem png Bild.
+            Shapes.AddImage("") 'erstellt neue leere Image# aber keine verwendbare Bildshape.</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.AddText(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Fügt Text als Textshape hinzu, die bewegt, rotiert oder als Animation ausgeführt werden kann. Der Text kann mit SetText aktualisiert werden.
+            Texteigenschaften bestimmbar durch vorangehendes BrushColor sowie Font-Eigenschaften, Größe durch Controls-/LDShapes.SetSize und Hintergrundfarbe durch LDShapes.BrushColour.
+            Shapehöhe: 14.5 , Shapebreite/Buchst: 7 (bei FontSize 12).
+            Auch im Hintergrund (Intern: Text#).</summary>
+			<param name="text">Der Text (linksbündig), der in der Shape angezeigt wird.</param>
+			<returns>Der Name der Textshape.</returns>
+			<example>'Neue leere Text# erstellen
+            Shapes.AddText("")</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.SetText(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Setzt oder ändert den Text in einer Textshape.</summary>
+			<param name="shapeName">Der Name der Textshape.</param>
+			<param name="text">Der zu setzende Text.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.Remove(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Entfernt eine Shape aus dem GraphicsWindow (Interne # bleibt unverändert).</summary>
+			<param name="shapeName">Der Name der zu entfernenden Shape.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.Move(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Verschiebt die angegebene Shape an ihrem Ankerpunkt unmittelbar an eine neue Position (s. Shapes.Animate, Controls.Move). Auch bei versteckter Shape bzw. verstecktem GW, wenn dieses VOR GW.Hide bereits initialisiert wurde.</summary>
+			<param name="shapeName">Der Name der zu verschiebenden Shape.</param>
+			<param name="x">Die x-Koordinate der neuen Position (l.o. Ecke des umgebenden Originalrechtecks).</param>
+			<param name="y">Die y-Koordinate der neuen Position (l.o. Ecke des umgebenden Originalrechtecks).</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.Rotate(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Dreht die angegebene Shape optisch um den angegebenen Winkel ab Originalposition (um Mittel-/Schwerpunkt).</summary>
+			<param name="shapeName">Der Name der zu rotierenden Shape (bzw. Control).</param>
+			<param name="angle">Der Winkel [Grad] um den die Shape/Control ab Originalposition gedreht wird (+/- für im/gegen Uhrzeigersinn).</param>
+			<example>Shapes.Rotate(shp, -380)  '20° Linksdrehung ab OrigPos.</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.Zoom(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Vergrößert oder verkleinert eine Shape optisch mittels der angegebenen Zoomwerte von 0.1 bis 20 (s.a. Contols.SetSize, LDShapes.Re-/SetSize).
+            Die Größenänderung erfolgt im Mittelpunkt der Shape nur optisch, dh. dieser, der Ankerpunkt und die tatsächlichen Abmessungen der Basisshape bleiben erhalten.</summary>
+			<param name="shapeName">Der Name der zu verkleinernden oder vergrößernden Shape.</param>
+			<param name="scaleX">Der Zoomfaktor in x-Richtung (0.1 bis 20, &lt;1 verkleinert, &gt;1 vergrößert, neg. Wert -&gt; 0.1).</param>
+			<param name="scaleY">Der Zoomfaktor in y-Richtung (0.1 bis 20, &lt;1 verkleinert, &gt;1 vergrößert, neg. Wert -&gt; 0.1).</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.Animate(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Bewegt eine angegebene Shape animiert an eine neue Position. Als asynchroner Thread wartet die Programmausführung nicht auf dessen Beendigung. Daher ev. Program.Delay(duration) anschließen. (s. Shapes.Move)</summary>
+			<param name="shapeName">Der Name der zu animierenden Shape.</param>
+			<param name="x">Die x-Koordinate der neuen Position.</param>
+			<param name="y">Die y-Koordinate der neuen Position.</param>
+			<param name="duration">Die Dauer der Animation [ms] (duration &gt;= 0). 0 verschiebt unmittelbar.</param>
+			<example>'Animation über 1/2 Breite, dann Sprung
+            ell = Shapes.AddEllipse(10,10)
+            Shapes.Animate(ell, GraphicsWindow.Width,0, 5000)
+            Program.Delay(2500)
+            Shapes.Animate(ell, GraphicsWindow.Width,0, 0)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.GetLeft(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die linke Koordinate des Ankerpunktes einer angegebenen Shape. Unbeeinflußt von Shapes.Zoom oder -Rotate. Nicht für Controls, dazu erst ein Shape-Kommando zB. Shapes.Move für Control anwenden.</summary>
+			<param name="shapeName">Der Name der Shape.</param>
+			<returns>Die linke x-Koordinate [Pxl] der Shape im GW (0 bei Erstellung).</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.GetTop(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die obere Koordinate des Ankerpunktes einer angegebenen Shape. Unbeeinflußt von Shapes.Zoom oder -Rotate. Nicht für Controls, dazu erst ein Shape-Kommando zB. Shapes.Move für Control anwenden.</summary>
+			<param name="shapeName">Der Name der Shape.</param>
+			<returns>Die obere y-Koordinate [Pxl] der Shape im GW (0 bei Erstellung).</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.GetOpacity(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Deckkraft [%] einer Shape.</summary>
+			<param name="shapeName">Der Name der Shape.</param>
+			<returns>Die Deckkraft der Shape von 0 bis 100 [%]. 0 ist völlig transparent, 100 ist deckend.</returns>
+			<example>Alternativ für Zeichnungen und (Text)Shapes aus deren BrushColor #AARRGGBB, für AA = 00 (transparent) bis FF (deckend).</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.SetOpacity(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Setzt die Deckkraft [%] einer Shape/Control.</summary>
+			<param name="shapeName">Der Name der Shape.</param>
+			<param name="level">Die Deckkraft von 0 bis 100 [%]. 0 ist völlig transparent, 100 ist deckend.</param>
+			<example>Alternativ für Zeichnungen und (Text)Shapes über deren BrushColor als #AARRGGBB, für AA = 00 (transparent) bis FF (deckend).</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.HideShape(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Blendet eine bereits hinzugefügte Shape aus (s. Controls.HideControl, Shapeposition bleibt unverändert. Animate, GetLeft/-Top, Move, SetText, Rotate, Zoom funktionieren weiterhin).</summary>
+			<param name="shapeName">Der Name der Shape.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Shapes.ShowShape(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Zeigt eine ausgeblendete Shape an der zuletzt definierten Position wieder an (s. Controls.ShowControl).</summary>
+			<param name="shapeName">Der Name der Shape.</param>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.Sound">
+			<summary>Methoden zur Soundwiedergabe. Auch einige Beispiel Sounds sind enthalten.
+            Für SystemBeep (im TW) s. Text.GetCharacter(7).</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Sound.PlayClick">
+			<summary>Spielt den Mausklick Sound ab (asynchron).</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Sound.PlayClickAndWait">
+			<summary>Spielt den Mausklick Sound ab und wartet bis Abspielvorgang abgeschlossen ist.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Sound.PlayChime">
+			<summary>Spielt den Glockenton Sound ab (asynchron).</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Sound.PlayChimeAndWait">
+			<summary>Spielt den Glockenton Sound ab und wartet bis Abspielvorgang abgeschlossen ist.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Sound.PlayChimes">
+			<summary>Spielt den Glockenläuten Sound ab (asynchron).</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Sound.PlayChimesAndWait">
+			<summary>Spielt den Glockenläuten Sound ab und wartet bis Abspielvorgang abgeschlossen ist.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Sound.PlayBellRing">
+			<summary>Spielt den Glockenzeichen Sound ab (asynchron).</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Sound.PlayBellRingAndWait">
+			<summary>Spielt den Glockenzeichen Sound ab und wartet bis Abspielvorgang abgeschlossen ist.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Sound.PlayMusic(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Spielt Musiknoten synchron von einer Zeichenkette ab (nicht für Hintergrund, Programmausführung solange angehalten).
+            Standardinstrument: 1 - Acoustic_Grand_Piano
+
+            Music Markup Language (MML) Specification
+            http://xml.coverpages.org/mml-spec19990610.html</summary>
+			<param name="notes">Ein String abzuspielender Musiknoten. Format ist Teil der in QBasic unterstützten Music Markup Language (MML).
+            Oktave: O1-O8 (&lt;|&gt; 1 Oktave ab|auf; Std: O4)
+            Note: C,D,E,F,G,A,B (-|+,#  Halbton ab|auf;  . 1.5x Dauer)
+            Länge: L1-L64 (Ln, Std: L4) oder Note+n
+            Pause: R od. P (Länge wie Noten)
+            Leerzeichen werden ignoriert</param>
+			<example>Sound.PlayMusic("O5 C8 C8 G8 G8 A8 A8 G4 F8 F8 E8 E8 D8 D8 C4")</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Sound.Play(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Spielt eine Audiodatei ab (zB. im Hintergrund). Es kann sich hierbei um eine mp3, wav, wma (bzw. flac, m4a, ogg) Datei handeln. Andere Formate hängen von den am Computer installierten Codecs ab.
+            Wenn das Abspielen der Datei bereits angehalten wurde, startet diese Operation das Abspielen erneut. Zum Abspielen für eine bestimmte Zeit ev. weitere Programmausführung anhalten (asynchron).</summary>
+			<param name="filePath">Der volle Pfad der Audiodatei. zB. "C:\Musik\track1.mp3" für einen lokalen oder "http://contoso.com/track01.wma" für einen Netzwerkpfad.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Sound.PlayAndWait(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Spielt eine Audiodatei ab und wartet, bis der Vorgang abgeschlossen ist. Es kann sich hierbei um eine mp3, wav, wma (bzw. flac, m4a, ogg) Datei handeln. Andere Formate hängen von den am Computer installierten Codecs ab.
+            Wenn das Abspielen der Datei bereits angehalten wurde, startet diese Operation das Abspielen erneut.</summary>
+			<param name="filePath">Der volle Pfad der Audiodatei. zB. "C:\Musik\track1.mp3" für einen lokalen oder "http://contoso.com/track01.wma" für einen Netzwerkpfad.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Sound.Pause(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Pausiert das Abspielen einer Audiodatei. Wird die Datei nicht gerade abgespielt, führt diese Operation nichts aus.</summary>
+			<param name="filePath">Der volle Pfad der Audiodatei. zB. C:\Musik\track1.mp3 für einen lokalen oder "http://contoso.com/track01.wma" für einen Netzwerkpfad.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Sound.Stop(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Beendet die Wiedergabe einer Audiodatei. Wird die Datei nicht gerade abgespielt, führt diese Operation nichts aus.</summary>
+			<param name="filePath">Der volle Pfad der Audiodatei. zB. "C:\Musik\track1.mp3" für einen lokalen oder "http://contoso.com/track01.wma" für einen Netzwerkpfad.</param>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.Stack">
+			<summary>Ermöglicht das Zwischenspeichern von Werten (Zahl, String, Var) in einem Stapel. Ein Wert kann ganz oben auf den Stapel abgelegt und von dort wieder heruntergenommen werden.
+            Es muß ein Wert nach dem anderen wieder vom Stapel abgenommen werden, beginnend mit dem Wert, der zuletzt am Stapel abgelegt wurde (Umgekehrte Reihenfolge, zuletzt rein-zuerst raus).
+            Stackname vordefiniert zB. Stapel = "" oder in "".</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Stack.PushValue(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Befördert einen Wert 'oben' auf den angegebenen Stapel.</summary>
+			<param name="stackName">Der Name des Stapels (in "" oder vordefiniert).</param>
+			<param name="value">Der reinzuladende Wert.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Stack.GetCount(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Anzahl der Elemente im angegebenen Stapel.</summary>
+			<param name="stackName">Der Name des Stapels (in "" oder vordefiniert).</param>
+			<returns>Die Anzahl der Elemente im angegebenen Stapel oder 0.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Stack.PopValue(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt (und entfernt) den obersten Wert im angegebenen Stapel (Fehlerabbruch, wenn Stapel leer ist).</summary>
+			<param name="stackName">Der Name des Stapels (in "" oder vordefiniert).</param>
+			<returns>Entladener, oberster Wert des Stapels.</returns>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.Text">
+			<summary>Stringfunktionen zur Textverarbeitung. Diese unterscheiden zw. Groß-/Kleinschreibung (zB. A&lt;&gt;a). zT. auch für Arrays anwendbar (zB. IsSubText).
+            Ein Einzelstring darf auch ein/mehrere "" enthalten, jedoch nicht am Stringbeginn oder -ende.</summary>
+            <example>http://msdn.microsoft.com/library/windows/desktop/dd374081.aspx (Unicode Zeichen)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Text.Append(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Verbindet zwei Zeichenfolgen (Texte, Arrays, Variableninhalte) und gibt den Gesamtstring zurück. Nützlich bei Verarbeitung von unbekanntem Text in Variablen, der irrtümlich als Zahl behandelt und addiert werden könnte, anstatt zusammengefügt (Alternativ: '+').</summary>
+			<param name="text1">Der erste Teilstring.</param>
+			<param name="text2">Der zweite Teilstring.</param>
+			<returns>Der zusammengefügte String aus beiden Teilen.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Text.ConvertToLowerCase(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Konvertiert den angegebenen Text (bzw. gesamten Arrayinhalt) zu Kleinbuchstaben.</summary>
+			<param name="text">Der Text oder Array, der in Kleinbuchstaben umzuwandeln ist.</param>
+			<returns>Der angegebene Text bzw. Array in Kleinbuchstaben.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Text.ConvertToUpperCase(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Konvertiert den angegebenen Text (bzw. gesamten Arrayinhalt) zu Großbuchstaben.</summary>
+			<param name="text">Der Text oder Array, der in Großbuchstaben umzuwandeln ist.</param>
+			<returns>Der angegebene Text bzw. Array in Großbuchstaben.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Text.EndsWith(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt ob ein Text mit dem angegebenen String (buchstabengetreu) endet.</summary>
+			<param name="text">Der zu durchsuchende Text.</param>
+			<param name="subText">Die gesuchte Zeichenfolge am Textende.</param>
+			<returns>"True" wenn die Zeichenfolge am Textende gefunden wurde, sonst "False".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Text.GetCharacter(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt das entsprechende Zeichen zu einem angegebenen Unicode Zahlencode. Dieses kann dann als normaler Textstring verwendet werden.</summary>
+			<param name="characterCode">Der dekadische Unicode Zahlencode (UTF-16) für ein bestimmtes Zeichen. Hex Unicode Codes (#xxxx) erst konvertieren (W7 bis max. 65535 = #FFFF).</param>
+			<returns>Das Unicode Zeichen, das dem Zahlencode entspricht ("", "0" oder 0 ergibt ' ' bzw. chr(0)).</returns>
+			<example>'Umlaute
+            arrUml="196=Ä;214=Ö;220=Ü;223=ß;228=ä;246=ö;252=ü;"
+            arrSmiley="9785=&#9785;;9786=&#9786;;9787=&#9787;;"
+
+             7  SystemBeep (im TW)
+             8  bs (BackSpace)
+             9  tab (8 stellig)
+            10  lf
+            13  cr
+            32  space
+            34  qu (")</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Text.GetCharacterCode(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt den entsprechenden Unicode Zahlencode (UTF-16) für ein angegebenes Zeichen. Für mehrere Zeichen oder Zahl, den Unicode Zahlencode des ersten Zeichens/Ziffer.</summary>
+			<param name="character">Das Zeichen, dessen Unicode Zahlencode zu ermitteln ist.</param>
+			<returns>Der dekadische Unicode Zahlencode, der dem angegebenen (ersten) Zeichen entspricht ("" ergibt 0, bis max. 65535 = #FFFF).
+			Für characterCode &gt;= 65536 (#10000) wird Math.Remainder(characterCode, 65536) zurückgegeben.
+            Für SMP Zeichen &gt;= U+10000, der dekadische Unicode Zahlencode für das erste/höhere Surrogat.</returns>
+			<example>'Zeichen -&gt; Code
+            0..9  '48-57
+            A..Z  '65-90
+            a..z  '97-122
+
+            'Whitespace Zeichen (tab,lf,cr,space)
+            arrWS="1=9;2=10;3=13;4=32;"
+            WS: 9-13,32,133,160,5760,8192-8203,8232,8233,12288,65279</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Text.GetIndexOf(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die erste Position einer Zeichenfolge (buchstabengetreu) in einem angegebenen Text.</summary>
+			<param name="text">Der zu durchsuchende Text.</param>
+			<param name="subText">Die zu suchende Zeichenfolge, Zeichen oder Zahl.</param>
+			<returns>Die erste Position (ab 1) an der die Zeichenfolge im angegebenen Text gefunden wurde, sonst 0.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Text.GetLength(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt die Anzahl der Zeichen in einem angegebenen Text/String oder Zahl.</summary>
+			<param name="text">Der Text dessen Länge zu ermitteln ist.</param>
+			<returns>Die Zeichenanzahl im angegebenen Text bzw. 0 für "".</returns>
+			<example>Text.GetLength("False") '5
+            Text.GetLength("-""-") '4
+            Text.GetLength(-123) '4
+            Text.GetLength(-.123) '7 (für -0.123)
+            Text.GetLength(chr) '2 (für SMP, chr &gt;= U+10000)</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Text.GetSubText(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt eine Zeichenfolge innerhalb eines Textes, ab der angegebenen Position (incl.) und der Länge 'length'.</summary>
+			<param name="text">Der zu durchsuchende Text.</param>
+			<param name="start">Die Startposition innerhalb des Textes (ab 1). Bei einem Startwert &lt;1 oder &gt;Textlänge wird "" zurückgegeben.</param>
+			<param name="length">Die Länge der Sub-Zeichenfolge (&gt;= 0, ab 'start').</param>
+			<returns>Der ermittelte Teilstring oder "".</returns>
+			<example>Text.GetSubText("12345678", 5,6) ' "5678"</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Text.GetSubTextToEnd(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt eine Zeichenfolge am Ende eines Textes, ab der angegebenen Position (incl.) bis zum Textende.</summary>
+			<param name="text">Der zu durchsuchende Text.</param>
+			<param name="start">Die Startposition innerhalb des Textes (ab 1). Bei einem Startwert &lt;1 oder &gt;Textlänge wird "" zurückgegeben.</param>
+			<returns>Der ermittelte Teilstring am Textende oder "".</returns>
+			<example>Text.GetSubTextToEnd("12345678", 4) ' "45678"</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Text.IsSubText(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt ob ein Teiltext (buchstabengetreu) in in einem angegebenen Text enthalten ist. Auch Suche nach subText in einem Array.</summary>
+			<param name="text">Der zu durchsuchende Text. (Für Array erscheinen hier '\' als '\\'.)</param>
+			<param name="subText">Die gesuchte Zeichenfolge im Text.</param>
+			<returns>"True" wenn die Zeichenfolge im angegebenen Text gefunden wurde, sonst "False".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Text.StartsWith(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Ermittelt ob ein Text mit dem angegebenen Teiltext (buchstabengetreu) beginnt.</summary>
+			<param name="text">Der zu durchsuchende Text.</param>
+			<param name="subText">Die gesuchte Zeichenfolge am Textanfang.</param>
+			<returns>"True" wenn die Zeichenfolge am Textbeginn gefunden wurde, sonst "False".</returns>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.TextWindow">
+			<summary>Funktionen für das TextWindow. zB. können Texte oder Zahlen in das TextWindow geschrieben oder vom TextWindow eingelesen werden.
+            (Standard Fensterbreite/-höhe: 667/402 Pxl)</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.TextWindow.Show">
+			<summary>Blendet das TextWindow (wieder) ein.
+            Ein vor TextWindow.Hide angezeigter Textinhalt bleibt erhalten und wird wieder angezeigt.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.TextWindow.Hide">
+			<summary>Blendet das TextWindow aus.
+            Ein angezeigter Textinhalt bleibt erhalten und wird beim nächsten TextWindow Aufruf (Show, WriteLine) wieder angezeigt.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.TextWindow.Clear">
+			<summary>Löscht alle Inhalte im TextWindow.</summary>
+			<example>'Farbe im gesamten TW setzen
+            TextWindow.BackgroundColor = "Farbe"
+            TextWindow.Clear</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.TextWindow.Pause">
+			<summary>Wartet auf Benutzereingabe und hält das TextWindow geöffnet (mit "Press any key to continue...").</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.TextWindow.PauseIfVisible">
+			<summary>Wartet nur dann auf Benutzereingabe, wenn das TextWindow sichtbar ist (mit "Press any key to continue..."), sonst gleich Weiterausführung.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.TextWindow.PauseWithoutMessage">
+			<summary>Wartet auf Benutzereingabe (ohne "Press any key to continue..."). Sinnvoll wenn gleichzeitig GW aktiv ist.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.TextWindow.Read">
+			<summary>Liest eine Textzeile aus dem TextWindow. Keine Rückgabe, bis die Eingabetaste gedrückt wurde.
+            Akzeptiert Zahlen, Buchstaben und Sonderzeichen. (s. TextWindow.ReadKey)</summary>
+			<returns>Der im TextWindow eingegebene Text.</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.TextWindow.ReadKey">
+			<summary>Liest ein einzelnes Tastenzeichen aus dem TextWindow. Sofort und ohne vorherige Eingabetaste.
+            (Ausgeblendet in IntelliSense, s. TextWindow.Read und -ReadNumber)</summary>
+			<returns>Das Tastenzeichen, das aus dem TextWindow gelesen wurde (Groß-/Kleinbuchstabe, Zahl, Sonderzeichen). Funktions- und Steuertasten geben nichts zurück (bzw. CharCode 0).</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.TextWindow.ReadNumber">
+			<summary>Liest eine Zahl aus dem TextWindow. Keine Rückgabe, bis die Eingabetaste gedrückt wurde.
+            Akzeptiert Ziffern 0 bis 9, ein Komma "." und "-" am Anfang. (s. TextWindow.ReadKey)</summary>
+			<returns>Die im TextWindow eingegebene Zahl oder 0 bei "".</returns>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.TextWindow.WriteLine(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Schreibt Text oder eine Zahl in das TextWindow. Ein Zeilenvorschub (cr+lf bzw. chr13+chr10) wird automatisch angefügt, sodaß die nächste Ausgabe in neuer Zeile beginnt.</summary>
+			<param name="data">Der auszugebende Text oder Zahl.</param>
+			<example>WriteLine("") '1 Leerzeile
+            WriteLine(lf od. crlf) '2 Leerzeilen</example>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.TextWindow.Write(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Schreibt Text oder eine Zahl in das TextWindow. Im Gegensatz zu WriteLine wird kein Zeilenvorschub angefügt. Die nächste Ausgabe wird daher am Ende derselben Zeile angefügt, fortlaufend mit Umbruch am Zeilenende.</summary>
+			<param name="data">Der auszugebende Text oder Zahl.</param>
+			<example>Write(lf bzw. crlf) '1 Leerzeile bzw. Zeilenvorschub</example>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.TextWindow.ForegroundColor">
+			<summary>Ermittelt (als Farbname) oder setzt die Vordergrundfarbe der weiteren Textanzeige (Farbname oder -nummer 0-15, s. Color /? in CMD).
+            (Standard: Green bzw. 10, nicht als #RRGGBB)</summary>
+			<example>0=Black		8=DarkGray
+            1=DarkBlue	9=Blue
+            2=DarkGreen	10=Green
+            3=DarkCyan	11=Cyan
+            4=DarkRed	12=Red
+            5=DarkMagenta	13=Magenta
+            6=DarkYellow	14=Yellow
+            7=Gray		15=White</example>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.TextWindow.BackgroundColor">
+			<summary>Ermittelt (als Farbname) oder setzt die Hintergrundfarbe der weiteren Textanzeige (Farbname oder -nummer 0-15, s. Color /? in CMD).
+            Anschließendes TextWindow.Clear() dehnt die Hintergrundfarbe auf gesamtes TextWindow aus.
+            (Standard: Black bzw. 0, nicht als #RRGGBB)</summary>
+			<example>0=Black		8=DarkGray
+            1=DarkBlue	9=Blue
+            2=DarkGreen	10=Green
+            3=DarkCyan	11=Cyan
+            4=DarkRed	12=Red
+            5=DarkMagenta	13=Magenta
+            6=DarkYellow	14=Yellow
+            7=Gray		15=White</example>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.TextWindow.CursorLeft">
+			<summary>Ermittelt oder setzt die Ausgabespalte Cursorposition im TextWindow.
+            (0 bis 89 bzw. s. SBConsole.Width-1, Standard: 0)</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.TextWindow.CursorTop">
+			<summary>Ermittelt oder setzt die Ausgabezeile Cursorposition im TextWindow.
+            (0 bis 29 ohne Scrollen bzw. s. SBConsole.Height-1, Standard: 0)</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.TextWindow.Left">
+			<summary>Ermittelt oder setzt die linke Position des TextWindow (linker Fensterrand) am Desktop.
+            (Standard: s. CMD Eigenschaften - Layout - Fensterpos.)</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.TextWindow.Title">
+			<summary>Ermittelt oder setzt den Titel für das TextWindow (Tab funktioniert nicht, Schrifteigenschaften nach Systemstandard, keine Symbole).
+            Das Fenster wird dabei (wieder) angezeigt.
+            (Standard: Voller Dateipfad der aktuellen .exe mit Argumenten)</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.TextWindow.Top">
+			<summary>Ermittelt oder setzt die obere Position des TextWindow (Fenster, Oberkante Titelleiste) am Desktop.
+            (Standard: s. CMD Eigenschaften - Layout - Fensterpos.)</summary>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.Timer">
+			<summary>Dient dazu einen Vorgang auszuführen, der sich in regelmäßigen Abständen wiederholt. Weiters zum Erstellen asynchroner Parallelthreads.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Timer.Pause">
+			<summary>Hält den Timer (Zeitgeber) an. Tick Ereignisse werden nicht ausgelöst.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Timer.Resume">
+			<summary>Setzt den Timer (Zeitgeber) nach einer Pause wieder fort. Tick Ereignisse werden wieder ausgelöst.</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Timer.Interval">
+			<summary>Ermittelt oder setzt das Intervall [ms] für den Timer. Dieses bestimmt die Zeitabstände in denen der Timer (Zeitgeber) das Tick Ereignis auslöst. Werte von 10 bis 100000000.
+            (Standard: 100000000)</summary>
+		</member>
+		<member name="E:Microsoft.SmallBasic.Library.Timer.Tick">
+			<summary>Ereignisaufruf wenn der Timer (Zeitgeber) ein neues Zeitintervall beginnt.
+            Funktioniert als einziges Ereignis auch im TextWindow und dient zum Erstellen asynchroner Parallelthreads.</summary>
+		</member>
+		<member name="T:Microsoft.SmallBasic.Library.Turtle">
+			<summary>Mit der Schildkröte kann man Logo ähnliche Funktionalität erzielen und Formen zeichnen, indem man die Eigenschaften des Stifts und der Zeichnungsvariablen ändert.
+            Das Turtle Bild ist eine Bildshape (Intern: "_turtle"), die Spur eine Linienshape (Intern: "_turtleLine#") und beide liegen eine Ebene über GW, Linienzeichnungen, gefüllte Formen, Controls und Shapes.
+            Turtle Bildshape anpassbar mit zB. Shapes.SetOpacity("_turtle",Wert) oder Shapes.Zoom("_turtle", faktorX,faktorY).
+            Turtlelinie anpassbar mit PenColor/-Width.
+            s. LDShapes.SetTurtleImage zum Ändern des Turtle Bildes.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Turtle.Show">
+			<summary>Zeigt die Schildkröte (Bildshape wieder) an, für weitere Interaktion.
+            s. LDShapes.ResetTurtle(), Shapes.HideShape("_turtle") bzw. Shapes.ShowShape("_turtle").</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Turtle.Hide">
+			<summary>Blendet die Schildkröte aus (nur Bildshape, Linie nicht) und deaktiviert die Funktion für Turn(Left/Right), Angle und Move(To) weiter moglich.
+            s. LDShapes.ResetTurtle(), Shapes.HideShape("_turtle") bzw. -ShowShape("_turtle").</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Turtle.PenDown">
+			<summary>Setzt den Stift auf, sodaß die Schildkröte bei Bewegung zeichnet (in PenColor/-Width).
+            (Standardmäßig aktiviert)</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Turtle.PenUp">
+			<summary>Hebt den Stift ab, sodaß die Schildkröte bei Bewegung nicht zeichnet.</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Turtle.Move(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Bewegt die Schildkröte um die angegebene Entfernung (initialisiert Turtle, Programmfortführung wird solange angehalten). Ist der Stift unten, wird mit dieser Bewegung eine Linie gezeichnet (Intern: Shapes.Move("_turtle", x,y)).</summary>
+			<param name="distance">Die -/+ Entfernung die die Schildkröte in Blickrichtung zurücklegt.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Turtle.MoveTo(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Dreht und bewegt die Schildkröte zur angegebenen Position (initialisiert Turtle, Programmfortführung wird solange angehalten). Ist der Stift aufgesetzt, wird dabei eine Linie gezeichnet (Intern: Shapes.Move("_turtle", x,y)).
+            Die Blickrichtung bleibt danach erhalten.</summary>
+			<param name="x">Die x-Koordinate des Zielpunktes.</param>
+			<param name="y">Die y-Koordinate des Zielpunktes.</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Turtle.Turn(Microsoft.SmallBasic.Library.Primitive)">
+			<summary>Dreht die Schildkröte um den angegebenen Winkel (initialisiert Turtle, auch wenn ausgeblendet). Der Winkel [Grad] kann positiv oder negativ sein. Startwinkel (0 Grad) entspricht Richtung 12h.
+            Ein pos. Winkel dreht die Schildkröte nach rechts (im Uhrzeigersinn).
+            Ein neg. Winkel dreht die Schildkröte nach links (gegen Uhrzeigersinn).
+            (Intern: Shapes.Rotate("_turtle",[Grad]))</summary>
+			<param name="angle">Der -/+ Winkel [Grad] um den die Schildkröte gedreht wird (Standard: 0).</param>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Turtle.TurnRight">
+			<summary>Dreht die Schildkröte um 90 Grad im Uhrzeigersinn (blendet diese ein, Intern: Shapes.Rotate("_turtle",90)).</summary>
+		</member>
+		<member name="M:Microsoft.SmallBasic.Library.Turtle.TurnLeft">
+			<summary>Dreht die Schildkröte um 90 Grad gegen den Uhrzeigersinn (blendet diese ein, Intern: Shapes.Rotate("_turtle",-90)).</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Turtle.Speed">
+			<summary>Ermittelt oder setzt die Bewegungsgeschwindigkeit der Schildkröte (blendet diese nicht ein). Gültige Werte sind Zahlen von 1 (min) bis 10 (max). Ein Wert von 10 bewegt und dreht die Schildkröte sofort.
+            (Standard: 5)</summary>
+			<example>animZeit [ms] = Math.Abs(distance [Pxl] * 320/(Turtle.Speed*Turtle.Speed))
+            'zB. 1280 ms für 100 Pxl bei Speed 5 usw.</example>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Turtle.Angle">
+			<summary>Ermittelt oder setzt den Winkel [Grad] für die aktuelle Blickrichtung der Schildkröte. Das Festlegen ändert deren Blickrichtung unmittelbar (blendet Turtle nicht ein).
+            (Standard: 0 für 12h, +/- für im/gegen Uhrzeigersinn)</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Turtle.X">
+			<summary>Ermittelt oder setzt die aktuelle x-Koordinate der Schildkröte. Das Festlegen ändert deren Position unmittelbar (ohne Linie, blendet Turtle nicht ein).
+            (Standard: 320)</summary>
+		</member>
+		<member name="P:Microsoft.SmallBasic.Library.Turtle.Y">
+			<summary>Ermittelt oder setzt die aktuelle y-Koordinate der Schildkröte. Das Festlegen ändert deren Position unmittelbar (ohne Linie, blendet Turtle nicht ein).
+            (Standard: 240)</summary>
+		</member>
+	</members>
+</doc>

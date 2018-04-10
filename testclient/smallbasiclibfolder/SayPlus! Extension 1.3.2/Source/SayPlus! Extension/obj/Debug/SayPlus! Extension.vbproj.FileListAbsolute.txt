@@ -1,0 +1,20 @@
+C:\Users\j-c\documents\visual studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\bin\Debug\SayPlus! Extension.dll
+C:\Users\j-c\documents\visual studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\bin\Debug\SayPlus! Extension.pdb
+C:\Users\j-c\documents\visual studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\bin\Debug\SayPlus! Extension.xml
+C:\Users\j-c\documents\visual studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\bin\Debug\SmallBasicLibrary.dll
+C:\Users\j-c\documents\visual studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\bin\Debug\SmallBasicLibrary.xml
+C:\Users\j-c\documents\visual studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\j-c\documents\visual studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\obj\Debug\SayPlus__Extension.Resources.resources
+C:\Users\j-c\documents\visual studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\obj\Debug\ResGen.read.1.tlog
+C:\Users\j-c\documents\visual studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\obj\Debug\ResGen.write.1.tlog
+C:\Users\j-c\documents\visual studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\obj\Debug\SayPlus! Extension.dll
+C:\Users\j-c\documents\visual studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\obj\Debug\SayPlus! Extension.xml
+C:\Users\j-c\documents\visual studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\obj\Debug\SayPlus! Extension.pdb
+C:\Users\j-c\Documents\Visual Studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\bin\Debug\json.net.dll
+C:\Users\j-c\Documents\Visual Studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\bin\Debug\lua51.dll
+C:\Users\j-c\Documents\Visual Studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\bin\Debug\LuaInterface.dll
+C:\Users\j-c\Documents\Visual Studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\bin\Debug\Interop.MSWinsockLib.dll
+C:\Users\j-c\Documents\Visual Studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\bin\Debug\Interop.SpeechLib.dll
+C:\Users\j-c\Documents\Visual Studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\obj\Debug\Interop.MSWinsockLib.dll
+C:\Users\j-c\Documents\Visual Studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\obj\Debug\Interop.SpeechLib.dll
+C:\Users\j-c\Documents\Visual Studio 2010\Projects\SayPlus! Extension\SayPlus! Extension\obj\Debug\SayPlus! Extension.vbproj.ResolveComReference.cache

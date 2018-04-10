@@ -1,0 +1,1320 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ESL</name>
+    </assembly>
+    <members>
+        <member name="T:McSherry.SmallBasic.ESL.AboutForm">
+            <summary>
+            Interaction logic for AboutForm.xaml
+            </summary>
+            <summary>
+            AboutForm
+            </summary>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.AboutForm.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:McSherry.SmallBasic.ESL.Blackbox.ESLBB_File">
+            <summary>
+            A class containing file-related operations.
+            </summary>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Blackbox.ESLBB_File.Write(System.String,System.String)">
+            <summary>
+            Write a string of characters to a file.
+            </summary>
+            <param name="filename">The file path of the file to write.</param>
+            <param name="contents">The contents of the file.</param>
+            <returns>True if it succeeds, False if it fails.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Blackbox.ESLBB_File.WriteDelimited(System.String,System.String)">
+            <summary>
+            Write several lines of text to a file, delimited by a semicolon.
+            </summary>
+            <param name="filename">The file to write to.</param>
+            <param name="contents">The contents to write to the file.</param>
+            <returns>True if it succeeds, False if it fails.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Blackbox.ESLBB_File.WriteBytes(System.String,System.String)">
+            <summary>
+            Writes bytes, separated by commas, to a file.
+            </summary>
+            <param name="filename">The file to write to.</param>
+            <param name="bytes">The bytes to write, separated by commas. For example, "65,66,67"</param>
+            <returns>True if the write succeeds, False if it fails.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Blackbox.ESLBB_File.Create(System.String)">
+            <summary>
+            Creates or overwrites an existing file.
+            </summary>
+            <param name="filename">File to create.</param>
+            <returns>True if it succeeds, False if it fails.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Blackbox.ESLBB_File.Identify(System.String)">
+            <summary>
+            Identify a file based on its extension.
+            </summary>
+            <param name="filename">The path of the file to identify.</param>
+            <returns>A description of the file type.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Blackbox.ESLBB_File.Read(System.String)">
+            <summary>
+            Read the full contents of a file.
+            </summary>
+            <param name="filename">The file to read.</param>
+            <returns>The contents of the file.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Blackbox.ESLBB_File.ReadBlock(System.String,System.Int32,System.Int32)">
+            <summary>
+            Read a specified length of text from a file.
+            </summary>
+            <param name="filename">The file to read.</param>
+            <param name="buffer">Where to begin reading from.</param>
+            <param name="length">For how long, in characters, to read.</param>
+            <returns>The block of text selected.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Blackbox.ESLBB_File.ReadLine(System.String,System.Int32)">
+            <summary>
+            Reads a single line from a file.
+            </summary>
+            <param name="filename">File to read.</param>
+            <param name="lineNumber">Line number to read.</param>
+            <returns>Contents of the specified line number.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Blackbox.ESLBB_File.Delete(System.String)">
+            <summary>
+            Delete the specified file.
+            </summary>
+            <param name="filename">The file to delete.</param>
+            <returns>True if the delete succeeds, False if it fails.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Blackbox.ESLBB_File.Length(System.String)">
+            <summary>
+            Retrieves the length of the specified file.
+            </summary>
+            <param name="filename">The file to read the length of.</param>
+            <returns></returns>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Blackbox.ESLBB_Text.LF">
+            <summary>
+            Linefeed character.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Blackbox.ESLBB_Text.CR">
+            <summary>
+            Carriage return.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Blackbox.ESLBB_Text.CRLF">
+            <summary>
+            Carriage return + Linefeed
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Blackbox.ESLBB_Text.HT">
+            <summary>
+            Horizontal tab.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Blackbox.ESLBB_Text.BS">
+            <summary>
+            Backspace character.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Blackbox.ESLBB_Text.NUL">
+            <summary>
+            Null character.
+            </summary>
+        </member>
+        <member name="T:McSherry.SmallBasic.ESL.Wrapper.ESL">
+            <summary>
+            A class containing ESL-related functions and properties.
+            </summary>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESL.About">
+            <summary>
+            Shows a dialog box containing information about ESL, and the version number.
+            </summary>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESL.NewerVersionAvailable">
+            <summary>
+            Checks for if a newer version of ESL is available.
+            </summary>
+            <returns>True if a newer version is available, False if it is not.</returns>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESL.Version">
+            <summary>
+            The version string of ESL.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESL.UserAgentString">
+            <summary>
+            The User Agent string that identifies ESL when it is performing tasks such as web requests.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESL.CompileTime">
+            <summary>
+            The date and time this build of ESL was compiled.
+            </summary>
+        </member>
+        <member name="T:McSherry.SmallBasic.ESL.Wrapper.ESLFile">
+            <summary>
+            A class that allows interaction with files.
+            </summary>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLFile.Write(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Writes a string of characters to a file. The file must already exist.
+            </summary>
+            <param name="filename">The name or path of the file to write to.</param>
+            <param name="contents">The contents to write to the file.</param>
+            <returns>True if the write succeeds, False if it does not.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLFile.WriteDelimited(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Writes several lines of text to a file. Lines are separated by semicolons. For example, "ABC;DEF;GHI"
+            </summary>
+            <param name="filename">The name or path of the file to write to.</param>
+            <param name="contents">The contents to write to the file.</param>
+            <returns>True if the write succeeds, False if it fails.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLFile.WriteBytes(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Writes a series of bytes to a file.
+            </summary>
+            <param name="filename">The name or path of the file to write to.</param>
+            <param name="bytes">The bytes to write, separated by commas. For example, "65,66,67"</param>
+            <returns>True if the write succeeds, False if it fails.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLFile.Append(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Append text to a file.
+            </summary>
+            <param name="filename">The name or path of the file to append text to.</param>
+            <param name="contents">The contents to write to the file.</param>
+            <returns>True if the write succeeds, False if it fails.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLFile.AppendDelimited(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Append several lines of text to a file. Lines are separated by semicolons. For example, "ABC;DEF;GHI"
+            </summary>
+            <param name="filename">The name or path of the file to append to.</param>
+            <param name="contents">The contents to append to the file.</param>
+            <returns>True if the write succeeds, False if it fails.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLFile.AppendBytes(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Append a series of bytes to a file.
+            </summary>
+            <param name="filename">The name or path of the file to append to.</param>
+            <param name="bytes">The bytes to append, separated by commas. For example, "65,66,67"</param>
+            <returns>True if the write succeeds, False if it fails.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLFile.Create(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Creates a new file, or overwrites an existing one.
+            </summary>
+            <param name="filename">The name or path of the file to create.</param>
+            <returns>True if the creation succeeds, False if it fails.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLFile.Identify(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Identifies a file by file extension.
+            </summary>
+            <param name="filename">The name or path of the file to identify.</param>
+            <returns>A description of the file type.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLFile.Read(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Read the contents of a file.
+            </summary>
+            <param name="filename">The name or path of the file to read.</param>
+            <returns>The contents of the file.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLFile.ReadBlock(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Read a block of text from a file.
+            </summary>
+            <param name="filename">The name or path of the file to read.</param>
+            <param name="buffer">How many characters in to start, from zero.</param>
+            <param name="length">How many characters to read.</param>
+            <returns>The specified block of text.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLFile.ReadLine(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Read a line of text from a file.
+            </summary>
+            <param name="filename">The name or path of the file to read.</param>
+            <param name="lineNumber">The line number to read, from one.</param>
+            <returns>The specified line of text.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLFile.Delete(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Delete a file.
+            </summary>
+            <param name="filename">The name or path of the file to delete.</param>
+            <returns>True if the delete succeeds, False if it fails.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLFile.Length(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Retrieves the length of a file.
+            </summary>
+            <param name="filename">The file to read the length of.</param>
+            <returns>The length of the specified file, in bytes.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLFile.Compress(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Compresses a file using GZip compression.
+            </summary>
+            <param name="infile">The file to compress.</param>
+            <param name="outfile">The file to save the compressed content into.</param>
+            <returns>True for success, False for failure.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLFile.Decompress(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Decompresses a file that has been compressed with GZip compression.
+            </summary>
+            <param name="infile">The file to decompress.</param>
+            <param name="outfile">The file to save decompressed contents into.</param>
+            <returns>True for success, False for failure.</returns>
+        </member>
+        <member name="T:McSherry.SmallBasic.ESL.Wrapper.ESLMaths">
+            <summary>
+            A class containing mathematical functions.
+            </summary>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.Fibonacci(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Calculates a Fibonacci number
+            </summary>
+            <param name="n">The Fibonacci number to calculate.</param>
+            <remarks>The largest number that can be calculated is n = 138.</remarks>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.Primality(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Checks the primality of a number (whether it is prime).
+            </summary>
+            <param name="n"></param>
+            <returns>True if the number is prime, false if it is not.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.Square(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Squares a number.
+            </summary>
+            <param name="basenum">The number to square.</param>
+            <returns>The number provided squared.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.Cube(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Cubes a number.
+            </summary>
+            <param name="basenum">The number to cube.</param>
+            <returns>The number provided cubed.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.Power(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Use powers on numbers.
+            </summary>
+            <param name="basenum">The base number.</param>
+            <param name="index">The power of the base number.</param>
+            <returns>The base number to the provided power.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.Exponent(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Multiply a number by 10 to the specified power.
+            </summary>
+            <param name="basenum">The base number.</param>
+            <param name="index">The power of 10 to multiply by.</param>
+            <returns>The base number multiplied by 10 to the specified power.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.Hyperexponentiate(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Hyperexponentiates the provided number to the provided power.
+            </summary>
+            <param name="basenum">The number to raise.</param>
+            <param name="index">The power to hyperexponentiate to.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.SquareRoot(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Performs a fast square-root based on the Quake 3 method. Accurate to 3 decimal places.
+            </summary>
+            <param name="num">The number to find the square root of.</param>
+            <returns>The square root of the provided number.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.SumOfZtoN(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Calculates the sum of all numbers from zero to the provided number.
+            </summary>
+            <param name="n">The number to calculate the sum of all numbers between it and zero.</param>
+            <returns>The sum of all whole numbers 0 to n.</returns>
+            <example>SumOfZtoN(10) = 55 = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10</example>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.BitShiftLeft(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Shift an integer left by the specified number of bits.
+            </summary>
+            <param name="number">The number to shift.</param>
+            <param name="bits">The number of bits to shift by.</param>
+            <returns>The number shifted by the provided number of bits left.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.BitShiftRight(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Shift an integer right by the specified number of bits.
+            </summary>
+            <param name="number">The number to shift.</param>
+            <param name="bits">The number of bits to shift by.</param>
+            <returns>The number shifted by the provided number of bits left.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.BitwiseXOR(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Perform a XOR operation on the provided numbers.
+            </summary>
+            <param name="numberA">The first number.</param>
+            <param name="numberB">The second number.</param>
+            <returns>The first number XOR the second number.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.BitwiseOR(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Perform a Logical-OR operation on two integers.
+            </summary>
+            <param name="numberA">The first number.</param>
+            <param name="numberB">The second number.</param>
+            <returns>The first number LOGICAL-OR the second number.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.BitwiseAND(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Perform a Logical-AND operation on two integers.
+            </summary>
+            <param name="numberA">The first number.</param>
+            <param name="numberB">The second number.</param>
+            <returns>The first number LOGICAL-AND the second number.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.HexFromInteger(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Converts a decimal value to a hexadecimal string.
+            </summary>
+            <param name="dec">The decimal string, e.g. 39619</param>
+            <returns>The hexadecimal value of the decimal integer (e.g. 39619 = 9AC3)</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.HexToInteger(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Converts a hexadecimal string to a decimal integer.
+            </summary>
+            <param name="hex">The hexadecimal string, e.g. FF</param>
+            <returns>The decimal value of the hexadecimal string (e.g. FF = 255)</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.HexMultiply(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Multiplies two hexadecimal values.
+            </summary>
+            <param name="hexA">A hexadecimal value to multiply.</param>
+            <param name="hexB">A hexadecimal value to multiply.</param>
+            <returns>The result of the multiplication, in hexadecimal.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.HexAdd(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Adds two hexadecimal values.
+            </summary>
+            <param name="hexA">A hexadecimal value to add.</param>
+            <param name="hexB">A hexadecimal value to add.</param>
+            <returns>The result of the addition, in hexadecimal.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.HexSub(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Subtracts one hexadecimal value from another.
+            </summary>
+            <param name="hexA">The hexadecimal value to subtract from.</param>
+            <param name="hexB">The hexadecimal value to subtract.</param>
+            <returns>The result of the subtraction, in hexadecimal.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.HexDivide(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Divides two hexadecimal values.
+            </summary>
+            <param name="hexA">The numerator.</param>
+            <param name="hexB">The denominator.</param>
+            <returns>The numerator divided by the denominator, in hexadecimal.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.BinaryFromInteger(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Converts a decimal value to a binary string.
+            </summary>
+            <param name="dec">The decimal string, e.g. 23</param>
+            <returns>The binary value of the decimal integer (e.g. 23 = 10111)</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.BinaryToInteger(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Converts a binary string to a decimal value.
+            </summary>
+            <param name="bin">The binary string, e.g. 62</param>
+            <returns>The decimal value of the binary string (e.g. 62 = 111110)</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.BinaryMultiply(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Multiplies two binary values.
+            </summary>
+            <param name="binA">A binary value to multiply.</param>
+            <param name="binB">A binary value to multiply.</param>
+            <returns>The result of the multiplication, in binary.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.BinaryAdd(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Adds two binary values.
+            </summary>
+            <param name="binA">A binary value to add.</param>
+            <param name="binB">A binary value to add.</param>
+            <returns>The result of the addition, in binary.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.BinarySub(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Subtracts one binary value from another.
+            </summary>
+            <param name="binA">The binary value to subtract from.</param>
+            <param name="binB">The binary value to subtract.</param>
+            <returns>The result of the subtraction, in binary.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.BinaryDivide(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Performs a division using two binary values.
+            </summary>
+            <param name="binA">The numerator.</param>
+            <param name="binB">The denominator.</param>
+            <returns>The numerator divided by the denominator, in binary.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.OctalFromInteger(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Converts an integer to its octal representation.
+            </summary>
+            <param name="dec">The integer to convert.</param>
+            <returns>An octal representation of the provided integer.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.OctalToInteger(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Converts an octal string to its decimal representation.
+            </summary>
+            <param name="oct">The octal string to convert.</param>
+            <returns>A decimal representation of the provided octal string.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.OctalMultiply(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Multiplies two octal value.
+            </summary>
+            <param name="octA">An octal value to multiply.</param>
+            <param name="octB">An octal value to multiply.</param>
+            <returns>The result of the multiplication, in octal.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.OctalAdd(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Adds two octal values.
+            </summary>
+            <param name="octA">An octal value to add.</param>
+            <param name="octB">An octal value to add.</param>
+            <returns>The result of the addition, in octal.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.OctalSub(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Subtracts one octal value from another.
+            </summary>
+            <param name="octA">The octal value to subtract from.</param>
+            <param name="octB">The octal value to subtract.</param>
+            <returns>The result of the subtraction, in octal.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.OctalDivide(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Divides one octal value by another.
+            </summary>
+            <param name="octA">The numerator.</param>
+            <param name="octB">The denominator.</param>
+            <returns>The numerator divided by the denominator, in octal.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.TernaryFromInteger(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Converts a decimal value into a ternary value.
+            </summary>
+            <param name="dec">The decimal value to represent.</param>
+            <returns>The provided decimal value's ternary representation.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.TernaryToInteger(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Converts a ternary value to a decimal value.
+            </summary>
+            <param name="ter">The ternary value to convert.</param>
+            <returns>The decimal representation of the provided ternary value.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.TernaryMultiply(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Multiplies two ternary values.
+            </summary>
+            <param name="terA">A ternary value to multiply.</param>
+            <param name="terB">A ternary value to multiply.</param>
+            <returns>The result of the multiplication, in ternary.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.TernaryAdd(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Adds two ternary values.
+            </summary>
+            <param name="terA">A ternary value to add.</param>
+            <param name="terB">A ternary value to add.</param>
+            <returns>The result of the addition, in ternary.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.TernarySub(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Subtracts one ternary value from another.
+            </summary>
+            <param name="terA">The ternary value to subtract from.</param>
+            <param name="terB">The ternary value to subtract.</param>
+            <returns>The result of the subtraction, in ternary.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.TernaryDivide(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Divides one ternary value by another.
+            </summary>
+            <param name="terA">The numerator.</param>
+            <param name="terB">The denominator.</param>
+            <returns>The numerator divided by the denominator, in ternary.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.Concatenate(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Cocatenates two 32-bit integers.
+            </summary>
+            <param name="numberA"></param>
+            <param name="numberB"></param>
+            <returns>A 64-bit integer containing both 32-bit integers cocatenated.</returns>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.Pi">
+            <summary>
+            The number Pi to 28 decimal places.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.e">
+            <summary>
+            The mathematical constant e to 28 decimal places.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLMaths.GoldenRatio">
+            <summary>
+            The Golden Ratio (Phi) to 28 decimal places.
+            </summary>
+        </member>
+        <member name="T:McSherry.SmallBasic.ESL.Wrapper.ESLNetworking">
+            <summary>
+            A class that allows web interaction.
+            </summary>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLNetworking.GETRequest(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Makes an HTTP GET request to the specified website.
+            </summary>
+            <param name="URL">The URL of the website to make a request to.</param>
+            <param name="arguments">The arguments to pass to the website.</param>
+            <returns>The contents of the web-page's response.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLNetworking.POSTRequest(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Makes an HTTP POST request to the specified website.
+            </summary>
+            <param name="URL">The URL of the website to make a request to.</param>
+            <param name="arguments">The arguments to pass to the website.</param>
+            <returns>The contents of the web-page's response.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLNetworking.DownloadFile(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Download a file to the specified location.
+            </summary>
+            <param name="URL">The URL of the file to download.</param>
+            <param name="filepath">The name or path to save to file with or to.</param>
+            <returns>True if the download succeeds, False if it fails.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLNetworking.DownloadString(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Download text or the contents of a web-page.
+            </summary>
+            <param name="URL">The web page to download the contents of.</param>
+            <returns>The contents of the web page.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLNetworking.InternalIPAddress">
+            <summary>
+            Returns the internal IP address of the current computer.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLNetworking.ExternalIPAddress">
+            <summary>
+            Returns the external IP address of the current computer.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLNetworking.InternetConnectionAvailable">
+            <summary>
+            Checks whether an Internet connection is currently available.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLNetworking.Ping(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Measures the time taken to connect to a host.
+            </summary>
+            <param name="hostName">The URL or IP address of the host to ping.</param>
+            <returns>The time taken to ping, in milliseconds.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLNetworking.ResolveIP(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Resolves an IP address into an associated domain via the DNS system.
+            </summary>
+            <param name="ipAddr">The IP address to resolve, 
+            e.g. 127.0.0.1 (IPv4 loopback) or ::1 (IPv6 loopback)</param>
+            <returns>The hostname associated with this IP address.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLNetworking.ResolveHost(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Resolves a hostname into an IP address via the DNS system.
+            </summary>
+            <param name="hostname">The hostname, e.g. www.google.co.uk</param>
+            <returns>The IP address for this domain.</returns>
+        </member>
+        <member name="T:McSherry.SmallBasic.ESL.Wrapper.ESLSystem">
+            <summary>
+            A class that provides information about the user's system.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.Username">
+            <summary>
+            The username of the current Window's user.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.NTMajorVersion">
+            <summary>
+            The major version of the NT kernel used in the user's Windows installation.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.NTMinorVersion">
+            <summary>
+            The minor version of the NT kernel used in the user's Windows installation.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.NTBuildNumber">
+            <summary>
+            The build number of the NT kernel used in the user's Windows installation.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.NTVersionString">
+            <summary>
+            The version string of the version of NT kernel used in the user's Windows installation.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.DesktopWidth">
+            <summary>
+            The width, in pixels, of the user's desktop.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.DesktopHeight">
+            <summary>
+            The height, in pixels, of the user's desktop.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.ProcessorName">
+            <summary>
+            The name of the processor in the user's computer.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.ProcessorManufacturer">
+            <summary>
+            The manufacturer of the processor in the user's computer. "GenuineIntel" for Intel, "AuthenticAMD" for AMD.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.ProcessorCPUID">
+            <summary>
+            The identification string of the processor in the user's computer.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.ProcessorClockSpeed">
+            <summary>
+            The clock speed, in Megahertz, of the processor in the user's computer.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.ProcessorBaseClock">
+            <summary>
+            The base clock of the processor in the user's computer, in Megahertz.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.ProcessorCores">
+            <summary>
+            The number of cores in the processor in the user's computer.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.ProcessorThreads">
+            <summary>
+            The number of threads in the processor in the user's computer.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.ProcessorWidth">
+            <summary>
+            The address width of the user's processor. Usually 32-bit or 64-bit.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.ProcessorL2CacheSize">
+            <summary>
+            The size, in megabytes, of the L2 cache in the user's processor.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.ProcessorL3CacheSize">
+            <summary>
+            The size, in megabytes, of the L3 cache in the user's processor.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.GraphicsCardName">
+            <summary>
+            The name of the graphics card in the user's computer.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.GraphicsCardManufacturer">
+            <summary>
+            The manufacturer of the graphics card in the user's system.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.GraphicsCardID">
+            <summary>
+            The identifier for the graphics card in the user's system.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.GraphicsCardDriver">
+            <summary>
+            The version of the graphics card driver installed on the user's system.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.GraphicsCardMemory">
+            <summary>
+            The video RAM, in megabytes, that the user's graphics card has. May be inaccurate for integrated cards.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLSystem.GraphicsCardRefreshRate">
+            <summary>
+            The rate at which the user's graphics card is drawing the image on their monitor, in hertz.
+            </summary>
+        </member>
+        <member name="T:McSherry.SmallBasic.ESL.Wrapper.ESLEvaluation">
+            <summary>
+            A class that provides logical evaluation of Boolean values.
+            </summary>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLEvaluation.OR(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Performs a logical OR operation on the provided Booleans.
+            </summary>
+            <param name="A"></param>
+            <param name="B"></param>
+            <returns>
+            The following is the truth-table for this operation.
+            
+                A  B  Z
+                0  0  0
+                0  1  1
+                1  0  1
+                1  1  1
+            </returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLEvaluation.NOR(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Performs a logical NOT-OR on the provided Booleans.
+            </summary>
+            <param name="A"></param>
+            <param name="B"></param>
+            <returns>
+            The following is the truth-table for this operation.
+            
+                A  B  Z
+                0  0  1
+                0  1  0
+                1  0  0
+                1  1  0
+            </returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLEvaluation.XOR(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Performs a logical exclusive-OR operation on the provided Booleans.
+            </summary>
+            <param name="A"></param>
+            <param name="B"></param>
+            <returns>
+            The following is the truth-table for this operation.
+                
+                A  B  Z
+                0  0  1
+                0  1  0
+                1  0  0
+                1  1  0
+            </returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLEvaluation.XNOR(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Performs a logical Exclusive-NOT-OR operation on the provided Booleans.
+            </summary>
+            <param name="A"></param>
+            <param name="B"></param>
+            <returns>
+            The following is the truth-table for this operation.
+            
+                A  B  Z
+                0  0  0
+                0  1  1
+                1  0  1
+                1  1  0
+            </returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLEvaluation.AND(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Performs a logical AND operation on the provided Booleans.
+            </summary>
+            <param name="A"></param>
+            <param name="B"></param>
+            <returns>
+            The following is the truth-table for this operation.
+            
+                A  B  Z
+                0  0  0
+                0  1  0
+                1  0  0
+                1  1  1
+            </returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLEvaluation.NAND(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Performs a logical NOT-AND operation on the provided Booleans.
+            </summary>
+            <param name="A"></param>
+            <param name="B"></param>
+            <returns>
+            The following is the truth-table for this operation.
+            
+                A  B  Z
+                0  0  1
+                0  1  1
+                1  0  1
+                1  1  0
+            </returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLEvaluation.NOT(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Performs a logical inversion on the provided Boolean.
+            </summary>
+            <param name="A"></param>
+            <returns>
+            The following is the truth-table for this operation.
+            
+                A  Z
+                0  1
+                1  0
+            </returns>
+        </member>
+        <member name="T:McSherry.SmallBasic.ESL.Wrapper.ESLProcess">
+            <summary>
+            A class that allows basic interaction with processes.
+            </summary>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLProcess.StartProcess(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Start a process.
+            </summary>
+            <param name="name">The name of the file to open. For example, "notepad.exe"</param>
+            <returns>True if the process starts, False if it does not.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLProcess.KillProcessByName(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Kill a process using its name.
+            </summary>
+            <param name="name">The name of the process to kill.</param>
+            <returns>True if the process is killed successfully, False if it is not.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLProcess.KillProcessById(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Kill a process using its ID.
+            </summary>
+            <param name="id">The ID of the process to kill.</param>
+            <returns>True if the process is killed, False if it is not.</returns>
+        </member>
+        <member name="T:McSherry.SmallBasic.ESL.Wrapper.ESLCurrentProcess">
+            <summary>
+            A class that allows basic control of the current process (this application's process).
+            </summary>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLCurrentProcess.KillProcess">
+            <summary>
+            Ends the current application's process.
+            </summary>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLCurrentProcess.Restart(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Restarts the current process.
+            </summary>
+            <param name="arguments">Arguments, if any, to pass to the process.</param>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLCurrentProcess.RestartAsAdministrator(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Restarts the program, requesting administrator permissions when doing so.
+            </summary>
+            <param name="arguments">Arguments to pass to the process upon start.</param>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLCurrentProcess.Is64bitProcess">
+            <summary>
+            Determines whether the current process is a 32- or 64-bit process.
+            </summary>
+            <returns>True if the process is 64-bit, False if it isn't.</returns>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLCurrentProcess.ProcessId">
+            <summary>
+            The ID of the current process.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLCurrentProcess.ProcessName">
+            <summary>
+            The name of the current process.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLCurrentProcess.CurrentVirtualMemoryUsage">
+            <summary>
+            The amount of virtual memory, in megabytes, that the current process is using.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLCurrentProcess.CurrentMemoryUsage">
+            <summary>
+            How much, in megabytes, physical memory the current process is using.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLCurrentProcess.CurrentPagedMemoryUsage">
+            <summary>
+            The amount of paged memory, in megabytes, that the current process is using.
+            </summary>
+        </member>
+        <member name="T:McSherry.SmallBasic.ESL.Wrapper.ESLText">
+            <summary>
+            A class containing text-related tools.
+            </summary>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLText.ToUpper(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Converts a string to uppercase.
+            </summary>
+            <param name="str">The string to convert.</param>
+            <returns>An uppercase string. For example, abCd -> ABCD</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLText.ToLower(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Converts a string to lowercase.
+            </summary>
+            <param name="str">The string to convert.</param>
+            <returns>A lowercase string. For example, AbCD -> abcd</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLText.Reverse(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Reverses the order of characters in a string.
+            </summary>
+            <param name="str">The string to reverse.</param>
+            <returns>A reversed string. For example, abcd -> dcba</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLText.Length(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Retrieves the length of a string.
+            </summary>
+            <param name="str">The string to find the length of.</param>
+            <returns>The length, in characters, of the string.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLText.ExtractRange(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Extracts a range of characters from a string.
+            </summary>
+            <param name="str">The string to extract from.</param>
+            <param name="offset">The zero-based location of the character to start from.</param>
+            <param name="length">The number of characters to extract.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLText.Remove(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Removes the selected number of characters from a string.
+            </summary>
+            <param name="str">The string to remove from.</param>
+            <param name="offset">The zero-based index of the character to start from.</param>
+            <param name="length">The number of characters to remove.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLText.ConvertToHexadecimal(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Converts a string of characters into hexadecimal.
+            </summary>
+            <param name="str">The string to convert.</param>
+            <returns>The hexadecimal equivalent of the string.</returns>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLText.LF">
+            <summary>
+            A linefeed character, used for a new line.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLText.CR">
+            <summary>
+            A carriage return character. Usually the same as the character inserted when the user presses ENTER.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLText.CRLF">
+            <summary>
+            Carriage return and linefeed characters.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLText.HT">
+            <summary>
+            A horizontal tab character. Usually the same as the character inserted when pressing the TAB key.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLText.BS">
+            <summary>
+            A backspace character.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLText.NUL">
+            <summary>
+            A null character.
+            </summary>
+        </member>
+        <member name="T:McSherry.SmallBasic.ESL.Wrapper.ESLStorage">
+            <summary>
+            A class providing access to storage in the form of an array.
+            </summary>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLStorage.InitialiseDimension(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Initialises a new dimension of the storage array.
+            </summary>
+            <param name="items">The number of items the array should contain.</param>
+            <returns>
+            If successful, returns the ID of the array.
+            If the maximum number of arrays are reached, returns -1.
+            If another error occurs, returns -100;
+            </returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLStorage.WriteToArray(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Writes a value to an array.
+            </summary>
+            <param name="dimension">The ID of the array to write to.</param>
+            <param name="index">The item in the array to write to.</param>
+            <param name="value">The value to write to the array item.</param>
+            <returns>True or false, depending on whether it succeeds or fails.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLStorage.ReadFromArray(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Reads a value from an array.
+            </summary>
+            <param name="dimension">The ID of the array to read from.</param>
+            <param name="index">The item in that array to read.</param>
+            <returns>The value of the item specified.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLStorage.ClearArrayValue(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Clears the value of the specified array item.
+            </summary>
+            <param name="dimension">The array ID to select.</param>
+            <param name="index">The item within the array to clear.</param>
+            <returns>True or false, depending on success or failure.</returns>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLStorage.NumberOfArrays">
+            <summary>
+            The current number of initialised arrays.
+            </summary>
+        </member>
+        <member name="P:McSherry.SmallBasic.ESL.Wrapper.ESLStorage.MaxNumberOfArrays">
+            <summary>
+            The maximum number of arrays that can be initialised.
+            </summary>
+        </member>
+        <member name="T:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity">
+            <summary>
+            A class with security and cryptography related functions.
+            </summary>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.Base64Encode(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Encodes a string of bytes in Base64 encoding format.
+            </summary>
+            <param name="plain">The bytes to encode.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.Base64Decode(Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Decodes a Base64-encoded string of bytes.
+            </summary>
+            <param name="encoded">The bytes to decode.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.CRC32(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Generates a CRC32 checksum from the provided text.
+            </summary>
+            <param name="plain">The text to generate a checksum from.</param>
+            <param name="encode">Whether the output should be Base64-encoded.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.CRC64(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Generates a CRC64 checksum from the provided text.
+            </summary>
+            <param name="plain">The text to generate a checksum from.</param>
+            <param name="encode">Whether the output should be Base64-encoded.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.MD5(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Generates an MD5 hash from the provided text.
+            </summary>
+            <param name="plain">The text to generate a hash from.</param>
+            <param name="encode">Whether the output should be Base64-encoded.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.RIPEMD160(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Generates a RIPE MD160 hash from the provided text.
+            </summary>
+            <param name="plain">The text to generate a hash from.</param>
+            <param name="encode">Whether the output should be Base64-encoded.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.SHA1(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Generates a SHA1 hash from the provided text.
+            </summary>
+            <param name="plain">The text to generate a hash from.</param>
+            <param name="encode">Whether the output should be Base64-encoded.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.SHA256(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Generates a SHA256 hash from the provided text.
+            </summary>
+            <param name="plain">The text to generate a hash from.</param>
+            <param name="encode">Whether the output should be Base64-encoded.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.SHA384(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Generates a SHA384 hash from the provided text.
+            </summary>
+            <param name="plain">The text to generate a hash from.</param>
+            <param name="encode">Whether the output should be Base64-encoded.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.SHA512(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Generates a SHA512 hash from the provided text.
+            </summary>
+            <param name="plain">The text to generate a hash from.</param>
+            <param name="encode">Whether the output should be Base64-encoded.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.HMACSHA1(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Generates a Hash-based message authentication code using SHA1.
+            </summary>
+            <param name="plain">The text to generate a hash from.</param>
+            <param name="salt">The key to use when hashing.</param>
+            <param name="encode">Whether the output should be Base64-encoded.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.HMACSHA256(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Generates a hash-based message authentication code using SHA256.
+            </summary>
+            <param name="plain">The text to generate a hash from.</param>
+            <param name="salt">The key to use when hashing.</param>
+            <param name="encode">Whether the output should be Base64-encoded.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.HMACSHA384(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Generates a hash-based message authentication code using SHA384.
+            </summary>
+            <param name="plain">The text to generate a hash from.</param>
+            <param name="salt">The key to use when hashing.</param>
+            <param name="encode">Whether the output should be Base64-encoded.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.HMACSHA512(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Generates a hash-based message authentication code using SHA512.
+            </summary>
+            <param name="plain">The text to generate a hash from.</param>
+            <param name="salt">The key to use when hashing.</param>
+            <param name="encode">Whether the output should be Base64-encoded.</param>
+            <returns></returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.RC2Encrypt(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Encrypts a string using the RC2 algorithm.
+            </summary>
+            <param name="plain">The text to encrypt.</param>
+            <param name="key">The 16-character key for encryption.</param>
+            <param name="vector">The 8-character vector for encryption.</param>
+            <returns>A Base64-encoded encrypted string.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.RC2Decrypt(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Decrypts a string encrypted with the RC2 algorithm.
+            </summary>
+            <param name="cipher">The text to decrypt.</param>
+            <param name="key">The 16-character key for decryption.</param>
+            <param name="vector">The 8-character vector for decryption.</param>
+            <returns>A decrypted string.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.DESEncrypt(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Encrypts a string using the DES algorithm.
+            </summary>
+            <param name="plain">The text to encrypt.</param>
+            <param name="key">The 8-character key for encryption.</param>
+            <param name="vector">The 8-character vector for encryption.</param>
+            <returns>A Base64-encoded encrypted string.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.DESDecrypt(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Decrypts a string encrypted with the DES algorithm.
+            </summary>
+            <param name="cipher">The text to decrypt.</param>
+            <param name="key">The 8-character key for decryption.</param>
+            <param name="vector">The 8-character vector for decryption.</param>
+            <returns>A decrypted string.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.AESEncrypt(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Encrypts a string using the AES algorithm.
+            </summary>
+            <param name="plain">The text to encrypt.</param>
+            <param name="key">The 16-, 24-, or 32-character key for encryption.</param>
+            <param name="vector">The 16-character vector for encryption.</param>
+            <returns>A Base64-encoded encrypted string.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.AESDecrypt(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Decrypts a string encrypted with the AES algorithm.
+            </summary>
+            <param name="cipher">The text to decrypt.</param>
+            <param name="key">The 16-, 24-, or 32-character key for decryption.</param>
+            <param name="vector">The 16-character vector for decryption.</param>
+            <returns>A decrypted string.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.XTEAEncrypt(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Encrypts a string using the XTEA algorithm.
+            </summary>
+            <param name="plain">The text to encrypt.</param>
+            <param name="key">The 16-character key for encryption.</param>
+            <returns>A Base64-encoded encrypted string.</returns>
+        </member>
+        <member name="M:McSherry.SmallBasic.ESL.Wrapper.ESLSecurity.XTEADecrypt(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+            <summary>
+            Decrypts a string encrypted with the XTEA algorithm.
+            </summary>
+            <param name="cipher">The text to decrypt.</param>
+            <param name="key">The 16-character key for decryption.</param>
+            <returns>A decrypted string.</returns>
+        </member>
+    </members>
+</doc>

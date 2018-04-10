@@ -1,0 +1,1954 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+FC
+</name>
+</assembly>
+<members>
+<member name="P:FC.FCKeyboard.IsShiftPressed">
+	<summary>
+ Indicate if the SHIFT touch is pressed
+ </summary>
+	<value>"True" or "False"</value>
+	<returns>"True" or "False"</returns>
+</member><member name="P:FC.FCKeyboard.IsControlPressed">
+	<summary>
+ Indicate if the CTRL touch is pressed
+ </summary>
+	<value>"True" or "False"</value>
+	<returns>"True" or "False"</returns>
+</member><member name="P:FC.FCKeyboard.IsAltPressed">
+	<summary>
+ Indicate if the ALT touch is pressed
+ </summary>
+	<value>"True" or "False"</value>
+	<returns>"True" or "False"</returns>
+</member><member name="P:FC.FCKeyboard.LastReceivedKey">
+	<summary>
+ Return the last key received by the GraphicsWindow
+ </summary>
+	<value>A key name</value>
+	<returns>A key name</returns>
+	<remarks>Returns the same value as GraphicsWindow.LastKey</remarks>
+</member><member name="M:FC.FCKeyboard.SendKeys(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Emulate some keys pressed on the keyboard
+ </summary>
+	<param name="KeysToSend">The string to type. You could use special syntax defined at http://msdn.microsoft.com/en-us/library/8c6yea83(VS.85).aspx </param>
+	<remarks></remarks>
+</member><member name="T:FC.FCKeyboard">
+	<summary>
+ This class provides support for the KeyBoard in Small Basic
+ </summary>
+</member><member name="M:FC.FCDrawings.GetRandomColor">
+	<summary>
+ Returns a randomly-generated color
+ </summary>
+	<returns>A color</returns>
+</member><member name="M:FC.FCDrawings.GetColorFromRGB(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return a color form its Red, Green and Blue composants
+ </summary>
+	<param name="R">Red (0 to 255)</param>
+	<param name="G">Green (0 to 255)</param>
+	<param name="B">Blue (0 to 255)</param>
+	<returns>A color</returns>
+</member><member name="M:FC.FCDrawings.GetColorFromRGBA(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return a color form its Red, Green, Blue and Alpha composants
+ </summary>
+	<param name="R">Red (0 to 255)</param>
+	<param name="G">Green (0 to 255)</param>
+	<param name="B">Blue (0 to 255)</param>
+	<param name="AlphaOpacity">Opacity of the color (0 to 255), 0 beeing fully transparent and 255 beeing fully opaque</param>
+	<returns>A color</returns>
+</member><member name="M:FC.FCDrawings.GetRedOfColor(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Returns the Red composant of a color
+ </summary>
+	<param name="Color">The color</param>
+	<returns>A number from 0 to 255</returns>
+</member><member name="M:FC.FCDrawings.GetBlueOfColor(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Returns the Blue composant of a color
+ </summary>
+	<param name="Color">The color</param>
+	<returns>A number from 0 to 255</returns>
+</member><member name="M:FC.FCDrawings.GetGreenOfColor(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Returns the Green composant of a color
+ </summary>
+	<param name="Color">The color</param>
+	<returns>A number from 0 to 255</returns>
+</member><member name="M:FC.FCDrawings.GetAlphaOfColor(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Returns the Alpha composant of a color
+ </summary>
+	<param name="Color">The color</param>
+	<returns>A number from 0 to 255</returns>
+</member><member name="M:FC.FCDrawings.Invert(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the color that's the opposite of another
+ </summary>
+	<param name="Color">The color to invert</param>
+	<returns>A color</returns>
+</member><member name="M:FC.FCDrawings.MakeLighterOrDarker(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Change the luminosity of a color by multiplying all composants by Coeff.
+ </summary>
+	<param name="Color">The base color</param>
+	<param name="Coeff">A coefficient. 1 to keep the same color, greater than 1 to make lighter, smaller than 1 to make darker</param>
+	<returns>A color</returns>
+	<remarks>Using a too great value for Coeff can have as result a modification of the coloration. Using a negative coeff can have strange results.</remarks>
+</member><member name="M:FC.FCDrawings.CreateGraphicsFromImage(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Create a graphical representation of an image, on which you can perform operations
+ </summary>
+	<param name="ImageSrc">Name of an image in the ImageList, or path to a file</param>
+	<returns>A native Graphics object</returns>
+	<remarks>Use the GenerateImage method to get a visual representation of a Graphics object</remarks>
+</member><member name="M:FC.FCDrawings.CreateGraphics(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Create a graphical representation with a size of Width*Height, on which you can perform operations
+ </summary>
+	<param name="Width">The width of the Graphics object</param>
+	<param name="Height">The height of the Graphics object</param>
+	<returns>A native Graphics object</returns>
+	<remarks>Use the GenerateImage method to get a visual representation of a Graphics object</remarks>
+</member><member name="M:FC.FCDrawings.CreateGraphicsFromUI">
+	<summary>
+ Create a graphical representation of your GraphicsWindow object, on which you can perform operations
+ </summary>
+	<returns>A native Graphics object</returns>
+	<remarks>Use the GenerateImage method to get a visual representation of a Graphics object</remarks>
+</member><member name="M:FC.FCDrawings.CreateGraphicsFromControl(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Create a graphical representation of a control or shape, on which you can perform operations
+ </summary>
+	<param name="Ctr">The control you want to transform to an image</param>
+	<returns>A native Graphics object</returns>
+	<remarks>Use the GenerateImage method to get a visual representation of a Graphics object</remarks>
+</member><member name="M:FC.FCDrawings.DrawLine(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Draw a line on the specified Graphics
+ </summary>
+	<param name="GraphicsObject">The Graphics to modify</param>
+	<param name="LineColor">The color of the line</param>
+	<param name="Width">The thickness of the line</param>
+	<param name="x0">Left location of the start point</param>
+	<param name="y0">Top location of the start point</param>
+	<param name="x1">Left location of the end point</param>
+	<param name="y1">Top location of the end point</param>
+</member><member name="M:FC.FCDrawings.DrawRectangle(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Draw a rectangle on the specified Graphics
+ </summary>
+	<param name="GraphicsObject">The Graphics to modify</param>
+	<param name="LineColor">The color of the line</param>
+	<param name="Width">The thickness of the line</param>
+	<param name="x0">Left location of the start point</param>
+	<param name="y0">Top location of the start point</param>
+	<param name="RectWidth">Width of the rectangle</param>
+	<param name="RectHeight">Height of the rectangle</param>
+</member><member name="M:FC.FCDrawings.DrawEllipse(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Draw an ellipse on the specified Graphics
+ </summary>
+	<param name="GraphicsObject">The Graphics to modify</param>
+	<param name="LineColor">The color of the line</param>
+	<param name="Width">The thickness of the line</param>
+	<param name="x0">Left location of the start point</param>
+	<param name="y0">Top location of the start point</param>
+	<param name="EllWidth">Width of the ellipse</param>
+	<param name="EllHeight">Height of the ellipse</param>
+</member><member name="M:FC.FCDrawings.FillRectangle(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Fill a rectangle on the specified Graphics
+ </summary>
+	<param name="GraphicsObject">The Graphics to modify</param>
+	<param name="LineColor">The color of the line</param>
+	<param name="x0">Left location of the start point</param>
+	<param name="y0">Top location of the start point</param>
+	<param name="RectWidth">Width of the rectangle</param>
+	<param name="RectHeight">Height of the rectangle</param>
+</member><member name="M:FC.FCDrawings.FillEllipse(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Fill an ellipse on the specified Graphics
+ </summary>
+	<param name="GraphicsObject">The Graphics to modify</param>
+	<param name="LineColor">The color of the line</param>
+	<param name="x0">Left location of the start point</param>
+	<param name="y0">Top location of the start point</param>
+	<param name="EllWidth">Width of the ellipse</param>
+	<param name="EllHeight">Height of the ellipse</param>
+</member><member name="M:FC.FCDrawings.DrawCurve(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Draw a curve on the specified Graphics
+ </summary>
+	<param name="GraphicsObject">The Graphics to modify</param>
+	<param name="LineColor">The color of the line</param>
+	<param name="Width">The thickness of the line</param>
+	<param name="PointsArray">An array containing the X and Y coordinates of each point of the curve.
+ (Sample : Points[0]["X"] = 4 : Points[0]["Y"] = 2 : Points[1]["X"] = ...)
+ </param>
+</member><member name="M:FC.FCDrawings.DrawClosedCurve(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Draw a closed curve on the specified Graphics
+ </summary>
+	<param name="GraphicsObject">The Graphics to modify</param>
+	<param name="LineColor">The color of the line</param>
+	<param name="Width">The thickness of the line</param>
+	<param name="PointsArray">An array containing the X and Y coordinates of each point of the curve</param>
+</member><member name="M:FC.FCDrawings.FillClosedCurve(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Fill a closed curve on the specified Graphics
+ </summary>
+	<param name="GraphicsObject">The Graphics to modify</param>
+	<param name="LineColor">The color of the line</param>
+	<param name="PointsArray">An array containing the X and Y coordinates of each point of the curve</param>
+</member><member name="M:FC.FCDrawings.GenerateImage(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Get a visual representation of the object that you can use in the ImageList object
+ </summary>
+	<param name="GraphicsObject">The native Graphics object to convert</param>
+	<returns>An image</returns>
+</member><member name="M:FC.FCDrawings.GeneratePartialImage(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Get a visual representation of a part of the object that you can use in the ImageList object
+ </summary>
+	<param name="GraphicsObject">The native Graphics object to convert</param>
+	<param name="StartX">Left location of the partial image</param>
+	<param name="StartY">Top location of the partial image</param>
+	<param name="ImgWidth">Width of the partial image</param>
+	<param name="ImgHeight">Height of the partial image</param>
+	<returns>An image</returns>
+</member><member name="M:FC.FCDrawings.SaveGraphicsToFile(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Save a Graphics object to an image file
+ </summary>
+	<param name="GraphicsObject">The Graphics object to save in a file</param>
+	<param name="FileName">The path of the file where to save the image. It must end by one one the following string : "PNG", "JPG", "JPEG", "BMP" or "GIF".</param>
+	<remarks>If your filename doesn't end by one of the expected string, the file type will be "PNG".<code title="Small Basic Code">Drawings.SaveGraphicsToFile(G, "MyImg.data") ' The file will be a PNG</code></remarks>
+</member><member name="M:FC.FCDrawings.ReleaseGraphics(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Remove a graphic from the memory when you don't use it anymore
+ </summary>
+	<param name="GraphicsObject">The Graphics to remove from the memory</param>
+	<remarks>You should always call this method when you don't plan to use a Graphics anymore, because if you don't, it stay in memory.</remarks>
+</member><member name="M:FC.FCDrawings.ReleaseImageFromImageList(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Remove an image of the ImageList object from the memory when you don't use it anymore
+ </summary>
+	<param name="ImageName">The Image (in the ImageList) to remove from the memory</param>
+	<remarks>You should always call this method when you don't plan to use an image anymore, because if you don't, it stay in memory.</remarks>
+</member><member name="M:FC.FCDrawings.CropGraphics(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Modifies the size of a Graphics object
+ </summary>
+	<param name="GraphicsObject">The Graphics object you want to crop</param>
+	<param name="StartX">Left location of the crop</param>
+	<param name="StartY">Right location of the crop</param>
+	<param name="ImgWidth">Width of the cropped graphics</param>
+	<param name="ImgHeight">Height of the cropped graphics</param>
+	<returns>A new Graphics Object (please note that the old graphics object get deleted from the memory)</returns>
+	<remarks>If you would like to keep a copy of the old graphics, you should generate a new one from CreateGraphicsFromGraphics</remarks>
+</member><member name="M:FC.FCDrawings.DrawText(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Draw a text on the image, using the current GraphicsWindow settings
+ </summary>
+	<param name="GraphicsObject">The Graphics object on which the text is to be drawn</param>
+	<param name="Text">The text to be drawn</param>
+	<param name="Left">The left location of the text beginning</param>
+	<param name="Top">The top location of the text beginning</param>
+</member><member name="M:FC.FCDrawings.DrawGraphics(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Draw a graphics on another graphics
+ </summary>
+	<param name="GraphicsObject">The Graphics on which the image will be drawn</param>
+	<param name="GraphicsToPaint">The Graphics drawn on the GraphicsObject</param>
+	<param name="Left">Left location of the point where the graphics is drawn</param>
+	<param name="Top">Top location of the point where the graphics is drawn</param>
+	<remarks>Please note there's no live update: the GraphicsToPaint is painted in its current state</remarks>
+</member><member name="M:FC.FCDrawings.DrawImage(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Draw an image on a graphics
+ </summary>
+	<param name="GraphicsObject">The Graphics on which the image will be drawn</param>
+	<param name="ImageSrc">The image to be drawn</param>
+	<param name="Left">Left location of the point where the graphics is drawn</param>
+	<param name="Top">Top location of the point where the graphics is drawn</param>
+</member><member name="M:FC.FCDrawings.DrawPolygon(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Draw a polygon on the GraphicsObject graphics
+ </summary>
+	<param name="GraphicsObject">The graphics</param>
+	<param name="Color">The shape color</param>
+	<param name="Width">The shape width</param>
+	<param name="Points">The polyton path</param>
+	<remarks></remarks>
+</member><member name="M:FC.FCDrawings.FillPolygon(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Fill a polygon on the GraphicsObject graphics
+ </summary>
+	<param name="GraphicsObject">The graphics</param>
+	<param name="Color">The shape color</param>
+	<param name="Points">The polygon points</param>
+	<remarks></remarks>
+</member><member name="T:FC.FCDrawings">
+	<summary>
+ This class provides some functions about Images and Colors
+ </summary>
+	<example>
+ An application that shows how the Drawings object works
+ <code source="./Sources/Drawings - Base.sb" title="Small Basic - Test code"></code>
+ An application that shows how Drawings can interact with GraphicsWindow, Shapes and Control
+ <code source="./Sources/Drawings - FromUI.sb" title="Small Basic - Test code"></code>
+	</example>
+</member><member name="M:FC.FCExtensions.GetCode(System.String)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCExtensions.SB2VB(System.String)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCExtensions.Eval(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Evaluate the 'Code' string
+ </summary>
+	<param name="SmallBasicCode">The SmallBasic code to execute</param>
+	<returns>"True"/"False"</returns>
+	<remarks>THIS FUNCTION HAS COMPATIBILITY PROBLEMS :
+ * You can't create sub or variable here; if you try, your code will not run.
+ </remarks>
+</member><member name="M:FC.FCExtensions.MathEval(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Evaluate a statement whitout any call to a function. This function take less time than SmallBasic.Eval
+ </summary>
+	<param name="LineOfCode">The line of code to evaluate</param>
+	<returns>The value of the statment</returns>
+	<remarks>Sample of valid statement : "5+3*VarName"</remarks>
+</member><member name="M:FC.FCExtensions.AddAssemblies(System.CodeDom.Compiler.CompilerParameters)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCExtensions.SetVariable(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCExtensions.GetVariable(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCExtensions.Call(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Call the sub that have the specified name
+ </summary>
+	<param name="SubName">The name of the sub</param>
+	<returns>The return value of the sub (supposed to be empty)</returns>
+</member><member name="M:FC.FCExtensions.CallAndReturn(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Call the sub that have the specified name and return the value at top of the 'ReturnValue' stack
+ </summary>
+	<param name="SubName">The name of the sub</param>
+	<returns>The value at top of the 'ReturnValue' stack, or Nothing</returns>
+</member><member name="M:FC.FCExtensions.ThreadStart.Start">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCExtensions.AsyncCall(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Call asynchronously the sub called 'SubName'
+ </summary>
+	<param name="SubName">The sub</param>
+	<returns>The ID of the created thread</returns>
+</member><member name="M:FC.FCExtensions.AsyncStop(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Stop the execution of all opened threads. For example, you can call it before the application closes.
+ </summary>
+	<param name="TID">The ID of a thread</param>
+</member><member name="M:FC.FCExtensions.AsyncStopAll">
+	<summary>
+ Stop the execution of the specified thread
+ </summary>
+</member><member name="M:FC.FCExtensions.AsyncIsRunning(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return "True" if the thread is currently running
+ </summary>
+	<param name="TID">The ID of a thread</param>
+	<returns>"True"/"False"</returns>
+</member><member name="M:FC.FCExtensions.SetTimeout(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Create an asynchrounous thread that will call 'SubName' after 'Time' miliseconds
+ </summary>
+	<param name="SubName">The name of the sub</param>
+	<param name="Time">The time to wait before calling the sub</param>
+	<returns>A thread's ID</returns>
+</member><member name="M:FC.FCExtensions.SetInterval(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Create an asynchrounous thread that will call 'SubName' each 'Time' miliseconds
+ </summary>
+	<param name="SubName">The name of the sub</param>
+	<param name="Time">The time between each call</param>
+	<param name="MaxIteration">The maximum number of call, or -1</param>
+	<returns>A thread's ID</returns>
+</member><member name="M:FC.FCExtensions.SetInterval2(Microsoft.SmallBasic.Library.SmallBasicCallback,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Create an asynchrounous thread that will call 'SubName' each 'Time' miliseconds
+ </summary>
+	<param name="Del">A delegate</param>
+	<param name="Time">The time between each call</param>
+	<param name="MaxIteration">The maximum number of call, or -1</param>
+	<returns>A thread's ID</returns>
+</member><member name="M:FC.FCExtensions.CreateDelegateForSub(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCExtensions.CreateEvent(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Create a new event that your application can raise
+ </summary>
+	<param name="EventName">The event</param>
+</member><member name="M:FC.FCExtensions.RegisterSubToEvent(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Register a sub to an event
+ </summary>
+	<param name="EventName">The event</param>
+	<param name="SubName">The sub</param>
+</member><member name="M:FC.FCExtensions.UnRegisterSubToEvent(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Unregister a sub to an event
+ </summary>
+	<param name="EventName">The event</param>
+	<param name="SubName">The sub</param>
+</member><member name="M:FC.FCExtensions.RaiseEvent(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Raise the specified event
+ </summary>
+	<param name="EventName">The event</param>
+</member><member name="M:FC.FCExtensions.GetAllSubs">
+	<summary>
+ Return, separated by CrLf[13,10], the name of all subs declared by this program
+ </summary>
+	<returns>An array containing all sub names</returns>
+</member><member name="M:FC.FCExtensions.GetAllVariables">
+	<summary>
+ Return, separated by CrLf[13,10], the name of all variables declared by this program
+ </summary>
+	<returns>An array containing all variable names</returns>
+</member><member name="M:FC.FCExtensions.ATan(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Complements to the Math Object that allow computing the arctangent of a number
+ </summary>
+	<param name="Tan">The tangent</param>
+	<returns>The angle, in radians, who have Tan as tangent</returns>
+</member><member name="M:FC.FCExtensions.ATan2(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Complements to the Math Object that allow computing the arctangent of a fraction
+ </summary>
+	<param name="Dy">The numerator of the tangent</param>
+	<param name="Dx">The denominator of the tangent</param>
+	<returns>The angle, in radians, who have Tan as tangent</returns>
+</member><member name="M:FC.FCExtensions.IsNumber(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return "True" if the variable is a number, "False" otherwhise
+ </summary>
+	<param name="Variable">The variable to check</param>
+	<returns>"True" or "False"</returns>
+</member><member name="M:FC.FCExtensions.TextWindow_ReadKey">
+	<summary>
+ Returns the key that's currently pressed in the text window, or ""
+ </summary>
+	<returns>A key</returns>
+</member><member name="P:FC.FCExtensions.UserLanguage">
+	<summary>
+ Get a three letter code describing current user language
+ </summary>
+	<value></value>
+	<returns>A three letter code representing the language ("fra" for french, "eng" for english, ...)</returns>
+	<remarks></remarks>
+</member><member name="T:FC.FCExtensions">
+	<summary>
+ This class provides extensions of the Small Basic Language
+ </summary>
+	<remarks>It's possible that some features provided here will be implemented natively by future versions of Small Basic.</remarks>
+	<example>
+ Application using the SmallBasic object (Eval) :
+ <code source="./Sources/Language - Eval.sb" title="Small Basic - Test code"></code>
+ 
+ Application using the SmallBasic object (Events and Deletages)
+ <code source="./Sources/Language - Events and others.sb" title="Small Basic - Test code"></code>
+	</example>
+</member><member name="T:FC.PhysX">
+	<summary>
+ This class provides support for gravity and collisions
+ </summary>
+	<example>
+ code title="Small Basic - Test code" source="./Sources/DataFile - base.sb"/code
+ </example>
+</member><member name="P:FC.FCClipboard.CopiedText">
+	<summary>
+ Get or set the text in the clipboard
+ </summary>
+	<value>Text</value>
+	<returns>Text copied</returns>
+</member><member name="M:FC.FCClipboard.GetText">
+	<summary>
+ Return the value of the current copied text
+ </summary>
+	<returns>Text copied</returns>
+</member><member name="M:FC.FCClipboard.SetText(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Modify the current copied text
+ </summary>
+	<param name="value">Text to copy</param>
+	<remarks></remarks>
+</member><member name="M:FC.FCClipboard.ReturnText">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCClipboard.ModifyText">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="P:FC.FCClipboard.CopiedImage">
+	<summary>
+ Get or set the image in the clipboard
+ </summary>
+	<value>Image</value>
+	<returns>Image</returns>
+</member><member name="M:FC.FCClipboard.CreateNewImage">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCClipboard.ReturnImage">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCClipboard.ModifyImage">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="T:FC.FCClipboard">
+	<summary>  
+ This class provides functions to ask things to the user through the UI.
+ </summary>
+</member><member name="M:FC.Extensions.BitmapSourceExtensions.Save(System.Windows.Media.Imaging.BitmapSource,System.IO.Stream,System.Windows.Media.Imaging.BitmapEncoder)">
+	<summary>
+ Write BitmapSource to stream
+ </summary>
+	<param name="stream">stream for write to</param>
+	<param name="encoder">encoder</param>
+</member><member name="M:FC.FCInstances.MainSub(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ If you want to make your application MIA-Compatible, this sub must be your main Sub
+ </summary>
+	<param name="DefaultSub">The sub you want to call if this instance has no constraint</param>
+	<remarks>Sample App that support MIA :
+ <code title="Small Basic">Instances.MainSub('Main')
+ 
+ Sub Main
+    ' When the first instance is created
+ EndSub
+ 
+ Sub NewForm
+    ' When a new instance is created (with Instances.Add('NewForm',''))
+ EndSub
+ </code>
+	</remarks>
+</member><member name="P:FC.FCInstances.IsMainInstance">
+	<summary>
+ Return "True" if this instance is the main instance of the application "False" otherwhie
+ </summary>
+	<value>A boolean</value>
+	<returns>"True"/"False"</returns>
+</member><member name="P:FC.FCInstances.MainInstance">
+	<summary>
+ Return the ID of the main instance of the application, or -1 if this instance is the maininstance
+ </summary>
+	<value>The ID</value>
+	<returns>The ID</returns>
+</member><member name="M:FC.FCInstances.CallSub(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Call a sub in a specified instance
+ </summary>
+	<param name="Instance">The instance in which the sub is called</param>
+	<param name="SubName">The name of the sub to call</param>
+</member><member name="M:FC.FCInstances.GetVariable(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the value of a variable in an instance
+ </summary>
+	<param name="Instance">The instance in which the variable is read</param>
+	<param name="VariableName">The name of the variable</param>
+	<returns>The value of the variable</returns>
+</member><member name="M:FC.FCInstances.SetVariable(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Set the value of a variable in an instance
+ </summary>
+	<param name="Instance">The instance in which the variable is read</param>
+	<param name="VariableName">The name of the variable</param>
+	<param name="Value">The value of the variable</param>
+</member><member name="M:FC.FCInstances.SetArrayItem(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Set the value of an array's item in an instance
+ </summary>
+	<param name="Instance">The instance in which the variable is read</param>
+	<param name="ArrayName">The name of the array to modify</param>
+	<param name="Index">The index of the item to modify</param>
+	<param name="Value">The value of the item</param>
+</member><member name="M:FC.FCInstances.GetArrayItem(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the value of an array's item in an instance
+ </summary>
+	<param name="Instance">The instance in which the variable is read</param>
+	<param name="ArrayName">The name of the array to read</param>
+	<param name="Index">The index of the item to read</param>
+	<returns>The value of the item</returns>
+</member><member name="M:FC.FCInstances.GetArrayLength(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the number of items of an array in an instance
+ </summary>
+	<param name="Instance">The instance in which the variable is read</param>
+	<param name="ArrayName">The name of the array to read</param>
+	<returns>The number of items</returns>
+</member><member name="M:FC.FCInstances.RaiseEvent(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Raise a custom SmallBasic's event in an instance
+ </summary>
+	<param name="Instance">The instance in which the event is raised</param>
+	<param name="EventName">The name of the event to raise</param>
+</member><member name="M:FC.FCInstances.EvalCode(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Evaluate code on another instance, using the SmallBasic.Eval(code) Sub
+ </summary>
+	<param name="Instance">The instance in which the code is run</param>
+	<param name="Code">The code to execute (please note the remarks about this functionnality in SmallBasic.Eval)</param>
+	<remarks>The Eval method doesn't provide full support of Small Basic. For example, you can't create variables/subs.</remarks>
+</member><member name="M:FC.FCInstances.Add(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Create a new instance of the application
+ </summary>
+	<param name="MainSub">The sub you want that MainSub calls</param>
+	<returns>An ID that represents the instance</returns>
+</member><member name="T:FC.FCInstances">
+	<summary>
+ This class provides support for Multiple Instances Applications.
+ By having more than one instance, you can have more than one window opened at a time.
+ </summary>
+	<example>
+ Application that use the Instances object (Core).
+ <code source="./Sources/Instances - Base.sb" title="Small Basic - Test code"></code>
+	</example>
+</member><member name="M:FC.FCInterop.CreateHandle">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCInterop.CreateHandleFor(System.Object)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCInterop.ValueOf(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCInterop._GetArray(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCInterop._GetDictionnary(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCInterop._SetDictionnary(Microsoft.SmallBasic.Library.Primitive,System.Collections.Generic.Dictionary{Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive})">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="P:FC.FCInterop.InteropObjectsAmount">
+	<summary>
+ Return the amount of stored Interop Objects
+ </summary>
+</member><member name="M:FC.FCInterop.ReleaseObject(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Delete an object permantly of the memory
+ </summary>
+	<param name="H">The handle of the object to delete</param>
+	<remarks>If you want to perform a whole cleanup, use ReleaseAllObjects instead</remarks>
+</member><member name="M:FC.FCInterop.ReleaseAllObjects">
+	<summary>
+ Delete all interop objects permantly of the memory
+ </summary>
+	<remarks>It's important to do this after using the Interop 
+ because a lot of objects will stay in memory because 
+ you have get them but not released</remarks>
+</member><member name="M:FC.FCInterop.CreateObject(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ This function allows to create a native object from its name and some parameters to send to the constructor of the object
+ </summary>
+	<param name="TypeName">The type of the object to create</param>
+	<param name="ArgsArray">The array used to send parameters, or ""</param>
+	<returns>The native object create, or Nothing if the constructor failled</returns>
+	<remarks>
+ When you don't need an object anymore, don't forget to call ReleaseObject before deleting 
+ the last reference to it in your program because it will result to a memory leak because 
+ the object will not be deleted from the memory.
+ </remarks>
+</member><member name="M:FC.FCInterop.CallSub(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ This function allows the call a function of a native object
+ </summary>
+	<param name="H">A native object</param>
+	<param name="SubName">The name of the function to call</param>
+	<param name="ArgsArray">The array used to send parameters, or ""</param>
+	<returns>The result of the function, or Nothing if the call failled</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCInterop.CallSharedSub(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ This function allows the call a shared function of a native object
+ </summary>
+	<param name="TypeName">The type from which to call the function</param>
+	<param name="SubName">The name of the function to call</param>
+	<param name="ArgsArray">The array used to send parameters, or ""</param>
+	<returns>The result of the function, or Nothing if the call failled</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCInterop.GetPropertyValue(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ This function allows you to set a property on a native object
+ </summary>
+	<param name="H">A native object</param>
+	<param name="PropertyName">The name of the property</param>
+	<param name="ArgsArray">The array used to send parameters, or ""</param>
+	<returns>The value of the property (or Nothing if the function failled into the retreiving)</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCInterop.SetPropertyValue(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ This function allows you to set a property on a native object
+ </summary>
+	<param name="H">A native object</param>
+	<param name="PropertyName">The name of the property</param>
+	<param name="NewValueH">The new value of the property</param>
+	<param name="ArgsArray">The array used to send parameters, or ""</param>
+	<returns>True if it worked, False if it failled</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCInterop.ToString(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the string value of a native object or a number
+ </summary>
+	<param name="H">A native object obtained using the Interop module or a number to convert</param>
+	<returns>A string (This function returns "" on error)</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCInterop.ToNumber(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the numerical value of a native object or a string
+ </summary>
+	<param name="H">A native object obtained using the Interop module or a string to convert</param>
+	<returns>A number (This function returns 0 on error)</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCInterop.ToNativeString(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return a native string from another object
+ </summary>
+</member><member name="M:FC.FCInterop.ToNativeInteger(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return a native string from another object
+ </summary>
+</member><member name="M:FC.FCInterop.ToNativeDouble(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return a native double from another object
+ </summary>
+</member><member name="M:FC.FCInterop.ToNativeBoolean(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return a native boolean from another object
+ </summary>
+</member><member name="M:FC.FCInterop.ToNativeArray(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return a native array from a Small Basic array
+ </summary>
+	<param name="Array">A Small Basic array</param>
+	<returns>An Object() array</returns>
+	<remarks>If you want to create a typed native array, use ToTypedNativeArray instead</remarks>
+</member><member name="M:FC.FCInterop.ToTypedNativeArray(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return a native array from a Small Basic array
+ </summary>
+	<param name="Array">A Small Basic array</param>
+	<param name="TypeName">The type of the array you want to create</param>
+	<returns>An Object() array</returns>
+	<remarks>If a conversion of an element of the array fail, nothing is used instead</remarks>
+</member><member name="M:FC.FCInterop.ConvertNativeArray(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Create a Small Basic array from a native array you've got from the Interop module
+ </summary>
+	<param name="H">The native array you want to copy</param>
+	<param name="AsNative">"True" if you want to get native objects, "False" if you want to get Small Basic objects (string, ...)</param>
+	<returns>The converted array, or "" if the operation failled</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCInterop.ConvertNativeArrayInternal(System.Collections.IEnumerable,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Create a Small Basic array from a native array you've got from the Interop module
+ </summary>
+	<param name="O">The native array you want to copy</param>
+	<param name="AsNative">"True" if you want to get native objects, "False" if you want to get Small Basic objects (string, ...)</param>
+	<returns>The array if it worked, "" otherwise</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCInterop.GetDefault(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ This function returns, as a native object, ObjH(IndexH)
+ </summary>
+	<param name="ObjH">The array or indexed object</param>
+	<param name="IndexH">The index</param>
+	<returns>The object at 'IndexH' position in 'ObjH'</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCInterop.ConvertSubToDelegate(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return a delegate for the 'SubName' sub, as a native object
+ </summary>
+	<param name="SubName">The name of the sub you want to wrap</param>
+</member><member name="M:FC.FCInterop.InvokeDelegate(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return, as a native object, the value returned by calling the specified delegate
+ </summary>
+	<param name="H">The delegate</param>
+	<param name="ArgsArray">The array containing the params to send, or ""</param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCInterop.AddEventHandler(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Add an event handler to a source
+ </summary>
+	<param name="ObjH">The source</param>
+	<param name="EventName">The name of the event</param>
+	<param name="DelegateH">The delegate to add</param>
+	<returns>"True"/"False"</returns>
+</member><member name="M:FC.FCInterop.RemoveEventHandler(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Remove an event handler to a source
+ </summary>
+	<param name="ObjH">The source</param>
+	<param name="EventName">The name of the event</param>
+	<param name="DelegateH">The delegate to Remove</param>
+	<returns>"True"/"False"</returns>
+</member><member name="M:FC.FCInterop.ConvertDelegate(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Wrap a Small Baisc delegate (or any delegate taking no parameter) in another type of delegate
+ </summary>
+	<param name="DelH">The Small Basic delegate to wrap</param>
+	<param name="DelegateTypeName">The type of the new delegate</param>
+	<returns>A native delegate</returns>
+	<remarks>Parameters passed to the delegate are not passed to the inner delegate</remarks>
+</member><member name="T:FC.FCInterop">
+	<summary>
+ This class provides functions that allow interoperability between Small Basic and the DotNet FrameWork
+ </summary>
+	<remarks></remarks>
+	<example>
+ Application that use the Interop object (Core).
+ <code source="./Sources/Interop - Base.sb" title="Small Basic - Test code"></code>
+ 
+ Application that use the Interop object (Arrays).
+ <code source="./Sources/Interop - Arrays.sb" title="Small Basic - Test code"></code>
+ 
+ Application that use the Interop object (Events and delegates).
+ <code source="./Sources/Interop - Events and delegates.sb" title="Small Basic - Test code"></code>
+	</example>
+</member><member name="M:FC.FCDataFile.CreateNewFileWriter(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Create a new handle to a data file writer
+ </summary>
+	<param name="File">The place where the data will be writed when the CloseDataFile method will be called</param>
+	<param name="ErraseData">Indicates if the (old) data of the file should be conservated ("False") or not ("True")</param>
+	<returns>A number that is the handle to a data file writer</returns>
+</member><member name="M:FC.FCDataFile.CreateNewFileReader(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Create a new handle to a data file reader
+ </summary>
+	<param name="File">The place of the file that will be loaded</param>
+	<returns>A number that is the handle to a data file writer</returns>
+</member><member name="M:FC.FCDataFile.CloseDataFile(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Close a data file wrapper. If the wrapper was a file writer, it saves the data file to the place.
+ </summary>
+	<param name="DataFileID">The data file wrapper (reader or writer)</param>
+	<returns>Nothing</returns>
+</member><member name="M:FC.FCDataFile.ReadType(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the type of the next data to read, if any.
+ </summary>
+	<param name="DataFileID">The data file reader</param>
+	<returns>"Variable", "Array", "Stack" or "None"; anything else can be returned, but then it's similar to "None"</returns>
+</member><member name="M:FC.FCDataFile.ReadVariable(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the next data to read, if it's a variable
+ </summary>
+	<param name="DataFileID">The data file reader</param>
+	<returns>Nothing</returns>
+	<remarks>Checks the type with ReadType()</remarks>
+</member><member name="M:FC.FCDataFile.ReadArray(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the next data to read, if it's an array
+ </summary>
+	<param name="DataFileID">The data file reader</param>
+	<returns>The array contained in the file, or ""</returns>
+	<remarks>Checks the type with ReadType()</remarks>
+</member><member name="M:FC.FCDataFile.ReadStack(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the next data to read, if it's a stack
+ </summary>
+	<param name="DataFileID">The data file reader</param>
+	<param name="StackName">The name of the stack to update</param>
+	<returns>Nothing</returns>
+	<remarks>Checks the type with ReadType()</remarks>
+</member><member name="M:FC.FCDataFile.CanReadAnything(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Checks if ReadType() don't return "None". It don't check if the next data will be recognized.
+ </summary>
+	<param name="DataFileID">The data file reader</param>
+	<returns>Nothing</returns>
+</member><member name="M:FC.FCDataFile.WriteVariable(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Writes a variable into a data file wrapper
+ </summary>
+	<param name="DataFileID">The data file writer</param>
+	<param name="Variable">The variable to write in the file writer</param>
+	<returns>"False"/"True"</returns>
+</member><member name="M:FC.FCDataFile.WriteArray(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Writes an array into a data file wrapper
+ </summary>
+	<param name="DataFileID">The data file writer</param>
+	<param name="Array">The arrray to write in the file writer</param>
+	<returns>"False"/"True"</returns>
+</member><member name="M:FC.FCDataFile.WriteStack(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Writes a stack into a data file wrapper
+ </summary>
+	<param name="DataFileID">The data file writer</param>
+	<param name="StackName">The stack to write in the file writer</param>
+	<returns>"False"/"True"</returns>
+</member><member name="T:FC.FCDataFile">
+	<summary>
+ This class provides support for reading and writing of data files
+ </summary>
+	<example>
+		<code title="Small Basic - Test code" source="./Sources/DataFile - base.sb"></code>
+	</example>
+</member><member name="M:FC.FCFTP.DownloadFile(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Download an FTP file
+ </summary>
+	<param name="serverFilePath">Path on the server (file to copy)</param>
+	<param name="localFilePath">Path on the computer (save location)</param>
+	<param name="userName">FTP's username</param>
+	<param name="password">FTP's password</param>
+	<returns>"SUCCESS" if it worked, an error message if something goes wrong</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCFTP.UploadFile(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Upload a file to FTP
+ </summary>
+	<param name="serverFilePath">Path on the server (save location)</param>
+	<param name="localFilePath">Path on the computer (file to copy)</param>
+	<param name="userName">FTP's username</param>
+	<param name="password">FTP's password</param>
+	<returns>"SUCCESS" if it worked, an error message if something goes wrong</returns>
+	<remarks></remarks>
+</member><member name="P:FC.My.Resources.Resources.ResourceManager">
+	<summary>
+  Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
+</summary>
+</member><member name="P:FC.My.Resources.Resources.Culture">
+	<summary>
+  Remplace la propriété CurrentUICulture du thread actuel pour toutes
+  les recherches de ressources à l'aide de cette classe de ressource fortement typée.
+</summary>
+</member><member name="P:FC.My.Resources.Resources.DelegateConverter">
+	<summary>
+  Recherche une chaîne localisée semblable à Public Class DelegateConverter
+    Public SubToCall As System.Delegate
+    Public Sub DelegateSub(ByVal Params As Object)
+        SubToCall.DynamicInvoke()
+    End Sub
+End Class.
+</summary>
+</member><member name="P:FC.My.Resources.Resources.EvalCodeBase">
+	<summary>
+  Recherche une chaîne localisée semblable à Option Compare Text : Option Explicit Off : Option Strict Off
+Imports Microsoft.SmallBasic.Library, Array = Microsoft.SmallBasic.Library.Array, FC
+Imports System.Reflection
+
+Public Class EvalCodeBase
+
+    Public __MainModule As System.Type
+
+    Public Sub Main()
+		Try
+			' Code
+        Catch ex as System.Exception
+			' Do nothing
+        End Try
+    End Sub
+   
+	' Variables
+	
+	' Subs
+
+End Class.
+</summary>
+</member><member name="P:FC.My.Resources.Resources.EvalCodeSub">
+	<summary>
+  Recherche une chaîne localisée semblable à 	Public Function $NAME$(ParamArray Arguments() as Object) as Primitive
+		Return __MainModule.GetMethod("$NAME$", BindingFlags.IgnoreCase + BindingFlags.NonPublic + BindingFlags.Static).Invoke(Nothing, Arguments)
+	End Function.
+</summary>
+</member><member name="P:FC.My.Resources.Resources.EvalCodeVariable">
+	<summary>
+  Recherche une chaîne localisée semblable à     Public Property $NAME$() as Primitive
+		Get
+			Return __MainModule.GetField("$NAME$", BindingFlags.IgnoreCase + BindingFlags.NonPublic + BindingFlags.Static).GetValue(Nothing)
+		End Get
+		Set(ByVal value as Primitive)
+			__MainModule.GetField("$NAME$", BindingFlags.IgnoreCase + BindingFlags.NonPublic + BindingFlags.Static).SetValue(Nothing, value)
+		End Set
+    End Property.
+</summary>
+</member><member name="P:FC.My.Resources.Resources.Keys">
+	<summary>
+  Recherche une ressource localisée de type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:FC.My.Resources.Resources.SecurityLock">
+	<summary>
+  Recherche une ressource localisée de type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:FC.My.Resources.Resources.Users">
+	<summary>
+  Recherche une ressource localisée de type System.Drawing.Bitmap.
+</summary>
+</member><member name="T:FC.My.Resources.Resources">
+	<summary>
+  Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
+</summary>
+</member><member name="M:FC.FCSettings.Get(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the value of the 'PropertyName' property in the setting file.
+ </summary>
+	<param name="PropertyName">The property name</param>
+	<returns>The value of the property, or ""</returns>
+</member><member name="M:FC.FCSettings.Set(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the value of the 'PropertyName' property in the setting file.
+ </summary>
+	<param name="PropertyName">The property name</param>
+	<param name="StrValue">The value of the property, or "" to delete the property</param>
+</member><member name="M:FC.FCSettings.ClearAll">
+	<summary>
+ Deletes all property of the setting file
+ </summary>
+</member><member name="T:FC.FCSettings">
+	<summary>
+ This class provides support for settings in your applications
+ </summary>
+	<remarks>Changing your settings too many times can slow down your application</remarks>
+	<example>
+		<code title="Small Basic - Test code" source="./Sources/Settings - Base.sb"></code>
+	</example>
+</member><member name="M:FC.FCDialogs.AskForFile">
+	<summary>  
+ Ask the user for a file    
+ </summary>
+	<returns>  
+ Return the name of a file to open, or "".  
+ </returns>
+</member><member name="M:FC.FCDialogs.AskForFile2(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>  
+ Ask the user for a file by specifying an extension for the file
+ </summary>
+	<param name="FileExtension">The extension of the file you want</param>
+	<returns>  
+ Return the name of a file to open, or "".  
+ </returns>
+</member><member name="M:FC.FCDialogs.AskForFileInternal(System.String)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCDialogs.AskForSaveLocation">
+	<summary>  
+ Ask the user for a place to save a file  
+ </summary>
+	<returns>  
+ Return the name of a file to save, or "".  
+ </returns>
+</member><member name="M:FC.FCDialogs.AskForSaveLocation2(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>  
+ Ask the user for a place to save a file by specifying an extension for the file
+ </summary>
+	<returns>  
+ Return the name of a file to save, or "".  
+ </returns>
+</member><member name="M:FC.FCDialogs.AskForSaveLocationInternal(System.String)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCDialogs.AskForDirectory">
+	<summary>  
+ Ask the user for a directory  
+ </summary>
+	<returns>  
+ Return the name of the chosen directory, or "".  
+ </returns>
+</member><member name="M:FC.FCDialogs.AskForDirectoryInternal">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCDialogs.AskForColor">
+	<summary>  
+ Ask the user for a color
+ </summary>
+	<returns>  
+ Return the color chosen by the user, or "".
+ </returns>
+</member><member name="M:FC.FCDialogs.AskForFont">
+	<summary>  
+ Ask the user for a font
+ </summary>
+	<returns>  
+ Return the font chosen by the user in the format "Size|FontName", or "".
+ </returns>
+</member><member name="M:FC.FCDialogs.AskForTextLine(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Ask the user for a line of text, with the specified prompt line
+ </summary>
+	<param name="Prompt">A sentence that explain what you want the user types</param>
+	<returns>The line of text the user type, or ""</returns>
+</member><member name="M:FC.FCDialogs.ShowMessage(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Show a message to the user
+ </summary>
+	<param name="Msg">The message to show</param>
+	<returns>An empty string ("")</returns>
+</member><member name="M:FC.FCDialogs.AskForYesNo(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Show a dialog that ask the user for selecting "Yes" or "No"
+ </summary>
+	<param name="Msg">The message shown to the user</param>
+	<returns>"Yes" or "No"</returns>
+</member><member name="M:FC.FCDialogs.AskForYesNoOrCancel(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Show a dialog that ask the user for selecting "Yes", "No" or "Cancel"
+ </summary>
+	<param name="Msg">The message shown to the user</param>
+	<returns>"Yes", "No" or "Cancel"</returns>
+</member><member name="M:FC.FCDialogs.ShowMessageAsError(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Show an error message to the user
+ </summary>
+	<param name="Msg">The message to show</param>
+	<returns>An empty string ("")</returns>
+</member><member name="M:FC.FCDialogs.ShowMessageAsWarning(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Show a warning message to the user
+ </summary>
+	<param name="Msg">The error message to show</param>
+	<returns>An empty string ("")</returns>
+</member><member name="M:FC.FCDialogs.ShowMessageAsInformation(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Show an information message to the user
+ </summary>
+	<param name="Msg">The message to show</param>
+	<returns>An empty string ("")</returns>
+</member><member name="M:FC.FCDialogs.AskForLoginCredentials">
+	<summary>
+ Ask the user for a login and a password
+ </summary>
+	<returns>"Login:Password"</returns>
+</member><member name="P:FC.FCDialogs.T_ErrorDialogTitle">
+	<summary>
+ Translation of the title of the dialogs that show an error to the user
+ </summary>
+	<value>The title of error dialogs, default to "Error"</value>
+	<returns>The value of the title, as String</returns>
+</member><member name="P:FC.FCDialogs.T_InformationDialogTitle">
+	<summary>
+ Translation of the title of the dialogs that show a message to the user
+ </summary>
+	<value>The title of message dialogs, default to "Message"</value>
+	<returns>The value of the title, as String</returns>
+</member><member name="P:FC.FCDialogs.T_PromptDialogTitle">
+	<summary>
+ Translation of the title of the dialogs that ask something to the user
+ </summary>
+	<value>The title of prompt dialogs, default to "Prompt dialog"</value>
+	<returns>The value of the title, as String</returns>
+</member><member name="P:FC.FCDialogs.T_LoginDialogTitle">
+	<summary>
+ Translation of the title of the dialogs that ask credentials to the user in your language
+ </summary>
+	<value>The title of login dialogs</value>
+	<returns>The value of the title, as String</returns>
+</member><member name="P:FC.FCDialogs.T_LoginDialogUserName">
+	<summary>
+ Translation of "Username :" in your language
+ </summary>
+</member><member name="P:FC.FCDialogs.T_LoginDialogPassWord">
+	<summary>
+ Translation of "Password :" in your language
+ </summary>
+</member><member name="T:FC.FCDialogs">
+	<summary>  
+ This class provides functions to ask things to the user through the UI.
+ </summary>
+	<example>
+ Application that use the Dialogs object (Core).
+ <code source="./Sources/Dialogs - Base.sb" title="Small Basic - Test code"></code>
+	</example>
+</member><member name="M:FC.DicExtensions.DicContainsValue(System.Collections.Generic.Dictionary{System.String,System.Object},System.Object)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.Drawings_Internal.PaintControl(System.Windows.UIElement)">
+	<summary>
+ Paints a control onto a rectangle. Gets around problems where
+ the control maybe a child of another element or have a funny
+ offset.
+ </summary>
+	<param name="control"></param>
+	<returns></returns>
+</member><member name="M:FC.Drawings_Internal.PrintToVisual(System.Windows.Xps.Packaging.XpsDocument,System.Windows.UIElement)">
+	<summary>
+ Prints any UIElement to an xps document and gets the resulting Visual.
+ This is the only full proof way to copy the contents of a UIElement into
+ a visual. Other methods may work well...but not with WindowsFormsHosts.
+ </summary>
+	<param name="doc"></param>
+	<param name="element"></param>
+	<returns></returns>
+</member><member name="M:FC.Drawings_Internal.RenderVisual(System.Windows.Media.Visual,System.Double,System.Double)">
+	<summary>
+ Render a Visual to a render target of a fixed size. The visual is
+ scaled uniformly to fit inside the specified size.
+ </summary>
+	<param name="visual"></param>
+	<param name="height"></param>
+	<param name="width"></param>
+	<returns></returns>
+</member><member name="M:FC.FCControls.AddRectangle(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Add a rectangle to the Window
+ </summary>
+	<param name="Width">Width</param>
+	<param name="Height">Height</param>
+	<returns>The rectangle</returns>
+</member><member name="M:FC.FCControls.AddEllipse(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Add an ellipse to the Window
+ </summary>
+	<param name="Width">Width</param>
+	<param name="Height">Height</param>
+	<returns>The ellipse</returns>
+</member><member name="M:FC.FCControls.AddTriangle(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Add a triangle to the Window
+ </summary>
+	<param name="X1">The X coordinate of the first point</param>
+	<param name="Y1">The Y coordinate of the first point</param>
+	<param name="X2">The X coordinate of the second point</param>
+	<param name="Y2">The Y coordinate of the second point</param>
+	<param name="X3">The X coordinate of the last point</param>
+	<param name="Y3">The Y coordinate of the last point</param>
+	<returns>The triangle</returns>
+</member><member name="M:FC.FCControls.AddPolygon(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Add a polygon to the Window
+ </summary>
+	<param name="PointsArray">An array containing the X and Y coordinates of each point of the polygon</param>
+	<returns>The polygon</returns>
+	<remarks><code title="Small Basic">' Create a square :
+ Arr1[0]["X"] = 0
+ Arr1[0]["Y"] = 0
+ 
+ Arr1[1]["X"] = 0
+ Arr1[1]["Y"] = 10
+ 
+ Arr1[2]["X"] = 10
+ Arr1[2]["Y"] = 10
+ 
+ Arr1[3]["X"] = 10
+ Arr1[3]["Y"] = 0
+ 
+ Shapes.AddPolygon(Arr1)
+ </code></remarks>
+</member><member name="M:FC.FCControls.AddImage(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Add an image to the Window
+ </summary>
+	<param name="Src">The name of a loaded image, or a location to a image file</param>
+	<returns>The image's display box</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCControls.AddButton(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Add a button to the Window
+ </summary>
+	<param name="Width">Width</param>
+	<param name="Height">Height</param>
+	<param name="Text">Text</param>
+	<returns>The button</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCControls.AddCheckBox(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Add a checkbox to the Window
+ </summary>
+	<param name="Text">Text</param>
+	<returns>The checkbox</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCControls.AddTextBox(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Add a textbox to the Window
+ </summary>
+	<param name="Width">Width</param>
+	<param name="Height">Height</param>
+	<param name="Text">Text</param>
+	<returns>The textbox</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCControls.AddMultilineTextBox(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Add a multiline textbox to the Window
+ </summary>
+	<param name="Width">Width</param>
+	<param name="Height">Height</param>
+	<param name="Text">Text</param>
+	<returns>The textbox</returns>
+	<remarks>A new line is created, in Windows, by having the CrLf sequence in the string. CrLf = Text.GetCharacter(13) + Text.GetCharacter(10)</remarks>
+</member><member name="M:FC.FCControls.AddProgressBar(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Add a progress bar to the Window
+ </summary>
+	<param name="Width">Width</param>
+	<param name="Height">Height</param>
+	<param name="Percentage">The percentage of fullness of the progress bar at start (editable with SetText)</param>
+	<returns>The progress bar</returns>
+	<remarks>Please note you can use SetText / GetText to set/get the value of the progress bar</remarks>
+</member><member name="M:FC.FCControls.AddWebBrowser(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Add a webbrowser control to the Window. Use GetUrlOfWebBrowser/SetUrlOfWebBrowser to modify the URL of this control.
+ </summary>
+	<param name="Width">Width</param>
+	<param name="Height">Height</param>
+	<returns>The control</returns>
+	<remarks>By default, no page is loaded, so you'll need to use SetUrlOfWebBrowser at least a time</remarks>
+	<example>
+ Here's a sample browser application :
+ <code title="Small Basic - Test code" source="./Sources/Shapes - Webbrowser.sb"></code>
+	</example>
+</member><member name="M:FC.FCControls.AddLabel(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Add a label to the Window
+ </summary>
+	<param name="Width">Width</param>
+	<param name="Height">Height</param>
+	<param name="Text">Text</param>
+	<returns>The label</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCControls.RegisterEvent(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Register to a Shape's event
+ </summary>
+	<param name="Shape">The shape</param>
+	<param name="EventName">The name of the event</param>
+	<param name="SubName">The name of the sub</param>
+	<returns>"True"/"False"</returns>
+</member><member name="M:FC.FCControls.GetText(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the text of a shape, if any
+ </summary>
+	<param name="Shape">The shape</param>
+	<returns>The text, as String</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCControls.SetText(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Modify the text of a shape, if any
+ </summary>
+	<param name="Shape">The shape</param>
+	<param name="NewText">The text, as String</param>
+	<remarks></remarks>
+</member><member name="M:FC.FCControls.SetUrlOfWebBrowser(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Set the url of a WebBrowser control; or do something on it like going back, ...
+ </summary>
+	<param name="WebBrowserCtrl">A webbrowser</param>
+	<param name="URL">"GoBack", "GoForward", or an url</param>
+</member><member name="M:FC.FCControls.GetUrlOfWebBrowser(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Get the url of a WebBrowser control; or do something on it like going back, ...
+ </summary>
+	<param name="WebBrowserCtrl">A webbrowser</param>
+</member><member name="M:FC.FCControls.GetChecked(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the checked state of a shape, if any
+ </summary>
+	<param name="Shape">The shape</param>
+	<returns>The checked state ("True" or "False")</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCControls.SetChecked(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Modify the checked state of a shape, if any
+ </summary>
+	<param name="Shape">The shape</param>
+	<param name="Value">The checked state ("True" or "False")</param>
+	<remarks></remarks>
+</member><member name="M:FC.FCControls.Move(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Move the Shape at specified location
+ </summary>
+	<param name="Shape">The shape</param>
+	<param name="X">X-Location</param>
+	<param name="Y">Y-Location</param>
+</member><member name="M:FC.FCControls.MoveAsAnimation(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Move the Shape at specified location as an animation
+ </summary>
+	<param name="Shape">The shape</param>
+	<param name="X">The X location</param>
+	<param name="Y">The Y location</param>
+	<param name="Duration">The time the animation will take, in miliseconds</param>
+	<remarks></remarks>
+</member><member name="M:FC.FCControls.SetRotationAngle(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Rotate the shape of 'Angle' degree from 0°
+ </summary>
+	<param name="Shape">The shape to rotate</param>
+	<param name="Angle">The angle to apply, in degree</param>
+</member><member name="M:FC.FCControls.GetRotationAngle(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the angle from the horizontal that's applied to a shape
+ </summary>
+	<param name="Shape">The rotated shape</param>
+	<returns>An angle, in degree</returns>
+</member><member name="M:FC.FCControls.Remove(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Permantly delete a shape from the Window and the memory
+ </summary>
+	<param name="Shape">The shape to delete</param>
+</member><member name="M:FC.FCControls.GetLeft(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the distance separating the left of the window and the shape, also called X-Location.
+ </summary>
+	<param name="Shape">The shape to consider</param>
+	<returns>The location</returns>
+</member><member name="M:FC.FCControls.GetTop(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the distance separating the top of the window and the shape, also called Y-Location.
+ </summary>
+	<param name="Shape">The shape to consider</param>
+	<returns>The location</returns>
+</member><member name="M:FC.FCControls.SetLeft(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Modify the Y-Location of a shape
+ </summary>
+	<param name="Shape">The shape to move</param>
+	<param name="NewLeft">The new Y-location of the shape</param>
+</member><member name="M:FC.FCControls.SetTop(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Modify the X-Location of a shape
+ </summary>
+	<param name="Shape">The shape to move</param>
+	<param name="NewTop">The new X-Location of the shape</param>
+</member><member name="M:FC.FCControls.GetWidth(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the width of a shape
+ </summary>
+	<param name="Shape">The shape</param>
+	<returns>The width, as decimal number</returns>
+</member><member name="M:FC.FCControls.SetWidth(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Modify the width of a shape
+ </summary>
+	<param name="Shape">The shape</param>
+	<param name="Value">The width, as decimal number</param>
+</member><member name="M:FC.FCControls.GetHeight(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the height of a shape
+ </summary>
+	<param name="Shape">The shape</param>
+	<returns>The height, as decimal number</returns>
+</member><member name="M:FC.FCControls.SetHeight(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Modify the height of a shape
+ </summary>
+	<param name="Shape">The shape</param>
+	<param name="Value">The height, as decimal number</param>
+</member><member name="M:FC.FCControls.GetRight(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the X-Location of the right of a shape
+ </summary>
+	<param name="Shape">The shape</param>
+	<returns>The location</returns>
+</member><member name="M:FC.FCControls.GetBottom(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the Y-Location of the bottom of a shape
+ </summary>
+	<param name="Shape">The shape</param>
+	<returns>The location</returns>
+</member><member name="M:FC.FCControls.IsMoveOver(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return "True" if the mouse is over the shape, "False" otherwhise
+ </summary>
+	<param name="Shape">The shape</param>
+	<returns>"True"/"False"</returns>
+</member><member name="M:FC.FCControls.IsFocused(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return "True" if the control has the focus, "False" otherwhise
+ </summary>
+	<param name="Shape">The shape</param>
+	<returns>"True"/"False"</returns>
+</member><member name="M:FC.FCControls.MoveBy(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Translate the specified shape with the [DeltaX, DeltaY] vector
+ </summary>
+	<param name="Shape">The shape to move</param>
+	<param name="DeltaX">The value to add to X-Location</param>
+	<param name="DeltaY">The value to add to Y-Location</param>
+</member><member name="M:FC.FCControls.MoveAsAnimationBy(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Translate the specified shape with the [DeltaX, DeltaY] vector, in 'Duration' miliseconds
+ </summary>
+	<param name="Shape">The shape to move</param>
+	<param name="DeltaX">The value to add to X-Location</param>
+	<param name="DeltaY">The value to add to Y-Location</param>
+	<param name="Duration">The time, in miliseconds, that the Animation will take</param>
+</member><member name="M:FC.FCControls.GetOpacity(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the opacity of a shape, if any
+ </summary>
+	<param name="Shape">The shape</param>
+	<returns>The opacity, as a Number between 0 and 1</returns>
+	<remarks>It's possible that some elements don't support opacity</remarks>
+</member><member name="M:FC.FCControls.SetOpacity(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Modify the opacity of a shape
+ </summary>
+	<param name="Shape">The shape</param>
+	<param name="NewOpacity">The opacity, as a Number between 0 and 1</param>
+	<remarks>It's possible that some elements don't support opacity</remarks>
+</member><member name="M:FC.FCControls.RegisterMouseDownEvent(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Register to the specified event
+ </summary>
+	<param name="Shape">The shape from which we register the event</param>
+	<param name="SubName">The sub that get called when the event is raised</param>
+	<example>This code add a button and call the OnClick sub when it is clicked
+ <code title="Small Basic - Sample">
+ Btt = Controls.AddButton(100, 25, "Click me!")
+ Controls.RegisterMouseDownEvent(Btt, "OnClick")
+ 
+ Sub OnClick
+     ' ...
+ EndSub
+ </code>
+	</example>
+</member><member name="M:FC.FCControls.RegisterMouseMoveEvent(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Register to the specified event
+ </summary>
+	<param name="Shape">The shape from which we register the event</param>
+	<param name="SubName">The sub that get called when the event is raised</param>
+</member><member name="M:FC.FCControls.RegisterMouseUpEvent(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Register to the specified event
+ </summary>
+	<param name="Shape">The shape from which we register the event</param>
+	<param name="SubName">The sub that get called when the event is raised</param>
+</member><member name="M:FC.FCControls.RegisterMouseEnterEvent(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Register to the specified event
+ </summary>
+	<param name="Shape">The shape from which we register the event</param>
+	<param name="SubName">The sub that get called when the event is raised</param>
+</member><member name="M:FC.FCControls.RegisterMouseLeaveEvent(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Register to the specified event
+ </summary>
+	<param name="Shape">The shape from which we register the event</param>
+	<param name="SubName">The sub that get called when the event is raised</param>
+</member><member name="M:FC.FCControls.RegisterKeyDownEvent(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Register to the specified event
+ </summary>
+	<param name="Shape">The shape from which we register the event</param>
+	<param name="SubName">The sub that get called when the event is raised</param>
+</member><member name="M:FC.FCControls.RegisterKeyUpEvent(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Register to the specified event
+ </summary>
+	<param name="Shape">The shape from which we register the event</param>
+	<param name="SubName">The sub that get called when the event is raised</param>
+</member><member name="P:FC.FCControls.LastEventSource">
+	<summary>
+ Return the last control that raised an event
+ </summary>
+	<returns>The name of a Shape or a Control</returns>
+	<example>Here's a code that remove the buttons when you click on theses
+ <code title="Small Basic - Sample">
+ Btt = Controls.AddButton(100, 25, "Click me!")
+ Controls.Move(Btt, 10, 10)
+ Controls.RegisterMouseDownEvent(Btt, "OnClick")
+ 
+ Btt = Controls.AddButton(100, 25, "Click me!")
+ Controls.Move(Btt, 10, 50)
+ Controls.RegisterMouseDownEvent(Btt, "OnClick")
+ 
+ Sub OnClick
+     Controls.Remove(Controls.LastEventSource)
+ EndSub
+ </code>
+	</example>
+</member><member name="M:FC.FCControls.SetLastEventSource(System.Windows.FrameworkElement)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCControls.GetShapeAsNative(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return a shape, as a native XAML object
+ </summary>
+	<param name="Shape">The shape to convert</param>
+	<returns>The native object</returns>
+	<remarks>This functions is only useful for .NET experts. 
+ You'll need the <see cref="N:System.Windows.Interop">Interop</see> object to use the returned value</remarks>
+</member><member name="M:FC.FCControls.LoadTheme(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Load a theme for your buttons and inputs
+ </summary>
+	<param name="Name">"Vista", "XPBlue", "XPSilver", "XPGreen", "XPRoyale", "Classic" or "Default"</param>
+	<remarks>
+ "Default" means that this function will use the nearest usable theme. 
+ If you're using Vista, it will be "Vista". 
+ If your're using post-Vista system, it will be "Vista" too.
+ If you're using XP, it will be "XPBlue".
+ If you're using a pre-XP system, it will be "Classic".
+ </remarks>
+	<example>
+ This exemple show how to load the Vista theme.
+ <code title="Small Basic">Controls.LoadThem("Vista")</code>
+	</example>
+</member><member name="M:FC.FCControls.GetAllShapes">
+	<summary>
+ Returns an array containing the name names of the shapes displayed in the current GraphicsWindow
+ </summary>
+	<returns>An array containing all the names</returns>
+	<example>
+ This code will display the names of all existing shapes.
+ <code title="Small Basic">TheShapes=Controls.GetAllShapes()
+ NumberOfShapes = Array.GetItemCount(TheShapes)
+ For X = 0 To NumberOfShapes-1
+     TextWindow.WriteLine(TheShapes[X])
+ EndFor
+ </code></example>
+</member><member name="M:FC.FCControls.SetBackground(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Modify the background of a shape, if this shape have a background color.
+ </summary>
+	<param name="Shape">The Shape to modify</param>
+	<param name="Color">The new color of the background</param>
+	<returns>"True", if it worked; "False" otherwhise.</returns>
+</member><member name="M:FC.FCControls.GetBackground(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the background of a shape, if this shape have a background color.
+ </summary>
+	<param name="Shape">The Shape to modify</param>
+	<returns>The color of the background, or "".</returns>
+</member><member name="M:FC.FCControls.SetBorderColor(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Modify the border color of a shape, if this shape have a border color.
+ </summary>
+	<param name="Shape">The Shape to modify</param>
+	<param name="Color">The new color of the border</param>
+	<returns>"True", if it worked; "False" otherwhise.</returns>
+</member><member name="M:FC.FCControls.GetBorderColor(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the border color of a shape, if this shape have a border color.
+ </summary>
+	<param name="Shape">The Shape to modify</param>
+	<returns>The color of the border, or "".</returns>
+</member><member name="M:FC.FCControls.SetImageSource(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Allow to change the image displayed in an image control
+ </summary>
+	<param name="ImageControl">The ImageControl you want to modify</param>
+	<param name="Src">The new image to show (either a file path or a loaded image in the ImageList)</param>
+	<remarks></remarks>
+</member><member name="M:FC.FCControls.ElementFromPoint(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Get the control/shape located at the specified position, or return "" if no control is located at this point.
+ </summary>
+	<param name="DistanceFromLeft">The X coordinate of the point</param>
+	<param name="DistanceFromTop">The Y coordiante of the point</param>
+	<returns>The name of a Shape, or ""</returns>
+</member><member name="M:FC.FCControls.Zoom(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Allow to make a control bigger or smaller.
+ </summary>
+	<param name="Ctrl">The control to zoom in/out</param>
+	<param name="Factor">The factor to use (1 to conserve same size, 2 to make two times bigger ...)</param>
+	<remarks>Controls.Zoom conserve the old zoom factor. Controls.Zoom(C, 2) Controls.Zoom(C, 3) would produce a x6 zoom on C.</remarks>
+</member><member name="T:FC.FCControls">
+	<summary>
+ This class provides better support for Shapes in GraphicWindow
+ </summary>
+	<remarks>
+ You should use this class as an extension of the native Shapes object introduced in Small Basic v0.3.
+ You'll find here many similar functions, and some news. 
+ <br/>
+		<note>
+ Before using any controls (Button, TextBox, ...), please make sure you've called the LoadTheme function
+ </note>
+	</remarks>
+	<example>Here's an exemple that show how to add a button on the page.
+ <code title="Small Basic - Sample">
+ ' At beginning of your document
+ Controls.LoadTheme("Default")
+ 
+ ' [Some code]
+ ' ...................
+ 
+ ' Create the button
+ Btt = Controls.AddButton(150, 24, "Click me!")
+ 
+ ' Register to the click event
+ Controls.RegisterMouseDownEvent(Btt, "Btt_OnClick")
+ 
+ ' What to do when the button is clicked
+ Sub Btt_OnClick
+    GraphicsWindow.ShomMesssage("You clicked on the button", "App")
+ EndSub
+ </code>
+ 
+ Application that use the Controls object (Core).
+ <code source="./Sources/Shapes - Base.sb" title="Small Basic - Test code"></code>
+ 
+ Application that use the Controls object (Others).
+ <code source="./Sources/Shapes - other tests.sb" title="Small Basic - Test code"></code>
+ 
+ ''' Application that use the Controls object (Others).
+ <code source="./Sources/Shapes - other tests 2.sb" title="Small Basic - Test code"></code>
+	</example>
+</member><member name="M:FC.Shapes_Internal.CallGWinSubInternal(System.String,System.Object[])">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.Shapes_Internal.GetGWinInternal(System.String)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.Shapes_Internal.SetGWinInternal(System.String,System.Object)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.Shapes_Internal.GetShapesInternal(System.String)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.Shapes_Internal.SetShapesInternal(System.String,System.Object)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.Shapes_Internal.AddShape(System.String,System.Windows.UIElement)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="P:FC.Shapes_Internal.AllShapes">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.Shapes_Internal.GetShape(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="T:FC.Shapes_Internal">
+	<summary>
+ =================================================
+ This modules contains only internal functions
+ =================================================
+ </summary>
+</member><member name="M:FC.FCXml.GetNode(System.String)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCXml.CreateRequestForNode(System.Xml.XmlNode)">
+	<summary>
+ Internal function (not supposed to be called by Small Basic)
+ </summary>
+	<remarks>You should not see this function in Small Basic</remarks>
+</member><member name="M:FC.FCXml.LoadXMLFile(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Create an XML document from a file
+ </summary>
+	<param name="FileName">The location of your XML file</param>
+	<returns>An XML document, as native object</returns>
+</member><member name="M:FC.FCXml.LoadXMLString(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Create an XML document from a XML string
+ </summary>
+	<param name="XML">A string containing an XML document</param>
+	<returns>An XML document, as a native object</returns>
+</member><member name="M:FC.FCXml.SaveDocument(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Save an XML document into a file
+ </summary>
+	<param name="DocH">The document, as a native object</param>
+	<param name="FileName">The file where to save the document</param>
+	<returns>"True"/"False"</returns>
+</member><member name="M:FC.FCXml.CloseDocument(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Close a document and free the memory used by this document
+ </summary>
+	<param name="DocH">The document to delete from memory</param>
+</member><member name="M:FC.FCXml.GetNode(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the first node that match the XPath query, as a native object
+ </summary>
+	<param name="DocumentOrNode">The document or node from which the search starts</param>
+	<param name="XPath">The XPath query to a node</param>
+	<returns>The matching node, as a native object</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCXml.GetNodes(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Save all the elements matching the XPath query in an array, as native objects
+ </summary>
+	<param name="DocumentOrNode">The document or node from which the search starts</param>
+	<param name="XPath">The XPath query to the nodes</param>
+	<returns>The array containing all matching elements</returns>
+</member><member name="M:FC.FCXml.GetOuterXML(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the specified property of the node
+ </summary>
+	<param name="NodeName">The node from which we look for the property</param>
+	<returns>The value of the property</returns>
+</member><member name="M:FC.FCXml.GetInnerXML(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the specified property of the node
+ </summary>
+	<param name="NodeName">The node from which we look for the property</param>
+	<returns>The value of the property</returns>
+</member><member name="M:FC.FCXml.GetInnerText(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the specified property of the node
+ </summary>
+	<param name="NodeName">The node from which we look for the property</param>
+	<returns>The value of the property</returns>
+</member><member name="M:FC.FCXml.GetNodeValue(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the specified property of the node
+ </summary>
+	<param name="NodeName">The node from which we look for the property</param>
+	<returns>The value of the property</returns>
+</member><member name="M:FC.FCXml.GetNodeName(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Return the specified property of the node
+ </summary>
+	<param name="NodeName">The node from which we look for the property</param>
+	<returns>The value of the property</returns>
+</member><member name="M:FC.FCXml.GetAttribute(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Try to retreive the value of a node's attribute
+ </summary>
+	<param name="NodeName">The node</param>
+	<param name="AttributeName">The attribute's name</param>
+	<returns>The value of the attribute</returns>
+	<remarks></remarks>
+</member><member name="M:FC.FCXml.SetInnerXML(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Set the specified property of the node
+ </summary>
+	<param name="NodeName">The node from which we look for the property</param>
+	<param name="Value">The value of the property</param>
+</member><member name="M:FC.FCXml.SetInnerText(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Set the specified property of the node
+ </summary>
+	<param name="NodeName">The node from which we look for the property</param>
+	<param name="Value">The value of the property</param>
+</member><member name="M:FC.FCXml.SetNodeValue(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Set the specified property of the node
+ </summary>
+	<param name="NodeName">The node from which we look for the property</param>
+	<param name="Value">The value of the property</param>
+</member><member name="M:FC.FCXml.SetAttribute(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Try to set the value of a node's attribute
+ </summary>
+	<param name="NodeName">The node</param>
+	<param name="AttributeName">The attribute's name</param>
+	<param name="AttributeValue">The new value</param>
+	<remarks></remarks>
+</member><member name="M:FC.FCXml.InsertCopyOfNode(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Append a new child to an existing node
+ </summary>
+	<param name="NewParentNode">The new parent node</param>
+	<param name="NodeToCopy">The node to add in the new parent node</param>
+	<param name="Position">-1 or the position of the new child in the parent</param>
+</member><member name="M:FC.FCXml.DeleteNode(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Delete a node from the document
+ </summary>
+	<param name="Node">The node to delete</param>
+	<remarks></remarks>
+</member><member name="T:FC.FCXml">
+	<summary>
+ This class provides support for XML documents
+ </summary>
+	<remarks>The use of this class requires a minimal XML knownledge</remarks>
+	<example>
+ Here's an exemple how to use this object.
+ <code title="Small Basic - Sample">
+ 'OBJECTIVE: Show the title of a well-formed XHTML page
+ 
+ ' Load an XML document
+ XmlDoc = Xml.LoadXMLFile("MyPage.xhtml")
+ 
+ ' Find the TITLE element
+ TitleElement = Xml.GetNode(XmlDoc, "//head/title")
+ 
+ ' Show its text content
+ TextWindow.WriteLine(Xml.GetInnerText(TitleElement))
+ </code>
+ 
+ Application that use the XML object (Core).
+ <code source="./Sources/Xml - Base.sb" title="Small Basic - Test code"></code>
+ (data.xml contains this text)
+ <code source="./Sources/data.xml" title="XML Source" lang="xml"></code>
+	</example>
+</member>
+</members>
+</doc>

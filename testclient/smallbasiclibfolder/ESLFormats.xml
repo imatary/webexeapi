@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<defs>
+    <!-- Text and Other Generic or Miscellaneous Formats -->
+    <type ext="txt" desc="Generic Text File"/>
+    <type ext="log" desc="Generic Log File"/>
+    <type ext="debug" desc="Generic Debug File"/>
+    <type ext="text" desc="Generic Text Document"/>
+    <type ext="rtf" desc="Rich Text Format Document"/>
+    <type ext="doc" desc="Microsoft Word Document"/>
+    <type ext="docx" desc="Microsoft Word OpenXML Document"/>
+    <type ext="docm" desc="Microsoft Word OpenXML Macro-Enabled Document"/>
+    <type ext="dotx" desc="Microsoft Word OpenXML Template"/>
+    <type ext="dotm" desc="Microsoft Word OpenXML Macro-Enabled Template"/>
+    <type ext="ppt" desc="Microsoft PowerPoint Document"/>
+    <type ext="pps" desc="Microsoft PowerPoint Slide Show"/>
+    <type ext="ppsx" desc="Microsoft PowerPoint OpenXML Slide Show"/>
+    <type ext="pptx" desc="Microsoft PowerPoint OpenXML Document"/>
+    <type ext="pptm" desc="Microsoft PowerPoint OpenXML Macro-Enabled Document"/>
+    <type ext="xls" desc="Microsoft Excel Spreadsheet"/>
+    <type ext="xlsx" desc="Microsoft Excel OpenXML Spreadsheet"/>
+    <type ext="xlsm" desc="Microsoft Excel OpenXML Macro-Enabled Spreadsheet"/>
+    <type ext="xlsb" desc="Microsoft Excel BIFF12 Binary Spreadsheet"/>
+    <type ext="conf" desc="Generic Configuration File"/>
+    <type ext="cnf" desc="Generic Configuration File"/>
+    <type ext="config" desc="Generic Configuration File"/>
+    <type ext="dat" desc="Generic Data File"/>
+    <type ext="crx" desc="Google Chrome Extension File"/>
+    <type ext="settings" desc="Generic Configuration File"/>
+    <type ext="aes" desc="AES-Encrypted File"/>
+    <type ext="cpl" desc="Control Panel Item"/>
+    <type ext="cur" desc="Windows Cursor File"/>
+    <type ext="key" desc="Generic Security or Cryptographic Key File"/>
+    <type ext="lnk" desc="Windows Shortcut File"/>
+    <type ext="url" desc="Windows Web Shortcut File"/>
+    <type ext="pfx" desc="PKCS#12 Certificate File"/>
+    <type ext="cert" desc="Generic Certificate File"/>
+    <type ext="csr" desc="Generic Certificate Signing Request File"/>
+    <type ext="xrm-ms" desc="Microsoft Security Certificate File"/>
+    <type ext="ttf" desc="TrueType Font File"/>
+    <type ext="otf" desc="OpenType Font File"/>
+    <type ext="eot" desc="Embedded OpenType Font File"/>
+    <type ext="woff" desc="Web Open Font Format File"/>
+    <!-- Image and Media Files -->
+    <type ext="gif" desc="Graphics Interchange Format Image"/>
+    <type ext="png" desc="Portable Network Graphic Image"/>
+    <type ext="tif" desc="Tagged Image File Format"/>
+    <type ext="tiff" desc="Tagged Image File Format"/>
+    <type ext="jpg" desc="Joint Photographic Experts Group Image"/>
+    <type ext="jpeg" desc="Joint Photographic Experts Group Image"/>
+    <type ext="cr2" desc="Canon Raw Image 2"/>
+    <type ext="bmp" desc="Bitmapped Image"/>
+    <type ext="svg" desc="Scalable Vector Graphic"/>
+    <type ext="design" desc="Microsoft Expression Design File"/>
+    <type ext="apng" desc="Animated Portable Network Graphics Image"/>
+    <type ext="mpeg" desc="Motion Picture Experts Group Video File"/>
+    <type ext="mpg" desc="Motion Picture Experts Group Video File"/>
+    <type ext="mpa" desc="MPEG-2 Audio File"/>
+    <type ext="mp3" desc="MPEG-3 Audio File"/>
+    <type ext="mp4" desc="MPEG-4 Video File"/>
+    <type ext="flv" desc="Flash Video File"/>
+    <type ext="wmv" desc="Windows Media Video File"/>
+    <type ext="wav" desc="WAVE Audio File"/>
+    <type ext="mov" desc="Apple Quicktime Movie File"/>
+    <type ext="avi" desc="Audio-Video Interleave File"/>
+    <type ext="ico" desc="Generic Icon File"/>
+    <type ext="tga" desc="Truevision Graphics Adapter Image"/>
+    <type ext="3ds" desc="Autodesk 3DSMax Model File"/>
+    <type ext="max" desc="Autodesk 3DSMax Model File"/>
+    <type ext="xcf" desc="Experimental Computing Facility File"/>
+    <type ext="raw" desc="Raw Image File"/>
+    <type ext="jp2" desc="JPEG2000 Image"/>
+    <type ext="j2k" desc="JPEG2000 Image"/>
+    <!-- Plain Text Source or Data Files -->
+    <type ext="bin" desc="Generic Binary File"/>
+    <type ext="o" desc="Compiled Object File"/>
+    <type ext="obj" desc="Compiled Object File"/>
+    <type ext="asm" desc="Assembly Instructions File"/>
+    <type ext="c" desc="C Code File"/>
+    <type ext="cpp" desc="C++ Code File"/>
+    <type ext="h" desc="C/C++ Header File"/>
+    <type ext="hpp" desc="C++ Header File"/>
+    <type ext="d" desc="D Code File"/>
+    <type ext="di" desc="D Interface File"/>
+    <type ext="lua" desc="Lua Code File"/>
+    <type ext="java" desc="Java Code File"/>
+    <type ext="cs" desc="C# Code File"/>
+    <type ext="vb" desc="Visual Basic Code File"/>
+    <type ext="php" desc="PHP Script File"/>
+    <type ext="cgi" desc="CGI Script File"/>
+    <type ext="asp" desc="ASP Script File"/>
+    <type ext="aspx" desc="ASP.NET Script File"/>
+    <type ext="htm" desc="Hypertext Markup File"/>
+    <type ext="html" desc="Hypertext Markup File"/>
+    <type ext="xhtml" desc="Extensible Hypertext Markup File"/>
+    <type ext="shtml" desc="Hypertext Markup with SSI File"/>
+    <type ext="jsp" desc="Java Server Pages File"/>
+    <type ext="pl" desc="Perl Code File"/>
+    <type ext="xml" desc="Extensible Markup Language File"/>
+    <type ext="xsl" desc="XML Style Sheet"/>
+    <type ext="xslt" desc="XML Transformation File"/>
+    <type ext="xaml" desc="Extensible Application Markup Language File"/>
+    <type ext="yaml" desc="YAML Ain't Markup Language File"/>
+    <type ext="sb" desc="Microsoft Small Basic Source File"/>
+    <type ext="smallbasic" desc="Microsoft Small Basic Source File"/>
+    <type ext="gbr" desc="Gerber PCB Design File"/>
+    <type ext="csv" desc="Comma-Separated Values File"/>
+    <type ext="db" desc="Generic Database File"/>
+    <type ext="sql" desc="Structured Query Language Query File"/>
+    <type ext="sqlite" desc="SQLite Database File"/>
+    <!-- Executable and Linkable Formats -->
+    <type ext="exe" desc="Executable File"/>
+    <type ext="dll" desc="Dynamic Link Library"/>
+    <type ext="sys" desc="Kernel Mode Driver"/>
+    <type ext="so" desc="UNIX Shared Library"/>
+    <type ext="jar" desc="Java Executable Archive"/>
+    <type ext="lib" desc="Static Link Library"/>
+    <type ext="bat" desc="Windows Batch File"/>
+    <type ext="sh" desc="UNIX Bash Script"/>
+    <type ext="com" desc="Windows Command File"/>
+    <type ext="elf" desc="Executable and Linkable Format"/>
+    <type ext="out" desc="a.out Executable Format"/>
+    <!-- Storage and Archive Formats -->
+    <type ext="iso" desc="Disk Image File"/>
+    <type ext="cab" desc="Windows Cabinet File"/>
+    <type ext="gz" desc="GZip Archive"/>
+    <type ext="bz2" desc="BZip2 Archive"/>
+    <type ext="rar" desc="WinRAR Archive"/>
+    <type ext="tar" desc="TAR Archive"/>
+    <type ext="7z" desc="7Zip Archive"/>
+    <type ext="zip" desc="ZIP Archive"/>
+    <type ext="vhd" desc="Virtual Hard Disk"/>
+    <type ext="vmdk" desc="Virtual Machine Disk Format"/>
+    <type ext="ovf" desc="Open Virtualisation Format"/>
+    <type ext="img" desc="Generic Disk Image File"/>
+</defs>

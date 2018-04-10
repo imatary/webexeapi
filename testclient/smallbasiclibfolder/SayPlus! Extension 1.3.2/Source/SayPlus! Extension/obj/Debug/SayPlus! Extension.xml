@@ -1,0 +1,1438 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+SayPlus!Extension
+</name>
+</assembly>
+<members>
+<member name="P:SayPlus__Extension.My.Resources.Resources.ResourceManager">
+	<summary>
+  Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
+</summary>
+</member><member name="P:SayPlus__Extension.My.Resources.Resources.Culture">
+	<summary>
+  Remplace la propriété CurrentUICulture du thread actuel pour toutes
+  les recherches de ressources à l'aide de cette classe de ressource fortement typée.
+</summary>
+</member><member name="T:SayPlus__Extension.My.Resources.Resources">
+	<summary>
+  Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
+</summary>
+</member><member name="M:SayPlus__Extension.SPMail.SendMail(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Used to send e-mails
+ </summary>
+	<param name="subject">
+ The subject of the e-mail, for example : "Hello !"
+ </param>
+	<param name="body">
+ The body of the e-mail, for example : "Hello, i had great holidays this year !"
+ </param>
+	<param name="username">
+ Your username, for example : "example.xxx@xxx.com"
+ </param>
+	<param name="password">
+ Your e-mail password, so it can connect to send the e-mail.
+ </param>
+	<param name="sendto">
+ The e-mail to send it to
+ </param>
+	<param name="SMTPCLIENT">
+ The Smtp Client of the e-mail, aka server to use...
+ 
+ Servers :
+ smtp.live.com
+ smtp.gmail.com
+ </param>
+	<returns>
+ "SUCCESS" if the e-mail was sent...
+ "FAILED" if the e-mail failed to send...
+ "ERROR" if there is something wrong written in the Primitives...
+ </returns>
+</member><member name="T:SayPlus__Extension.SPMail">
+	<summary>
+ Used to manipulate e-mails functions
+ </summary>
+</member><member name="M:SayPlus__Extension.SPSound.PlaySound(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Used to play a sound
+ </summary>
+	<param name="soundtoplay">
+ The full path of the sound to play
+ For example : "C:\Folder1\folder2\sound.wav"
+ </param>
+	<returns>
+ The path of the sound if neccesary...
+ </returns>
+</member><member name="M:SayPlus__Extension.SPSound.PlayLoopedSound(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Plays a looped sound until it is stopped.
+ </summary>
+	<param name="soundtoplay">
+ The full path of the sound to play
+ For example : "C:\Folder1\folder2\sound.wav"
+ </param>
+	<returns>The path of the sound if neccesary...</returns>
+</member><member name="M:SayPlus__Extension.SPSound.StopSound">
+	<summary>
+ Used to stop a sound
+ </summary>
+</member><member name="T:SayPlus__Extension.SPSound">
+	<summary>
+ Used to manipulate sound.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPAdvancedSound.StartRecording(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Start recording from microsoft's default device.
+ </summary>
+	<param name="name">
+ The name of the record.
+ </param>
+	<returns>
+ The name of the record if neccesary...
+ </returns>
+</member><member name="M:SayPlus__Extension.SPAdvancedSound.StopRecording(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Stop recording from microsoft's default device.
+ </summary>
+	<param name="name">
+ The name of the record.
+ </param>
+	<returns>
+ The name of the record if neccesary...
+ </returns>
+</member><member name="M:SayPlus__Extension.SPAdvancedSound.PauseRecording(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Pause recording from microsoft's default device.
+ </summary>
+	<param name="name">
+ The name of the record.
+ </param>
+	<returns>
+ The name of the record if neccesary...
+ </returns>
+</member><member name="M:SayPlus__Extension.SPAdvancedSound.ResumeRecording(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Resume recording from microsoft's default device.
+ </summary>
+	<param name="name">
+ The name of the record.
+ </param>
+	<returns>
+ The name of the record if neccesary...
+ </returns>
+</member><member name="M:SayPlus__Extension.SPAdvancedSound.SaveRecording(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Save the record.
+ </summary>
+	<param name="name">
+ The name of the record.
+ </param>
+	<param name="filepath">
+ The full path to save this at.
+ Note : It will save as a .wav file.
+ </param>
+	<returns>
+ The file path...
+ </returns>
+</member><member name="M:SayPlus__Extension.SPAdvancedSound.RemoveRecording(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Remove recording declaration.
+ </summary>
+	<param name="name">
+ The name of the record.
+ </param>
+	<returns>
+ The name of the record if neccesary...
+ </returns>
+</member><member name="T:SayPlus__Extension.SPAdvancedSound">
+	<summary>
+ Used to manipulate sound a lot more.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPGeneral.SimpleSendString(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ RESERVED FOR ADVANCED USERS
+ 
+ Send a string that will be reconized by Windows
+ Mostly used for file manipulating and medias.
+ </summary>
+	<param name="stringtosend">
+ The string to send...
+ </param>
+	<returns>
+ The sended string, if neccesary...
+ </returns>
+</member><member name="M:SayPlus__Extension.SPGeneral.SendString(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ RESERVED FOR ADVANCED USERS
+ 
+ Send a string that will be reconized by Windows
+ Mostly used for file manipulating and medias
+ </summary>
+	<param name="stringtosend">The string to send...</param>
+	<param name="returnstring">The returning string...</param>
+	<param name="returnlength">The returning length of the string...</param>
+	<param name="hwndCall">Windows call...</param>
+	<returns>The sended string, if neccesary...</returns>
+</member><member name="M:SayPlus__Extension.SPGeneral.About">
+	<summary>
+ Will show the about box of this extension
+ </summary>
+</member><member name="M:SayPlus__Extension.SPGeneral.Shutdown">
+	<summary>
+ Will shutdown the computer.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPGeneral.LogOut">
+	<summary>
+ Logouts from the current session.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPGeneral.DeepSleep">
+	<summary>
+ Puts the computer in real deep sleep mode.
+ </summary>
+	<remarks>
+ Takes a little while for the computer to enter sleep mode, you will notice that the screen shutdowns, but after like 30 seconds, it is in deep sleep mode...
+ You need to press the power button to activate your computer again.
+ </remarks>
+</member><member name="M:SayPlus__Extension.SPGeneral.AbortShutdown">
+	<summary>
+ Aborts the shutdown proccess...
+ </summary>
+</member><member name="M:SayPlus__Extension.SPGeneral.ShowShutdownDialog">
+	<summary>
+ Shows the shutdown dialog, mostly used to shutdown other people's computer when you are the administrator of a network.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPGeneral.AdvancedShutdown(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Shutdowns the computer with a custom message, and a timeout before shutdown proccess.
+ </summary>
+	<param name="timeout">The timeout in millseconds</param>
+	<param name="message">The message you want to display.</param>
+</member><member name="M:SayPlus__Extension.SPGeneral.MouseWheelExists">
+	<summary>
+ If the mouse wheel exists or not.
+ </summary>
+	<returns>
+ TRUE if it exists.
+ FALSE if it dosen't exists.
+ </returns>
+</member><member name="M:SayPlus__Extension.SPGeneral.GetMouseScrollLines">
+	<summary>
+ The scroll lines of the wheel
+ </summary>
+	<returns>The number of scroll lines.</returns>
+</member><member name="M:SayPlus__Extension.SPGeneral.GetPixel(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Gets the color of a pixel in the whole screen, not only to the graphics window...
+ </summary>
+	<param name="x">The X Value</param>
+	<param name="y">The Y Value</param>
+	<returns>The hex color or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPGeneral.GetPixelFromImage(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Gets the color of a pixel in the image.
+ </summary>
+	<param name="x">The X Value</param>
+	<param name="y">The Y Value</param>
+	<param name="filepath">The filepath of the image.</param>
+	<returns>The hex color or FAILED if fails.</returns>
+</member><member name="T:SayPlus__Extension.SPGeneral">
+	<summary>
+ General functions for SayPlus !
+ </summary>
+</member><member name="M:SayPlus__Extension.SPExtra.Compile(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Will compile any Small Basic based text
+ </summary>
+	<param name="filetocompile">
+ The small basic text to compile.
+ For example : TextWindow.WriteLine("stuff")
+ For i = 0 To 10
+ 'Do this
+ EndFor
+ </param>
+	<returns>
+ SUCCESS if compiling worked, it should open the program.
+ FAILED if compiling didn't worked.
+ </returns>
+	<remarks>THIS FUNCTION IS STILL IN BETA TESTING, THERE CAN BE SOME GLITCHES (Lots)</remarks>
+</member><member name="M:SayPlus__Extension.SPExtra.SendKeys(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Sends the specified word, phrase, number or character to the keyboard, to simulate a keyboard touch press.
+ </summary>
+	<param name="keytosend"></param>
+	<returns>The sended keys, if neccesary...or FAILED</returns>
+</member><member name="M:SayPlus__Extension.SPExtra.ConvertTextToBinary(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Converts a text into binary code.
+ </summary>
+	<param name="text">The text to convert into binary code.</param>
+	<returns>The binary code of the given text or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPExtra.ConvertBinaryToText(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Converts a binary code into a text string.
+ </summary>
+	<param name="binary">The binary code to convert into text.</param>
+	<returns>The text of the given binary code or FAILED if fails.</returns>
+</member><member name="T:SayPlus__Extension.SPExtra">
+	<summary>
+ Extra functions of this extension.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPMath.Opposite(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Calculates the opposite of the number, for example 2 will return 0.5, or 0.25 will return 4.
+ </summary>
+	<param name="number">The number to find the opposite to.</param>
+	<returns>The opposite number of the number.</returns>
+</member><member name="M:SayPlus__Extension.SPMath.SquareRoot(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Calculates the square root of the given number
+ </summary>
+	<param name="number">The number to calculate.</param>
+	<returns>The square root of the given number.</returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPMath.RandomNumber(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Gives a random number between 2 given numbers.
+ </summary>
+	<param name="min">The minimum value of the random number.</param>
+	<param name="max">The maximum value of the random number.</param>
+	<returns>A random number between the min and max values or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPMath.Addition(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Add two numbers together.
+ </summary>
+	<param name="number1">The first number</param>
+	<param name="number2">The second number</param>
+	<returns>The result or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPMath.Substract(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Substract two numbers together.
+ </summary>
+	<param name="number1">The first number</param>
+	<param name="number2">The second number</param>
+	<returns>The result or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPMath.Divide(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Divides two numbers together.
+ </summary>
+	<param name="number1">The first number</param>
+	<param name="number2">The second number</param>
+	<returns>The result or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPMath.Multiply(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Multiplies two numbers together.
+ </summary>
+	<param name="number1">The first number</param>
+	<param name="number2">The second number</param>
+	<returns>The result or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPMath.CheckPythagor(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Checks if the pythagor method is true or not with the given numbers
+ </summary>
+	<param name="longestline">The longest line of the triangle.</param>
+	<param name="line1">The other line length</param>
+	<param name="line2">And again, the other line length.</param>
+	<returns>
+ TRUE if it is equal.
+ FALSE if it is not equal.
+ </returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPMath.CheckOpposite(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Checks if the given numbers are opposite or not.
+ </summary>
+	<param name="num1">The first number.</param>
+	<param name="num2">The second number.</param>
+	<returns>
+ TRUE if the given numbers are opposite.
+ FALSE if the given numbers aren't opposite.
+ </returns>
+	<remarks>
+ The actual operation is simple
+ If x * y = 1 then they are opposites.
+ </remarks>
+</member><member name="M:SayPlus__Extension.SPMath.Average(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Gets the average number with the two given numbers.
+ </summary>
+	<param name="num1">The first number</param>
+	<param name="num2">The second number</param>
+	<returns>
+ The average of the two numbers or FAILED.
+ </returns>
+</member><member name="M:SayPlus__Extension.SPMath.InvSquareRoot(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Gets the inverse of the square root.
+ Ex : 4 would return 2 instead of 2 returns 4 for the square root.
+ </summary>
+	<param name="num">The number.</param>
+	<returns>The Inverse Square Root of the given number.</returns>
+	<remarks></remarks>
+</member><member name="P:SayPlus__Extension.SPMath.Pi">
+	<summary>
+ Returns the excact value of PI by calculating 4*Atan(1)
+ </summary>
+</member><member name="P:SayPlus__Extension.SPMath.ExactPi">
+	<summary>
+ Not the exact value, but very precise value...
+ </summary>
+</member><member name="M:SayPlus__Extension.SPMath.Power(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Calculates the power of a number.
+ </summary>
+	<param name="number">The number</param>
+	<param name="pwr">
+ The power of the number, pretty much like the squareroot 5² = 25, 5
+ But this time it's for you to choose, for example : 5* which * is the power.
+ </param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPMath.Remainder(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Calculates the remainder of two numbers.
+ </summary>
+	<param name="num1">The first number.</param>
+	<param name="num2">The second number.</param>
+	<returns>The remainder after dividing both numbers.</returns>
+</member><member name="M:SayPlus__Extension.SPMath.GCD(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Calculates the Greatest Common Divisor of two numbers.
+ </summary>
+	<param name="num1">The first number.</param>
+	<param name="num2">The second number.</param>
+	<returns>The greatest common divisor of the two given numbers.</returns>
+</member><member name="T:SayPlus__Extension.SPMath">
+	<summary>
+ Some math functions.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPClipboard.GetText">
+	<summary>
+ Gets the text of the clipboard.
+ </summary>
+	<returns>The text in the clip board or "FAILED" if fails.</returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPClipboard.SetText(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Sets a text into the clipboard.
+ </summary>
+	<param name="text">The text to set into the clipboard.</param>
+	<returns>"FAILED" if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPClipboard.Clear">
+	<summary>
+ Clears the clipboard.
+ </summary>
+	<returns>"FAILED" if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPClipboard.GetAudioAndPlay">
+	<summary>
+ Gets the audio in the clipboard, and plays it.
+ </summary>
+	<returns>"FAILED" if fails.</returns>
+	<remarks>This can be quite buggy, especially if you don't have a good PC, because it is still an unoptimized code.</remarks>
+</member><member name="T:SayPlus__Extension.SPClipboard">
+	<summary>
+ A simple clipboard.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPRegistry.GetValue(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Get the value of the key and value name
+ </summary>
+	<param name="keyname">The key name of the value to get.</param>
+	<param name="valuename">The value name of the value to get.</param>
+	<param name="defaultvalue">The default value fo the value to get.</param>
+	<returns>The value of the given key name, value name, and default value.</returns>
+</member><member name="M:SayPlus__Extension.SPRegistry.SetValue(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Sets a value in the registry.
+ ONLY FOR ADVANCED USERS, MODIFYING THE RESGISTRY INCORRECTLY CAN HARM YOUR COMPUTER.
+ </summary>
+	<param name="keyname">The key name where you want to set the value at.</param>
+	<param name="valuename">The value name where you want to set the value at.</param>
+	<param name="value">The new value.</param>
+</member><member name="T:SayPlus__Extension.SPRegistry">
+	<summary>
+ Object to manipulate registry values and keys.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPNetwork.IsAvaliable">
+	<summary>
+ Determines if a network is avaliable or not.
+ </summary>
+	<returns>TRUE or FALSE or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPNetwork.Request(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Pings a target with his IP to see if there's any connection with this IP.
+ </summary>
+	<param name="IP">The IP of the target.</param>
+	<param name="timeout">The timeout, in milliseconds or -1 for infinite.</param>
+	<returns>True or False, or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPNetwork.Ping(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Pings a server to see the response time.
+ </summary>
+	<param name="IP">The IP of the target.</param>
+	<param name="timeout">The timeout, in milliseconds or -1 for infinite.</param>
+	<returns>The ping in milliseconds or FAILED.</returns>
+</member><member name="M:SayPlus__Extension.SPNetwork.DownloadFile(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Downloads a file async from the internet.
+ </summary>
+	<param name="filetodownload">The URL to download.</param>
+	<param name="targetpath">The target file path to save this at.</param>
+	<returns>SUCCESS or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPNetwork.UploadFile(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Uploads a file async into the internet.
+ </summary>
+	<param name="filetoupload">The file path for the upload.</param>
+	<param name="targetURL">The target URL in the internet.</param>
+	<returns>SUCCESS or FAILED if fails.</returns>
+	<remarks>Only works if your IP is allowed to upload files on that site, or computer, ect...
+ Which in major cases, won't be true, works great for FTP.
+ </remarks>
+</member><member name="M:SayPlus__Extension.SPNetwork.SearchGoogle(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Transforms a given text into a google search link with the specified search text.
+ </summary>
+	<param name="text">The text.</param>
+	<returns>
+ The full link of the search.
+ Or FAILED if fails.
+ </returns>
+</member><member name="M:SayPlus__Extension.SPNetwork.SearchYoutube(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Transforms a given text into a youtube search link with the specified search text.
+ </summary>
+	<param name="text">The text.</param>
+	<returns>
+ The full link of the search.
+ Or FAILED if fails.
+ </returns>
+</member><member name="M:SayPlus__Extension.SPNetwork.GetIP(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Gets the ip of the specified network adapter.
+ </summary>
+	<param name="networkID">The network ID, just go on and experience with values, it can vary very much.</param>
+	<returns>The IP of the specified network adapater by his ID or FAILED if it dosen't exists.</returns>
+</member><member name="P:SayPlus__Extension.SPNetwork.InternetIP">
+	<summary>
+ Gets the internet IP of this computer.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPNetwork.GetAttributeValue(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Gets the value of a attribute specified by it's name and it's parent (tag) in a web page.
+ </summary>
+	<param name="page">The web page.</param>
+	<param name="tag">The tag of the attribute</param>
+	<param name="attribute">The attribute name</param>
+	<returns>The value of the attribute</returns>
+</member><member name="T:SayPlus__Extension.SPNetwork">
+	<summary>
+ Object used to manipulate network functions.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPProcess.Start(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Starts a program.
+ </summary>
+	<param name="filepath">The filepath where the program is.</param>
+</member><member name="M:SayPlus__Extension.SPProcess.StartWithArguments(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Starts a program with the given arguments.
+ </summary>
+	<param name="filepath">The filepath where the program is.</param>
+	<param name="arguments">The arguments.</param>
+</member><member name="M:SayPlus__Extension.SPProcess.GetProcesses">
+	<summary>
+ Gets all the processes.
+ </summary>
+	<returns>The procceses in an array.</returns>
+</member><member name="T:SayPlus__Extension.SPProcess">
+	<summary>
+ Used to manipulate procceses.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPMemory.ModifyInteger(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Modifies an Integer 1,2,3...
+ </summary>
+	<param name="processname">The process name to modify the address, ex : skype,iw5mp...</param>
+	<param name="address">The adress to modify, ex : *asxterix*H12345678</param>
+	<param name="newvalue">The new value.</param>
+	<param name="size">
+ The size of the value
+ 1 (Byte), 2 (2 Bytes), 4 (4 Bytes (Mostly Used))
+ </param>
+</member><member name="M:SayPlus__Extension.SPMemory.ModifyFloat(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Modifies a Float 100.0F
+ </summary>
+	<param name="processname">The process name to modify the address, ex : skype,iw5mp...</param>
+	<param name="address">The adress to modify, ex : *asxterix*H12345678</param>
+	<param name="newvalue">The new value.</param>
+	<param name="size">
+ The size of the value
+ 1 (Byte), 2 (2 Bytes), 4 (4 Bytes (Mostly Used))
+ </param>
+</member><member name="M:SayPlus__Extension.SPMemory.ModifyLong(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Modifies a Long 50.55
+ </summary>
+	<param name="processname">The process name to modify the address, ex : skype,iw5mp...</param>
+	<param name="address">The adress to modify, ex : *asxterix*H12345678</param>
+	<param name="newvalue">The new value.</param>
+	<param name="size">
+ The size of the value
+ 1 (Byte), 2 (2 Bytes), 4 (4 Bytes (Mostly Used))
+ </param>
+</member><member name="M:SayPlus__Extension.SPMemory.InjectDLL(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Injects a given DLL into a process.
+ </summary>
+	<param name="processname">The process name, ex : skype,iw5mp</param>
+	<param name="dlltoinject">The file path of the DLL to inject.</param>
+	<returns>
+ SUCCESS if it succesfully injected.
+ FAILED if it didn't.
+ </returns>
+</member><member name="T:SayPlus__Extension.SPMemory">
+	<summary>
+ Used to manipulate memory procceses functions.
+ Mostly used to modify values on programs.
+ USED FOR CHEATING AND HACKING.
+ I'm not reponsible if it dosen't work, or anything bad happens while hacking adresses.
+ That's up to you if you modify them.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPSpecialChars.NewLine">
+	<summary>
+ The new line character.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPSpecialChars.Quotation">
+	<summary>
+ The quotation character which is "
+ </summary>
+</member><member name="T:SayPlus__Extension.SPSpecialChars">
+	<summary>
+ Specials characters that cannot be used in code, but now... it can !
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.A">
+	<summary>
+ The A key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.Z">
+	<summary>
+ The Z key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.E">
+	<summary>
+ The E key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.R">
+	<summary>
+ The R key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.T">
+	<summary>
+ The T key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.Y">
+	<summary>
+ The Y key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.U">
+	<summary>
+ The U key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.I">
+	<summary>
+ The I key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.O">
+	<summary>
+ The O key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.P">
+	<summary>
+ The P key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.Q">
+	<summary>
+ The Q key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.S">
+	<summary>
+ The S key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.D">
+	<summary>
+ The D key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.F">
+	<summary>
+ The F key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.G">
+	<summary>
+ The G key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.H">
+	<summary>
+ The H key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.J">
+	<summary>
+ The J key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.K">
+	<summary>
+ The K key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.L">
+	<summary>
+ The L key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.M">
+	<summary>
+ The M key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.W">
+	<summary>
+ The W key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.X">
+	<summary>
+ The X key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.C">
+	<summary>
+ The C key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.V">
+	<summary>
+ The V key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.B">
+	<summary>
+ The B key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.N">
+	<summary>
+ The N key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.D1">
+	<summary>
+ The 1 key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.D2">
+	<summary>
+ The 2 key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.D3">
+	<summary>
+ The 3 key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.D4">
+	<summary>
+ The 4 key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.D5">
+	<summary>
+ The 5 key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.D6">
+	<summary>
+ The 6 key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.D7">
+	<summary>
+ The 7 key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.D8">
+	<summary>
+ The 8 key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.D9">
+	<summary>
+ The 9 key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.D0">
+	<summary>
+ The 0 key.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.OemQuotes">
+	<summary>
+ The ² Key on AZERTY Keyboards.
+ The ~ Key on QWERTY Keyboards.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.Num1">
+	<summary>
+ The 1 key on the numpad.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.Num2">
+	<summary>
+ The 2 key on the numpad.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.Num3">
+	<summary>
+ The 3 key on the numpad.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.Num4">
+	<summary>
+ The 4 key on the numpad.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.Num5">
+	<summary>
+ The 5 key on the numpad.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.Num6">
+	<summary>
+ The 6 key on the numpad.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.Num7">
+	<summary>
+ The 7 key on the numpad.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.Num8">
+	<summary>
+ The 8 key on the numpad.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.Num9">
+	<summary>
+ The 9 key on the numpad.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPKeys.Num0">
+	<summary>
+ The 0 key on the numpad.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPKeys.GetKeyIsPressed(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Gets if the specified key is pressed or not
+ It acts like an hotkey yet, it means that even if you don't focus on the program, it will detect the key presses.
+ </summary>
+	<param name="key">The key, please use the keys properties for easyness.</param>
+	<returns>True if the key is pressed, False if it isn't, or FAILED if fails.</returns>
+</member><member name="T:SayPlus__Extension.SPKeys">
+	<summary>
+ Almost all the keys from the keyboard are in there.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPJava.Compile(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Compiles a file into a class file.
+ </summary>
+	<param name="filepath">The filepath</param>
+	<returns>
+ SUCCESS if it compiles.
+ FAILED if it dosen't.
+ </returns>
+</member><member name="M:SayPlus__Extension.SPJava.Run(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Runs a java file.
+ </summary>
+	<param name="filepath">The filepath.</param>
+	<param name="method">
+ The method to run the java program.
+ "jar" to run a .jar file
+ "class" to run a .class file
+ </param>
+	<returns>
+ SUCCESS if it runs
+ FAILED if it dosen't
+ </returns>
+</member><member name="T:SayPlus__Extension.SPJava">
+	<summary>
+ Used to manipulate java functions.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPDialogs.ShowOpenDialog(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Shows a open file dialog.
+ </summary>
+	<param name="title">The title of the open file dialog.</param>
+	<param name="filter">
+ The filter of the open file dialog :
+ Exe Files |*.exe | MP3 |*.mp3
+ </param>
+	<param name="returnmethod">
+ 1 to return the full path.
+ 2 to return only the file name.
+ </param>
+	<returns>
+ The full path if the method is 1
+ The file name of the method was 2.
+ Else it returns FAILED.
+ </returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPDialogs.ShowSaveDialog(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Shows the save file dialog.
+ </summary>
+	<param name="title">The title of the save file dialog.</param>
+	<param name="filter">The filter, see openfiledialog for example.</param>
+	<returns>The full path or FAILED.</returns>
+</member><member name="M:SayPlus__Extension.SPDialogs.ShowColorDialog">
+	<summary>
+ Shows the color dialog.
+ </summary>
+	<returns>The chosen color or FAILED.</returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPDialogs.ShowFolderDialog(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Shows the folder selection dialog.
+ </summary>
+	<param name="newfolderbutton">
+ Allow to create new folders from the dialog.
+ True or False.
+ </param>
+	<returns>The full path of the selected folder or FAILED.</returns>
+</member><member name="M:SayPlus__Extension.SPDialogs.ShowFontDialog">
+	<summary>
+ Shows the font dialog.
+ </summary>
+	<returns>The selected font.</returns>
+</member><member name="T:SayPlus__Extension.SPDialogs">
+	<summary>
+ Used to manipulate dialogs.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPLua.ExecuteLUACommand(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Runs a line of lua code.
+ </summary>
+	<param name="luastring">The line to run.</param>
+	<returns>
+ SUCCESS if the code ran.
+ The exception message if fails.
+ </returns>
+</member><member name="M:SayPlus__Extension.SPLua.RunLUAFile(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Runs a .lua file.
+ </summary>
+	<param name="filepath">The filepath of the lua file.</param>
+	<returns>
+ SUCCESS if it ran the code.
+ The exception message if fails.
+ </returns>
+</member><member name="P:SayPlus__Extension.SPLua.LUAVersion">
+	<summary>
+ Returns the current version of LUA.
+ </summary>
+</member><member name="T:SayPlus__Extension.SPLua">
+	<summary>
+ Used to manipulate the LUA 5.1 language.
+ Go to : http://www.lua.org/manual/5.1/ for more information
+ </summary>
+</member><member name="M:SayPlus__Extension.SPFile.NumberOfDirectories(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Get the number of directories in a specified directory.
+ </summary>
+	<param name="path">The path.</param>
+	<returns>The number of directories.</returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPFile.NumberOfFiles(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Get the number of files in a specified directory.
+ </summary>
+	<param name="path">The path.</param>
+	<returns>The number of files.</returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPFile.CreateDirectory(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Creates a directory.
+ </summary>
+	<param name="path">The path</param>
+	<returns>SUCCESS or FAILED.</returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPFile.CreateFile(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Creates a new file.
+ </summary>
+	<param name="path">The path</param>
+	<param name="text">The text to write.</param>
+	<returns>SUCCESS or FAILED.</returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPFile.DeleteFile(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Deletes a file.
+ </summary>
+	<param name="path">The path.</param>
+	<param name="method">
+ The method to use :
+ "recycle" sends it to the recycle bin.
+ "delete" deletes it permanently.
+ </param>
+	<returns>SUCCESS or FAILED</returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPFile.DeleteDirectory(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Deletes a directory.
+ </summary>
+	<param name="path">The path</param>
+	<param name="method">
+ The method to use :
+ "recycle" sends it to the recycle bin.
+ "delete" deletes it permanently.
+ </param>
+	<returns>SUCCES or FAILED</returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPFile.Write(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Writes text to a file.
+ </summary>
+	<param name="path">The path</param>
+	<param name="text">The text to write</param>
+	<param name="append">If you should append or not.</param>
+	<returns>SUCCESS or FAILED</returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPFile.Read(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Reads a file.
+ </summary>
+	<param name="path">The path</param>
+	<returns>The text or FAILED</returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPFile.RenameFile(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Renames a file.
+ </summary>
+	<param name="oldname">The path of the file.</param>
+	<param name="newname">The new name.</param>
+	<returns>SUCCES or FAILED</returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPFile.RenameDirectory(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Renames a directory.
+ </summary>
+	<param name="oldname">The path of the directory.</param>
+	<param name="newname">The new name.</param>
+	<returns>SUCCESS or FAILED</returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPFile.GetSize(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Gets the file's size in bytes.
+ </summary>
+	<param name="filepath">The file path.</param>
+	<returns>The size of the file in bytes or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPFile.GetDirectorySize(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Get the directory's size in bytes with all files contained in there.
+ </summary>
+	<param name="path">The path</param>
+	<returns>The size in bytes or FAILED if fails.</returns>
+</member><member name="T:SayPlus__Extension.SPFile">
+	<summary>
+ Used to manipulate files and directories.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPSecurity.GeneratePassword(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Generates a password.
+ </summary>
+	<param name="length">The length of the password.</param>
+	<returns>The generated password or FAILED.</returns>
+</member><member name="M:SayPlus__Extension.SPSecurity.GenerateHardPassword(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Generates a hard password.
+ </summary>
+	<param name="length">The length of the password.</param>
+	<returns>The generated password or FAILED.</returns>
+</member><member name="M:SayPlus__Extension.SPSecurity.GenerateCustomPassword(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Generates a custom password.
+ </summary>
+	<param name="length">The length of the password.</param>
+	<param name="input">
+ The input of the password
+ For example an input with "abc123" will only generate the password with those characters.
+ </param>
+	<returns>The generated password or FAILED.</returns>
+</member><member name="T:SayPlus__Extension.SPSecurity">
+	<summary>
+ Used for security functions.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPError.LastError">
+	<summary>
+ Will return the last error.
+ </summary>
+	<value></value>
+	<returns>The last error.</returns>
+</member><member name="T:SayPlus__Extension.SPError">
+	<summary>
+ Used to get errors.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPConverter.ConvEuroToDollar(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Converts Euros to Dollars.
+ </summary>
+	<param name="euro">The number of euros.</param>
+	<returns>The dollar value.</returns>
+</member><member name="M:SayPlus__Extension.SPConverter.ConvDollarToEuro(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Converts Dollars to Euros.
+ </summary>
+	<param name="dollar">The number of dollars.</param>
+	<returns>The euros value.</returns>
+</member><member name="M:SayPlus__Extension.SPConverter.ConvCustom(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Converts a custom currency.
+ </summary>
+	<param name="currency">The currency you wish to convert.</param>
+	<param name="base">
+ The base 1 of the currency
+ For example, to convert euros to dollar, we know that "euro" = 2, and to convert it to dollars we did euro*1.34119
+ </param>
+	<returns>The converted currency</returns>
+</member><member name="T:SayPlus__Extension.SPConverter">
+	<summary>
+ This is a currency converter.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.Init(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ If you want to control a specific server, then call this function.
+ </summary>
+	<param name="ip">The IP of the server.</param>
+	<param name="password">The password, leave blank if there's no password.</param>
+	<param name="port">The port of the server, by default 25565</param>
+	<param name="authas">Authentificate as a player.</param>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.AddToWhitelist(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Adds a player to the whitelist.
+ </summary>
+	<param name="player">The player name</param>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.BroadcastMessage(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Broadcasts a message to the server.
+ </summary>
+	<param name="message">The message.</param>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.DisablePlugin(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Disables a plugin.
+ </summary>
+	<param name="plugin">The plugin name.</param>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.EnablePlugin(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Enables a plugin.
+ </summary>
+	<param name="plugin">The plugin name.</param>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.GetBlockID(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Gets the ID of a block.
+ </summary>
+	<param name="x">The X Vector</param>
+	<param name="y">The Y Vector</param>
+	<param name="z">The Z Vector</param>
+	<returns>The Block ID at the speficied vector.</returns>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.GetCuboid(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Gets the cuboid of a player.
+ </summary>
+	<param name="player">The player name.</param>
+	<returns>The cuboid.</returns>
+</member><member name="P:SayPlus__Extension.SPMinecraftServer.Modt">
+	<summary>
+ Gets the MODT of the server (Message of the day.)
+ </summary>
+</member><member name="P:SayPlus__Extension.SPMinecraftServer.PlayerCount">
+	<summary>
+ Gets the player count of the server.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPMinecraftServer.MaxPlayerCount">
+	<summary>
+ Gets the max player count of the server.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.GetSignText(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Gets the sign of a text.
+ </summary>
+	<param name="x">The X Vector.</param>
+	<param name="y">The Y Vector.</param>
+	<param name="z">The Z Vector.</param>
+	<param name="line">The line number.</param>
+	<returns>The text of the specified line of the specified sign at the specified vector.</returns>
+	<remarks></remarks>
+</member><member name="P:SayPlus__Extension.SPMinecraftServer.Time">
+	<summary>
+ Gets or sets the time of the server.
+ </summary>
+	<value>
+ The time value
+ 0 for dawn
+ 6000 for day
+ 12000 for dusk
+ 18000 for night
+ 24000 = 0
+ </value>
+	<returns>The time of the server.</returns>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.Kick(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Kicks a player from the server.
+ </summary>
+	<param name="player">The player name.</param>
+	<param name="reason">The reason.</param>
+</member><member name="P:SayPlus__Extension.SPMinecraftServer.GetPlayers">
+	<summary>
+ The all the players name in the server.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.GetPos(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Gets the vector position of a player.
+ </summary>
+	<param name="player">The player name.</param>
+	<returns>The position vector.</returns>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.Give(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Gives a block or an item to a player.
+ </summary>
+	<param name="player">The player name.</param>
+	<param name="blockoritemid">The block or item ID</param>
+	<param name="amount">The amount 1-64</param>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.GoRainbow">
+	<summary>
+ Writes a RAINBOW text, this is a debug function, to see if it works.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.SetBlock(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Sets the block at the specified position.
+ </summary>
+	<param name="x">The X Vector</param>
+	<param name="y">The Y Vector</param>
+	<param name="z">The Z Vector</param>
+	<param name="blockid">The block ID</param>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.SetSignText(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Sets the sign of a text
+ </summary>
+	<param name="x">The X Vector</param>
+	<param name="y">The Y Vector</param>
+	<param name="z">The Z Vector</param>
+	<param name="line">The line number.</param>
+	<param name="text">The text.</param>
+</member><member name="P:SayPlus__Extension.SPMinecraftServer.WhitelistEnabled">
+	<summary>
+ Shows if Whitelist is enabled or not.
+ </summary>
+	<returns>TRUE or FALSE</returns>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.RunConsoleCommand(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Runs a console command.
+ </summary>
+	<param name="command">The command</param>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.RunServerCommand(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Runs a server command
+ </summary>
+	<param name="command">
+ The command to run
+ Ex : time set 0
+ kick Notch
+ gamemode Jeb 1
+ ...
+ </param>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.SendMessage(System.Object,System.Object)">
+	<summary>
+ Sends a message to a player.
+ </summary>
+	<param name="player">The player name.</param>
+	<param name="message">The message.</param>
+</member><member name="M:SayPlus__Extension.SPMinecraftServer.ToggleMute(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Toggles mute for a player.
+ </summary>
+	<param name="player">The player name.</param>
+</member><member name="T:SayPlus__Extension.SPMinecraftServer">
+	<summary>
+ Used to do things on minecraft servers.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPStopWatch.StartStopWatch">
+	<summary>
+ Starts the Stop Watch.
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPStopWatch.PauseStopWatch">
+	<summary>
+ Pauses/Stops the Stop Watch.
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPStopWatch.ResetStopWatch">
+	<summary>
+ Resets the Stop Watch.
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="T:SayPlus__Extension.SPStopWatch">
+	<summary>
+ This is a Stop Watch, used to measure time.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPWindows.HWID">
+	<summary>
+ The HWID...
+ Your very UNIQUE computer ID, it is unique in each computer in the world.
+ This information is in your proccesor, you CANT change it unless you use hack software to change it OR change your computer/proccesor.
+ It can be useful for PC authentifications, pretty much an unique login ID.
+ </summary>
+	<returns>Your HWID.</returns>
+</member><member name="T:SayPlus__Extension.SPWindows">
+	<summary>
+ Used to manipulate Windows functions and properties.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPText.IsEmpty(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Checks if the specified text is empty or not.
+ </summary>
+	<param name="text">The text.</param>
+	<returns>True or False or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPText.NumOfChars(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Checks how many specified chars are in the specified text.
+ </summary>
+	<param name="data">The text to check.</param>
+	<param name="subChar">The char.</param>
+	<returns>
+ An array of the count of chars and their position
+ The count of the chars is indexed by 0 according to the array
+ And their position according to the array start by 1 and goes on...
+ </returns>
+</member><member name="M:SayPlus__Extension.SPText.GetArguments(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Gets the arguments in a text.
+ </summary>
+	<param name="text">The text.</param>
+	<returns>The splited text in an array, started by 1.</returns>
+</member><member name="T:SayPlus__Extension.SPText">
+	<summary>
+ Used to manipulate text functions.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPTextWindow.DrawPixel(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Draws a pixel at the specified position and color.
+ </summary>
+	<param name="x">The X value, should be inferior or equal to 79.</param>
+	<param name="y">The Y value.</param>
+	<param name="color">
+ The color
+ It can be : "blue,green,yellow,red,gray,black,white"
+ The colors are very limited due to the textwindow.
+ </param>
+	<returns>SUCCESS or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPTextWindow.DrawGroupPixels(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Creates a group of pixels in the text window in the same color.
+ </summary>
+	<param name="x">The left value to begin.</param>
+	<param name="y">The top value to begin</param>
+	<param name="width">The width</param>
+	<param name="height">The height</param>
+	<param name="color">
+ The color
+ It can be : "blue,green,yellow,red,gray,black,white"
+ The colors are very limited due to the textwindow.
+ </param>
+	<returns>SUCCESS or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPTextWindow.TextPrint(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Prints a text to the textwindow with a delay between each character.
+ </summary>
+	<param name="text1">The text</param>
+	<param name="delay">The delay</param>
+	<returns></returns>
+</member><member name="M:SayPlus__Extension.SPTextWindow.ReturnLine">
+	<summary>
+ Does a return to the line in the textwindow.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPTextWindow.WriteCenter(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Writes a text in the center of the current line.
+ </summary>
+	<param name="data">The data. (Text, numbers, characters)</param>
+	<returns>SUCCESS or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPTextWindow.Separator">
+	<summary>
+ Inserts a separator in the current line.
+ </summary>
+	<returns>SUCCESS or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPTextWindow.Title(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Same as doing the WriteCenter("Example") and then Seperator()
+ </summary>
+	<param name="data">The title.</param>
+	<returns>SUCCESS or FAILED if fails.</returns>
+</member><member name="T:SayPlus__Extension.SPTextWindow">
+	<summary>
+ Used to manipulate textwindow functions.
+ It actually manipuate the original TextWindow Object, this is not an external TextWindow.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPProgram.Quit">
+	<summary>
+ Quits the program.
+ </summary>
+</member><member name="E:SayPlus__Extension.SPProgram.Tick">
+	<summary>
+ The tick event, this is an event that is called at every frame.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPProgram.AllowTick(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ If it should allow the tick event or not.
+ </summary>
+	<param name="bool">True or False</param>
+	<returns>SUCCESS or FAILED if fails.</returns>
+</member><member name="T:SayPlus__Extension.SPProgram">
+	<summary>
+ Used for general functions.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPTaskbar.NotifierText">
+	<summary>
+ The text of the notifier when you pass the mouse on the icon.
+ </summary>
+</member><member name="P:SayPlus__Extension.SPTaskbar.Visible">
+	<summary>
+ If the notifier should be visible or not.
+ </summary>
+</member><member name="M:SayPlus__Extension.SPTaskbar.EnableNotifier(Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Enables the notifier.
+ </summary>
+	<param name="icon">The icon to use.</param>
+	<returns>SUCCESS or FAILED if fails.</returns>
+</member><member name="M:SayPlus__Extension.SPTaskbar.DisableNotifier">
+	<summary>
+ Disables the notifier.
+ </summary>
+	<returns>SUCCESS or FAILED if fails.</returns>
+	<remarks></remarks>
+</member><member name="M:SayPlus__Extension.SPTaskbar.ShowNotification(Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive,Microsoft.SmallBasic.Library.Primitive)">
+	<summary>
+ Shows a ballon tip notification.
+ </summary>
+	<param name="text">The text to show.</param>
+	<param name="tipicon">
+ The icon to use
+ It can be : "Warning,Error,Info,None" or anything else for no icon
+ </param>
+	<param name="title">The title.</param>
+	<param name="timeout">The timeout in milliseconds</param>
+	<returns>SUCCESS or FAILED if fails.</returns>
+</member><member name="E:SayPlus__Extension.SPTaskbar.BallonClicked">
+	<summary>
+ When the ballon is clicked.
+ </summary>
+</member><member name="E:SayPlus__Extension.SPTaskbar.BallonClosed">
+	<summary>
+ Wen the ballon is closed.
+ </summary>
+</member><member name="E:SayPlus__Extension.SPTaskbar.NotifierClicked">
+	<summary>
+ When the notifier is clicked.
+ </summary>
+</member><member name="E:SayPlus__Extension.SPTaskbar.NotifierDoubleClicked">
+	<summary>
+ When the notifier is double clicked.
+ </summary>
+</member><member name="T:SayPlus__Extension.SPTaskbar">
+	<summary>
+ Mainly used for notifier.
+ </summary>
+</member>
+</members>
+</doc>

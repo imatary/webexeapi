@@ -1,0 +1,404 @@
+Thank you for downloading this extension, SayPlus! Extension 1.3.0
+
+Updates:
+
+ 
+
+1.0.0 : Initial Release, please report any bugs.
+
+1.0.1 : + Changed the Object name from SayPlusxxx To SPxxx, to make it shorter
+
+        * Fixed Return glitches
+
+1.1.0 : + Added new functions in SPGeneral
+
+ + Added SPClipboard Object
+
+ + Added SPExtra Object
+
+ + Added SPMath Object
+
+ + Added SPMemory Object
+
+ + Added SPNetwork Object
+
+ + Added SPProcess Object
+
+ + Added SPRegistry Object
+
+1.2.0 BETA : + Added SPConverter
+
++Added SPDialogs
+
++Added SPError
+
++Added SPFile
+
++Added SPJava
+
++Added SPKeys
+
++Added SPLua
+
++Added SPMinecraftServer
+
++Added SPSecurity
+
++Added SPSpecialsChars
+
+1.2.1 : *Fixed StopWatch not working.
+
+*Fixed GeneratePassword
+
+*Fixed GenerateHardPassword
+
+*Fixed GenerateCustomPassword
+
+1.3.0 : + Added SPTextWindow : DrawPixel, DrawGroupPixel, ReturnLine, TextPrint
+  + Added in SPFile : GetDirectorySize, GetSize
+  + Added in SPKeys : GetKeyIsPressed
+  + Added in SPMath : ExactPi
+  * Removed LocalIP in SPNetwork and replaced it by GetIP(index)
+  + Added SPProgram : AllowTick(bool), Quit(), Tick
+  + Added PlayLoopedSound in SPSound
+  + Added SPTaskbar
+  + Added SPText
+  + Added SPWindows
+
+1.3.1 : + Added SPResolution
+	+ Added new functions in SPTextWindow (Title(),WriteCenter(),Separator())
+1.3.2 : * Fixed SPText.GetArguments(data)
+        + Added CenterGraphicsWindow() in SPResolution
+
+----------------------------------------------------------------------------------------------
+
+ 
+
+Extension:
+
+ 
+
+SPGeneral-SimpleSendString: Sends a string to windows kernel, ADVANCED USERS ONLY
+
+         -SendString: More advanced version of the above
+
+ -AbortShutdown
+
+ -About
+
+ -AdvancedShutdown
+
+ -DeepSleep
+
+ -GetMouseScrollLines
+
+ -LogOut
+
+ -MouseWhellExists
+
+ -ShowShutdownDialog
+
+ -Shutdown
+
+ 
+
+SPMail-SendMail: Sends an e-mail
+
+ 
+
+SPSound-PlaySound: Plays a specified sound.
+
+       -StopSound: Stop the current playing sound.
+
+ 
+
+SPAdvancedSound-StartRecording: Starts a record from the default recroding device
+
+               -StopRecording: Stop the record.
+
+               -PauseRecording: Pauses the record.
+
+               -ResumeRecording: Resumes the record.
+
+               -SaveRecording: Saves the record as a .wav file.
+
+               -RemoveRecording: Deletes the recording declaration, so you can do a new record.
+
+ 
+
+SPClipboard-Clear: Clears the clipboards
+
+   -GetAudioAndPlay: Gets the audio in the clipboard and plays it.
+
+   -GetText: Gets text in the clipboard
+
+   -SetText: Sets text in the clipboard
+
+ 
+
+SPExtra-Compile: Compiles a program with the given text (Small Basic)
+
+       -ConvertBinaryToText: Converts a binary "01110101" to text.
+
+       -ConvertTextToBinary: Does the inverse of the above
+
+       -SendKeys: Sends keys to the keyboard, just as if they were really typed
+       
+       -SlowPrint
+
+ 
+
+SPMath-Addition
+
+      -Average
+
+      -CheckOpposite
+
+      -CheckPythagor
+
+      -Divide
+
+      -InvSquareRoot
+
+      -Multiply
+
+      -Pi
+
+      -Opposite
+
+      -Power
+
+      -RandomNumber
+
+      -SquareRoot
+
+      -Substract
+
+ 
+
+SPMemory-ModifyFloat
+
+-ModifyInteger
+
+-ModifyLong
+
+-InjectDLL
+
+ 
+
+SPNetwork-DownloadFile
+
+-IsAvaliable
+
+-Ping*
+
+-UploadFile
+
+-Request
+
+-SearchGoogle
+
+-SearchYoutube
+
+-UploadFile
+
+-InternetIP
+
+-LocalIP
+
+ 
+
+SPProcess-Start
+
+-StartWithArguments
+
+ 
+
+SPRegistry-GetValue
+
+ -SetValue
+
+SPConverter-ConvCustom
+-ConvDollarToEuro
+-ConvEuroToDollar
+
+SPDialogs-ShowColorDialog
+-ShowFolderDialog
+-ShowFontDialog
+-ShowOpenDialog
+-ShowSaveDialog
+
+SPError-LastError
+
+SPFile-CreateDirectory
+-CreateFile
+-DeleteDirectory
+-DeleteFile
+-GetDirectorySize
+-GetSize
+-NumberOfDirectories
+-NumberOfFiles
+-Read
+-RenameDirectory
+-RenameFile
+-Write
+
+SPJava-Compile
+-Run
+
+SPKeys-A
+-A
+-Add
+-B
+-Backspace
+-C
+-Capital
+-Comma
+-D
+-D0
+-D1
+-D2
+-D3
+-D4
+-D5
+-D6
+-D7
+-D8
+-D9
+-Delete
+-Divide
+-DownArrow
+-E
+-EndKey
+-Enter
+-Escape
+-F
+-F1
+-F10
+-F11
+-F12
+-F2
+-F3
+-F4
+-F5
+-F6
+-F7
+-F8
+-F9
+-G
+-H
+-Home
+-I
+-Insert
+-J
+-K
+-L
+-LeftArrow
+-LeftCtrl
+-LeftShift
+-LeftWindows
+-M
+-Multiply
+-N
+-NextKey
+-None
+-Num0
+-Num1
+-Num2
+-Num3
+-Num4
+-Num5
+-Num6
+-Num7
+-Num8
+-Num9
+-NumDecimal
+-NumLock
+-O
+-Oem
+-Oem1
+-Oem3
+-Oem5
+-Oem6
+-Oem8
+-OemBackSlash
+-OemOpenBrackets
+-OemPlus
+-OemQuotes
+-P
+-PageUp
+-Period
+-Q
+-Question
+-R
+-RightArrow
+-RightCtrl
+-RightShift
+-RightWindows
+-S
+-Space
+-Substract
+-T
+-Tab
+-U
+-UnknownChar
+-UpArrow
+-V
+-VolumeDown
+-VolumeMute
+-VolumeUp
+-W
+-X
+-Y
+-Z
+
+SPLua-LUAVersion
+-ExecuteLUACommand
+-RunLUAFile
+
+SPMinecraftServer-GetPlayers
+-MaxPlayerCount
+-Modt
+-PlayerCount
+-Time
+-WhitelistEnabled
+-AddToWhitelist
+-BroadcastMessage
+-DisablePlugin
+-EnablePlugin
+-GetBlockID
+-GetCuboid
+-GetPos
+-GetSignText
+-Give
+-GoRainbow
+-Init
+-Kick
+-RunConsoleCommand
+-RunServerCommand
+-SetBlock
+-SetSignText
+-ToggleMute
+
+SPNetwork
+
+SPProcess
+
+SPProgram
+
+SPResolution
+
+SPSecurity-GenerateCustomPassword
+-GeneratePassword
+-GenerateHardPassword
+
+SPSpecialsChars-NewLine
+-Quotation
+
+SPTaskBar
+
+SPText
+
+SPTextWindow
+
+SPWindows
