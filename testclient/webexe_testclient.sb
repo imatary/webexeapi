@@ -1,0 +1,32 @@
+TextWindow.Show()
+TextWindow.Title = "WebEXE Test Client"
+TextWindow.Clear()
+
+serverurl = "http://sykeben.github.io/webexetest/"
+tempdir = Text.Append(LDFile.TempFolder,"/webexe")
+
+File.DeleteDirectory(tempdir)
+File.CreateDirectory(tempdir)
+
+TextWindow.WriteLine("WELCOME!")
+TextWindow.WriteLine(Text.Append("The server this is using is: ",serverurl))
+TextWindow.WriteLine("")
+
+TextWindow.Write("Downloading list . . . ")
+rawlist = ESLNetworking.GETRequest(Text.Append(serverurl,"list.txt"),"HTTP/1.1")
+TextWindow.WriteLine("Done.")
+
+TextWindow.Write("Parsing list . . . ")
+kindarawlist = LDText.Split(rawlist,"|")
+For i = 1 to Array.GetItemCount(kindarawlist)
+  list[i] = LDText.Split(kindarawlist,":")
+EndFor
+TextWindow.WriteLine("Done.")
+
+TextWindow.WriteLine("")
+TextWindow.WriteLine("Enter the ID of one of the below apps to launch:")
+TextWindow.WriteLine("[AppID] --> [ReadableName]")
+
+For i = 1 to Array.GetItemCount(list)
+  TextWindow.WriteLine(Text.Append(Text.Append(list[i][1]," ---> "),list[i][2]))
+EndFor
