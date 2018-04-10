@@ -2,7 +2,6 @@ TextWindow.Show()
 TextWindow.Title = "WebEXE Test Client"
 TextWindow.Clear()
 
-serverurl = "http://localhost"
 tempdir = Text.Append(LDFile.TempFolder,"\webexe")
 packagedir = Text.Append(tempdir,"\package")
 
@@ -10,9 +9,46 @@ File.DeleteDirectory(tempdir)
 File.CreateDirectory(tempdir)
 
 TextWindow.WriteLine("WELCOME!")
-TextWindow.WriteLine(Text.Append("The server this is using is: ",serverurl))
+
+URLGETTER:
+
+TextWindow.WriteLine("")
+TextWindow.WriteLine("Enter a server URL (E.G. http://example.com):")
+TextWindow.Write(">>> ")
+serverurl = TextWindow.Read()
+
 TextWindow.WriteLine("")
 
+urlok = 0
+If (Text.GetSubText(serverurl,1,4) = "http") Then
+  If (Text.GetSubText(serverurl,5,3) = "://") Then
+    If (Text.GetSubText(serverurl,Text.GetLength(serverurl),Text.GetLength(serverurl)) = "/") Then
+      TextWindow.WriteLine("Invalid URL: Ends with a /")
+    Else
+      TextWindow.WriteLine("URL OK, using HTTP.")
+      urlok = 1
+    EndIf
+  ElseIf (Text.GetSubText(serverurl,5,4) = "s://") Then
+    If (Text.GetSubText(serverurl,Text.GetLength(serverurl),Text.GetLength(serverurl)) = "/") Then
+      TextWindow.WriteLine("Invalid URL: Ends with a /")
+    Else
+      TextWindow.WriteLine("URL OK, using HTTPS.")
+      urlok = 1
+    EndIf
+  Else
+    TextWindow.WriteLine("Invalid URL: No HTTP/HTTPS specified")
+  EndIf
+Else
+  TextWindow.WriteLine("Invalid URL: No HTTP/HTTPS specified")  
+EndIf
+
+If (urlok = 0) Then
+  Goto URLGETTER
+EndIf
+
+INITIALIZER:
+
+TextWindow.WriteLine("")
 TextWindow.Write("Downloading list . . . ")
 rawlist = ESLNetworking.DownloadString(Text.Append(serverurl,"/list"))
 TextWindow.WriteLine("Done.")
@@ -27,7 +63,7 @@ TextWindow.WriteLine("Done.")
 LAUNCHER:
 
 TextWindow.WriteLine("")
-TextWindow.WriteLine("Enter the ID of one of the below apps to launch:")
+TextWindow.WriteLine("Available apps:")
 TextWindow.WriteLine("[AppID] --> [ReadableName]")
 TextWindow.WriteLine("")
 
@@ -35,7 +71,9 @@ For i = 1 to Array.GetItemCount(list)
   TextWindow.WriteLine(Text.Append(Text.Append(list[i][1]," ---> "),list[i][2]))
 EndFor
 
-TextWindow.Write(" []>>> ")
+TextWindow.WriteLine("")
+TextWindow.WriteLine("Enter an AppID:")
+TextWindow.Write(">>> ")
 app2launch = TextWindow.Read()
 
 app2launchok = 0
@@ -79,4 +117,4 @@ TextWindow.Write("PRESS ANY KEY WHEN THE APPLICATION CLOSES . . . ")
 TextWindow.PauseWithoutMessage()
 TextWindow.WriteLine("")
 
-Goto LAUNCHER
+Goto INITIALIZER
