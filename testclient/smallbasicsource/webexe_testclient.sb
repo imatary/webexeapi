@@ -11,6 +11,7 @@ File.CreateDirectory(tempdir)
 
 infocolors()
 TextWindow.WriteLine("WELCOME!")
+TextWindow.WriteLine("(C)2018 - Ben Sykes")
 initcolors()
 
 
