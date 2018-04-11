@@ -9,3 +9,7 @@ Clone this repo, and then run `/testclient/smallbasicsource/webexe_testclient.ex
 ### Info on the Test Client's Code
 
 The test client was written in Microsoft Smallbasic, a little known scripting language. It is dated as heck, so that's why the client currently does not work with HTTPS. So, feel free to rewrite it in a language that works with HTTPS. Also, I will rewrite it in a better language soon, anyway.
+
+### How to Compile the Test Client
+
+Since the test client was written in Smallbasic, you will have to download Smallbasic from [here](http://www.microsoft.com/en-US/download/details.aspx?id=46392 "Smallbasic download on Microsoft's site.") and copy all the files in the `/testclient/smallbasiclibfolder` to `[Wherever 32-bit apps are installed]\Microsoft\Small Basic\lib`. If there are any conflicting files, replace them. Now, open Smallbasic. Click "open" and navigate to where you saved the `smallbasicsource` folder and open "webexe_testclient.sb". To compile it, click "Run".
